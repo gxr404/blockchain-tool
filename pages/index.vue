@@ -81,7 +81,7 @@ async function randomTransaction() {
   const result = await getRandomTransaction()
   console.log('result', result)
   if (!result || !result?.txHex) {
-    ElMessage.error('Server Error')
+    ElMessage.error('服务错误请稍后重试')
     return
   }
   randomInfo.value = result
@@ -101,7 +101,7 @@ async function randomBlockHeader() {
   currentLoad = 'blockHeader'
   const result = await getRandomBlockHeader()
   if (!result || !result?.block?.headerHex) {
-    ElMessage.error('Server Error')
+    ElMessage.error('服务错误请稍后重试')
     return
   }
   randomInfo.value = {
