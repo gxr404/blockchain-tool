@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import type { RadixPrefix } from '@/utils/radix'
-import { transformRadix, radixPrefixMap } from '@/utils/radix'
 
 interface Props {
   radixPrefix: RadixPrefix

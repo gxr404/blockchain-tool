@@ -16,6 +16,8 @@
     "crypto-js": "^4.2.0",
     "dayjs": "^1.11.13",
     "element-plus": "^2.9.3",
+    "function-plot": "^1.25.1",
+    "katex": "^0.16.21",
     "localforage": "^1.10.0",
     "nuxt": "3.15.2",
     "vue": "latest"

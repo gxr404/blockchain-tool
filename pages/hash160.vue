@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { hash160 } from '@/utils/hash'
-import { checkHex } from '@/utils/common'
 
 const hexData = ref('')
 const loading = ref(false)
@@ -26,7 +24,6 @@ const hash160Result = computed(() => {
   }
   return result
 })
-
 </script>
 
 <template>

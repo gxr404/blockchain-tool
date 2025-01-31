@@ -2,8 +2,6 @@
 import { ref, computed, nextTick, watch } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Link } from '@element-plus/icons-vue'
-import { getRandomBlockHeader, getRandomTransaction } from '@/utils/rpcApi'
-import RadixBox from '@/components/RadixBox.vue'
 
 import 'element-plus/es/components/message/style/css'
 
@@ -25,9 +23,8 @@ interface InfoSite {
   tx?: Record<string, string>
 }
 
-
 definePageMeta({
-  alias: '/hash256'
+  alias: '/hash256',
 })
 
 const isRandomFlag = ref(false)
