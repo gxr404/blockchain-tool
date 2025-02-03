@@ -42,7 +42,7 @@ const formatTooltip = (val: number) => {
 }
 </script>
 <template>
-  <div class="flex flex-col p-10 border rounded finite-field-ecc">
+  <div class="flex flex-col p-10 border rounded bg-white finite-field-ecc">
     <h1 class="text-center font-bold">有限域椭圆曲线</h1>
     <p class="text-sm mt-4">
       在实数域上的椭圆曲线具有连续性的,

@@ -39,7 +39,7 @@ const formatTooltip = (val: number) => {
 </script>
 <template>
   <div class="flex flex-wrap gap-6 p-6 secp256k1">
-    <div class="flex flex-col p-10 border rounded">
+    <div class="flex flex-col p-10 border rounded bg-white">
       <h1 class="text-center font-bold">Secp256k1</h1>
       <p class="text-sm py-2">Secp256k1是一条特定的椭圆曲线</p>
 

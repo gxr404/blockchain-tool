@@ -52,7 +52,7 @@ const formatTooltip = (val: number) => {
 }
 </script>
 <template>
-  <div class="flex flex-col p-10 border rounded">
+  <div class="flex flex-col p-10 border rounded bg-white">
     <h1 class="text-center font-bold">
       三角函数
       <katex

@@ -49,7 +49,7 @@ const formatTooltip = (val: number) => {
 }
 </script>
 <template>
-  <div class="flex flex-col p-10 border rounded">
+  <div class="flex flex-col p-10 border rounded bg-white">
     <h1 class="text-center font-bold">指数函数 <katex formula="y=a^x" /></h1>
     <div id="exponential"></div>
     <el-descriptions :column="1" size="small" label-width="140">

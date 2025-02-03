@@ -52,7 +52,7 @@ const formatTooltip = (val: number) => {
 }
 </script>
 <template>
-  <div class="flex flex-col p-10 border rounded">
+  <div class="flex flex-col p-10 border rounded bg-white">
     <h1 class="text-center font-bold">对数函数 <katex formula="y=\log_{a}x" /></h1>
     <div id="log"></div>
     <el-descriptions :column="1" size="small" label-width="140">

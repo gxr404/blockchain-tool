@@ -51,7 +51,7 @@ const computeFormula = computed(() => {
 })
 </script>
 <template>
-  <div class="flex flex-col p-10 border rounded">
+  <div class="flex flex-col p-10 border rounded bg-white">
     <h1 class="text-center font-bold">椭圆曲线</h1>
     <p class="text-sm text-gray-400 py-2">
       椭圆曲线加密算法(Elliptic curve cryptography)简称 ECC, 是一种非对称加密算法。
