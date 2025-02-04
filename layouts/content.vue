@@ -6,8 +6,9 @@
     <div class="min-w-[240px] bg-white h-[100vh] border-r">
       <sidebar-block />
     </div>
-    <div class="overflow-y-auto flex-1 h-full">
+    <div class="content-box overflow-y-auto flex-1 h-full">
       <slot />
+      <el-backtop target=".content-box" />
     </div>
   </div>
 </template>

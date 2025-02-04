@@ -12,7 +12,7 @@ const route = useRoute()
     </header>
     <div class="h-[100vh] pt-[120px] -mt-[120px]">
       <div
-        class="h-full pt-[40px] pl-[10px] -mt-[40px] overflow-y-scroll scrollbar scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-thumb-zinc-200 scrollbar-track-withe hover:scrollbar-thumb-secondary-foreground"
+        class="h-full pt-[40px] pl-[10px] -mt-[40px] overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-thumb-zinc-200 scrollbar-track-withe hover:scrollbar-thumb-secondary-foreground"
       >
         <el-menu
           router
@@ -68,6 +68,9 @@ const route = useRoute()
             </el-menu-item>
             <el-menu-item index="general-little-endian" :route="{ path: '/general/little-endian' }">
               <span>小端字节序</span>
+            </el-menu-item>
+            <el-menu-item index="general-compact-size" :route="{ path: '/general/compact-size' }">
+              <span>Compact Size</span>
             </el-menu-item>
           </el-sub-menu>
         </el-menu>

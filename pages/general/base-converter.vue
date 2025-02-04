@@ -10,13 +10,13 @@ const octalRegex = /[^0-7]/g
 const binaryRegex = /[^0-1]/g
 
 function onDecimalInput() {
-  const tempValue = parseInt(decimal.value, 10)
-  decimal.value = !isNaN(Number(tempValue)) ? String(tempValue) : ''
+  const instance = BigNumber(decimal.value, 10)
+  decimal.value = instance.isNaN() ? '' : instance.toString(10)
   if (!decimal.value) {
     reset()
     return
   }
-  const instance = BigNumber(decimal.value, 10)
+  // const instance = BigNumber(decimal.value, 10)
   binary.value = instance.toString(2)
   octal.value = instance.toString(8)
   hex.value = instance.toString(16)

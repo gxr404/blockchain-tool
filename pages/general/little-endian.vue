@@ -8,6 +8,7 @@ const isHexBigEndianError = ref(false)
 const isHexLittleEndianError = ref(false)
 const filedSize = ref('any')
 const hexRegex = /[^0-9a-fA-F]/g
+const hexLittleEndianEl = ref()
 
 const filedSizeMap = [
   { label: 'Any', value: 'any' },
@@ -20,8 +21,8 @@ const filedSizeMap = [
 ]
 
 function onDecimalInput() {
-  const tempValue = parseInt(decimal.value, 10)
-  decimal.value = !isNaN(Number(tempValue)) ? String(tempValue) : ''
+  const instance = BigNumber(decimal.value, 10)
+  decimal.value = instance.isNaN() ? '' : instance.toString(10)
   if (!decimal.value) {
     hexBigEndian.value = ''
     hexLittleEndian.value = ''
@@ -29,7 +30,7 @@ function onDecimalInput() {
     return
   }
 
-  hexBigEndian.value = BigNumber(decimal.value, 10).toString(16)
+  hexBigEndian.value = instance.toString(16)
   const len = hexBigEndian.value.length
   const size = len % 2 === 0 ? len : len + 1
   hexBigEndian.value = hexBigEndian.value.padStart(size, '0')
@@ -60,7 +61,10 @@ function onHexLittleEndianInput() {
   cleanError()
   hexLittleEndian.value = hexLittleEndian.value.replace(hexRegex, '')
   isHexLittleEndianError.value = hexLittleEndian.value.length % 2 !== 0
-  if (isHexLittleEndianError.value) {
+  nextTick(() => {
+    hexLittleEndianEl.value?.focus()
+  })
+  if (isHexLittleEndianError.value || !hexLittleEndian.value) {
     decimal.value = ''
     hexBigEndian.value = ''
     return
@@ -68,6 +72,7 @@ function onHexLittleEndianInput() {
   hexBigEndian.value = hexLittleEndian.value.match(/../g)?.reverse().join('') || ''
   decimal.value = BigNumber(hexBigEndian.value, 16).toString(10)
   filedSize.value = filedSizeMap[0].value
+  console.log(hexLittleEndianEl.value)
 }
 
 watch(filedSize, () => {
@@ -93,6 +98,10 @@ function cleanError() {
     <el-descriptions label-width="200" :column="1">
       <template #title>
         <p class="font-bold text-lg mb-[20px]">小端字节序</p>
+        <p class="text-sm text-gray-400 mb-[20px]">
+          小端字节序(Little-Endian)指的是多字节数据在内存中存储时，
+          <b>低字节存储在低地址，高字节存储在高地址</b>
+        </p>
       </template>
       <el-descriptions-item label="十进制">
         <div class="inline-block min-w-[680px]">
@@ -116,7 +125,7 @@ function cleanError() {
       <el-descriptions-item label=" " v-if="hexBigEndian && !isHexBigEndianError">
         <div class="inline-flex flex-wrap w-[680px] gap-2">
           <span
-            class="flex items-center justify-center border rounded min-w-[30px] min-h-[30px]"
+            class="flex items-center justify-center border rounded min-w-[30px] min-h-[30px] text-[#409eff] bg-[#ecf5ff] border-[#a0cfff]"
             v-for="(item, index) in hexBigEndian.match(/../g)"
             :key="`${item}-${index}`"
           >
@@ -127,6 +136,7 @@ function cleanError() {
       <el-descriptions-item label="十六进制字节(小端字节)">
         <div class="inline-block min-w-[680px]">
           <el-input
+            ref="hexLittleEndianEl"
             v-model="hexLittleEndian"
             :class="isHexLittleEndianError ? 'error' : ''"
             clearable
@@ -139,7 +149,7 @@ function cleanError() {
       <el-descriptions-item label=" " v-if="hexLittleEndian && !isHexLittleEndianError">
         <div class="inline-flex flex-wrap w-[680px] gap-2">
           <span
-            class="flex items-center justify-center border rounded min-w-[30px] min-h-[30px] bg-[#f4f4f5]"
+            class="flex items-center justify-center border rounded min-w-[30px] min-h-[30px] text-[#409eff] bg-[#ecf5ff] border-[#a0cfff]"
             v-for="(item, index) in hexLittleEndian.match(/../g)"
             :key="`${item}-${index}`"
           >
