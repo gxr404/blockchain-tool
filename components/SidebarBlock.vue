@@ -31,14 +31,7 @@ const route = useRoute()
               <span>hash160</span>
             </el-menu-item>
           </el-sub-menu>
-          <el-sub-menu index="math">
-            <template #title>
-              <span>数学</span>
-            </template>
-            <el-menu-item index="math-base" :route="{ path: '/math/base' }">
-              <span>基础</span>
-            </el-menu-item>
-          </el-sub-menu>
+
           <el-sub-menu index="cryptology">
             <template #title>
               <span>密码学</span>
@@ -71,6 +64,15 @@ const route = useRoute()
             </el-menu-item>
             <el-menu-item index="general-compact-size" :route="{ path: '/general/compact-size' }">
               <span>Compact Size</span>
+            </el-menu-item>
+          </el-sub-menu>
+
+          <el-sub-menu index="math">
+            <template #title>
+              <span>数学</span>
+            </template>
+            <el-menu-item index="math-base" :route="{ path: '/math/base' }">
+              <span>基础</span>
             </el-menu-item>
           </el-sub-menu>
         </el-menu>
