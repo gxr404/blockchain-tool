@@ -7,7 +7,7 @@ const route = useRoute()
       <!-- -mt-[94px] -->
       <div id="hd-bg" class="absolute w-full"></div>
       <div class="h-[100px] flex items-center justify-center">
-        <h1 class="font-bold text-lg text-white relative z-10">Blockchain Tool</h1>
+        <h1 class="font-bold text-[24px] text-white relative z-10">Blockchain Tool</h1>
       </div>
     </header>
     <div class="h-[100vh] pt-[120px] -mt-[120px]">
