@@ -151,14 +151,14 @@ function resetRandomInfo() {
         <p><span class="font-bold">Error</span>: {{ hash256Result.errMsg }}</p>
       </el-alert>
       <template v-else>
-        <el-alert type="success" :closable="false">
+        <el-alert class="primary-alert" :closable="false">
           <p class="flex items-center">
             <span class="font-bold min-w-fit">First Sha256</span>:
             <radix-box radix-prefix="0x" :num-data="hash256Result.firstSha256" />
           </p>
         </el-alert>
         <div class="mt-2">
-          <el-alert type="success" :closable="false" class="mt-2">
+          <el-alert class="primary-alert mt-2" :closable="false">
             <p class="flex items-center">
               <span class="font-bold min-w-fit">Hash Result</span>:
               <radix-box radix-prefix="0x" :num-data="hash256Result.secondSha256" />

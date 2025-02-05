@@ -78,49 +78,62 @@ const formatTooltip = (val: number) => {
             转为16进制
             <!--  -->
           </div>
-          <el-alert type="success" :closable="false" class="mt-2">
-            <div>
-              <radix-box
-                radix-prefix="0x"
-                num-data="FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F"
-              />
-            </div>
-          </el-alert>
+          <div class="my-2 w-[680px]">
+            <el-alert class="primary-alert" :closable="false">
+              <div>
+                <radix-box
+                  radix-prefix="0x"
+                  num-data="FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F"
+                />
+              </div>
+            </el-alert>
+          </div>
         </li>
         <li class="list-disc">
           <div>基点 G 的坐标</div>
-          <el-alert type="success" :closable="false" class="mt-2">
-            <p class="flex items-center">
-              <span class="min-w-[36px] font-bold">Gx =</span>
-              <radix-box
-                radix-prefix="0x"
-                num-data="79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798"
-              />
-              <!-- 0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798 -->
-            </p>
-            <p class="flex items-center">
-              <span class="min-w-[36px] font-bold">Gy =</span>
-              <radix-box
-                radix-prefix="0x"
-                num-data="483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8"
-              />
-              <!-- Gy = 0x483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8 -->
-            </p>
-          </el-alert>
+          <div class="flex items-center mt-2 w-[680px]">
+            <span class="min-w-[36px] font-bold">Gx =</span>
+
+            <el-alert class="primary-alert mt-2" :closable="false">
+              <p class="flex items-center">
+                <radix-box
+                  radix-prefix="0x"
+                  num-data="79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798"
+                />
+                <!-- 0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798 -->
+              </p>
+            </el-alert>
+          </div>
+          <div class="flex items-center my-2 w-[680px]">
+            <span class="min-w-[36px] font-bold">Gy =</span>
+
+            <el-alert class="primary-alert mt-2" :closable="false">
+              <p class="flex items-center">
+                <radix-box
+                  radix-prefix="0x"
+                  num-data="483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8"
+                />
+                <!-- Gy = 0x483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8 -->
+              </p>
+            </el-alert>
+          </div>
         </li>
 
         <li class="list-disc">
           <div>基点 G 的阶 n</div>
-          <el-alert type="success" :closable="false" class="mt-2">
-            <p class="flex items-center">
-              <span class="min-w-[30px] font-bold">n =</span>
-              <radix-box
-                radix-prefix="0x"
-                num-data="FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141"
-              />
-              <!-- 0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798 -->
-            </p>
-          </el-alert>
+          <div class="flex items-center my-2 w-[680px]">
+            <span class="min-w-[30px] font-bold">n =</span>
+
+            <el-alert class="primary-alert mt-2" :closable="false">
+              <p class="flex items-center">
+                <radix-box
+                  radix-prefix="0x"
+                  num-data="FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141"
+                />
+                <!-- 0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798 -->
+              </p>
+            </el-alert>
+          </div>
         </li>
       </ul>
 

@@ -22,10 +22,11 @@ const radixData = computed(() => {
 <template>
   <div class="flex break-all items-center">
     <div>
-      <select v-model="radixPrefix" class="outline-0 bg-transparent italic">
+      <!-- italic -->
+      <select v-model="radixPrefix" class="outline-0 bg-transparent">
         <option v-for="item in radixPrefixMap" :key="item" :label="item" :value="item"></option>
       </select>
     </div>
-    <div>{{ radixData }}</div>
+    <div class="border-l pl-2 ml-2 border-current">{{ radixData || '&nbsp;' }}</div>
   </div>
 </template>

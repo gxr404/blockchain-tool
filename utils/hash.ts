@@ -1,32 +1,3 @@
-// import crypto from 'crypto-js'
-// // import sha256 from 'crypto-js/sha256'
-// // import enc from 'crypto-js/enc-hex'
-// // import ripemd160 from 'crypto-js/ripemd160'
-
-// export function hash256(hexData: string) {
-
-//   const firstSha256 = crypto.SHA256(crypto.enc.Hex.parse(hexData)).toString()
-//   const secondSha256 = crypto.SHA256(crypto.enc.Hex.parse(firstSha256)).toString()
-
-
-
-//   return {
-//     firstSha256,
-//     secondSha256,
-//   }
-// }
-
-// export function hash160(hexData: string) {
-//   const firstSha256 = crypto.SHA256(crypto.enc.Hex.parse(hexData)).toString()
-//   const ripemd160Data = crypto.RIPEMD160(crypto.enc.Hex.parse(firstSha256)).toString()
-
-//   return {
-//     firstSha256,
-//     ripemd160: ripemd160Data,
-//   }
-// }
-
-
 import sha256 from 'crypto-js/sha256'
 import enc from 'crypto-js/enc-hex'
 import ripemd160 from 'crypto-js/ripemd160'

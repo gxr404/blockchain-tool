@@ -76,7 +76,3 @@ body {
 #app {
   min-height: 100vh;
 }
-
-.el-menu {
-  border-right: 0 !important;
-}

@@ -46,6 +46,12 @@ const route = useRoute()
               <el-menu-item index="cryptology-secp256k1" :route="{ path: '/cryptology/secp256k1' }">
                 <span>Secp256k1</span>
               </el-menu-item>
+              <el-menu-item
+                index="cryptology-secp256k1-app"
+                :route="{ path: '/cryptology/secp256k1-app' }"
+              >
+                <span>Secp256k1的应用</span>
+              </el-menu-item>
             </el-sub-menu>
           </el-sub-menu>
 
@@ -88,13 +94,5 @@ const route = useRoute()
   background-size: cover;
   background-position: 0 100%;
   height: 100%;
-}
-.el-menu {
-  /* border-right: 0; */
-  --el-menu-item-height: 40px;
-  --el-menu-sub-item-height: 40px;
-  .el-sub-menu__title {
-    border-radius: 6px;
-  }
 }
 </style>

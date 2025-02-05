@@ -3,3 +3,105 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ========================= Element UI ================================= */
+
+.el-menu {
+  /* border-right: 0; */
+  border-right: 0 !important;
+  --el-menu-item-height: 40px;
+  --el-menu-sub-item-height: 40px;
+  .el-sub-menu__title,
+  .el-menu-item {
+    border-radius: 8px;
+  }
+  .is-active > * {
+    font-weight: bold !important;
+  }
+  .el-sub-menu {
+    .el-sub-menu__icon-arrow {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+  .el-sub-menu__title:hover {
+    .el-sub-menu__icon-arrow {
+      color: #409eff;
+    }
+  }
+}
+
+.el-button {
+  /* --el-button-hover-bg-color:  */
+  /* background: linear-gradient(45deg, #409eff 0%, #79bbff 100%) !important; */
+  background: linear-gradient(45deg, #347ecc 0%, #409eff 60%, #79bbff 100%) !important;
+  color: #fff !important;
+  border: 0 !important;
+}
+.el-button:hover {
+  opacity: 0.9;
+}
+.primary-alert {
+  --el-color-info: #409eff;
+  border: 1px solid #409eff;
+  &.el-alert--info {
+    --el-alert-bg-color: #ecf5ff;
+  }
+}
+.el-radio {
+  .el-radio__input.is-checked .el-radio__inner {
+    background: linear-gradient(45deg, #347ecc 0%, #409eff 60%, #79bbff 100%) !important;
+  }
+}
+
+.el-popper.is-primary {
+  padding: 6px 12px;
+  background: #409eff;
+  color: #fff;
+  .el-popper__arrow::before {
+    background: #409eff;
+    right: 0;
+  }
+}
+.el-popper.is-red {
+  padding: 6px 12px;
+  background: #f56c6c;
+  color: #fff;
+  .el-popper__arrow::before {
+    background: #f56c6c;
+    right: 0;
+  }
+}
+.el-popper.is-green {
+  padding: 6px 12px;
+  background: #67c23a;
+  color: #fff;
+  .el-popper__arrow::before {
+    background: #67c23a;
+    right: 0;
+  }
+}
+
+.el-input.error {
+  /* --el-input-text-color:  */
+  --el-input-bg-color: #f56c6c;
+  --el-input-text-color: #fff;
+  --el-input-focus-border: red;
+  --el-input-border-color: red;
+  --el-fill-color-light: #f56c6c;
+  --el-color-info: #fff;
+  --el-input-hover-border-color: red;
+  --el-input-focus-border-color: red;
+  --el-input-icon-color: #fff;
+  --el-input-clear-hover-color: #fff;
+}
+
+/* ========================= Element UI End ================================= */
+
+.primary-box {
+  background-color: #ecf5ff;
+  border: 1px solid #409eff;
+  color: #409eff;
+  border-radius: 4px;
+  padding: 8px 10px;
+}
