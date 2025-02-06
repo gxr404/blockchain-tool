@@ -37,6 +37,11 @@
   background: linear-gradient(45deg, #347ecc 0%, #409eff 60%, #79bbff 100%) !important;
   color: #fff !important;
   border: 0 !important;
+  &.is-disabled,
+  &.is-disabled:hover {
+    filter: opacity(50%);
+    cursor: not-allowed;
+  }
 }
 .el-button:hover {
   opacity: 0.9;
@@ -82,7 +87,8 @@
   }
 }
 
-.el-input.error {
+.el-input.error,
+.el-textarea.error {
   /* --el-input-text-color:  */
   --el-input-bg-color: #f56c6c;
   --el-input-text-color: #fff;
@@ -94,6 +100,9 @@
   --el-input-focus-border-color: red;
   --el-input-icon-color: #fff;
   --el-input-clear-hover-color: #fff;
+  .el-select {
+    --el-select-input-color: #fff;
+  }
 }
 
 /* ========================= Element UI End ================================= */

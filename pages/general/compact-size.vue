@@ -1,9 +1,12 @@
 <script lang="ts" setup>
 import BigNumber from 'bignumber.js'
 import { compactSizeToHex } from '~/utils/compactSize'
+import type { RadixInput } from '#components'
+
+type RadixInputType = InstanceType<typeof RadixInput>
 
 const inputData = ref('')
-const radixPrefix = ref('0d')
+const inputRef = ref<RadixInputType>()
 const compactSizeValue = ref('')
 const hexRegex = /[^0-9a-fA-F]/g
 const isInputDataError = ref(false)
@@ -47,37 +50,30 @@ const compactSizePrefixMap = [
 ]
 
 function onInputData() {
-  let hex = ''
   isInputDataError.value = false
-  if (radixPrefix.value === '0x') {
-    inputData.value = inputData.value.replace(hexRegex, '')
-    if (!inputData.value) {
-      compactSizeValue.value = ''
-      return
-    }
-    hex = inputData.value
-  } else if (radixPrefix.value === '0d') {
-    const temp = BigNumber(inputData.value, 10)
-    inputData.value = temp.isNaN() ? '' : temp.toString(10)
-    if (!inputData.value) {
-      compactSizeValue.value = ''
-      return
-    }
-    hex = temp.toString(16) //BigNumber(inputData.value, 10).toString(16)
+  if (!inputRef.value) return
+
+  let hex = inputData.value
+  if (inputRef.value.radixValue !== 16) {
+    hex = BigNumber(inputData.value, inputRef.value.radixValue).toString(16)
   }
+  if (!inputData.value) {
+    compactSizeValue.value = ''
+    return
+  }
+
   updateCompactSizeValue(hex)
 }
 
 function onRadixPrefixChange() {
   if (!inputData.value) return
-  let hex = ''
-  if (radixPrefix.value === '0x') {
-    inputData.value = BigNumber(inputData.value, 10).toString(16)
-    hex = inputData.value
-  } else if (radixPrefix.value === '0d') {
-    inputData.value = BigNumber(inputData.value, 16).toString(10)
-    hex = BigNumber(inputData.value, 10).toString(16)
+  if (!inputRef.value) return
+
+  let hex = inputData.value
+  if (inputRef.value.radixValue !== 16) {
+    hex = BigNumber(inputData.value, inputRef.value.radixValue).toString(16)
   }
+
   updateCompactSizeValue(hex)
 }
 
@@ -85,11 +81,12 @@ function updateCompactSizeValue(hex: string) {
   if (hex) {
     try {
       const { data, prefix } = hexToCompactSize(hex)
-      console.log(data, prefix)
       const findPrefix = compactSizePrefixMap.find((item) => item.value === prefix)
       if (findPrefix) {
         compactSizeValue.value = `${prefix}${data}`
         compactSizePrefix.value = findPrefix.value
+        isInputDataError.value = false
+        isCompactSizeInputError.value = false
       }
     } catch (e) {
       isInputDataError.value = true
@@ -106,12 +103,14 @@ function onInputCompactSizeValue() {
   compactSizeValue.value = compactSizeValue.value.replace(hexRegex, '')
   isCompactSizeInputError.value = false
   if (!compactSizeValue.value) return
+  if (!inputRef.value) return
   try {
     const { prefix, hex } = compactSizeToHex(compactSizeValue.value)
     const findPrefix = compactSizePrefixMap.find((item) => item.value === prefix)
     if (findPrefix) {
       compactSizePrefix.value = findPrefix.value
-      inputData.value = radixPrefix.value === '0d' ? BigNumber(hex, 16).toString(10) : hex
+      const radix = inputRef.value.radixValue
+      inputData.value = radix !== 16 ? BigNumber(hex, 16).toString(radix) : hex
     }
   } catch (e) {
     inputData.value = ''
@@ -122,13 +121,19 @@ function onInputCompactSizeValue() {
 }
 
 function onCompactSizePrefixChange() {
+  if (!inputRef.value) return
+  const radix = inputRef.value.radixValue
+
   const findCompactSizePrefix = compactSizePrefixMap.find(
     (item) => item.value === compactSizePrefix.value
   )
   if (findCompactSizePrefix) {
     inputData.value =
-      radixPrefix.value === '0d' ? findCompactSizePrefix.maxDecimal : findCompactSizePrefix.maxHex
+      radix !== 16
+        ? BigNumber(findCompactSizePrefix.maxHex, 16).toString(radix)
+        : findCompactSizePrefix.maxHex
     compactSizeValue.value = findCompactSizePrefix.maxCompactSize
+    isCompactSizeInputError.value = false
   }
 }
 </script>
@@ -160,19 +165,15 @@ function onCompactSizePrefixChange() {
       </template> -->
         <el-descriptions-item label="整数">
           <div class="inline-block min-w-[660px]">
-            <el-input
-              :class="isInputDataError ? 'error' : ''"
+            <radix-input
               v-model="inputData"
-              clearable
-              @input="onInputData"
+              :class="isInputDataError ? 'error' : ''"
+              default-radix="0d"
+              @change-radix="onRadixPrefixChange"
+              @input-value="onInputData"
+              ref="inputRef"
             >
-              <template #prepend>
-                <el-select v-model="radixPrefix" style="width: 70px" @change="onRadixPrefixChange">
-                  <el-option label="0x" value="0x" />
-                  <el-option label="0d" value="0d" />
-                </el-select>
-              </template>
-            </el-input>
+            </radix-input>
           </div>
           <div class="mt-[12px] pr-[12px]" v-if="isInputDataError">
             <el-alert type="error" :closable="false">

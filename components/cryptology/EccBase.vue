@@ -42,7 +42,6 @@ const formatTooltip = (val: number) => {
 }
 
 const isValid = computed(() => {
-  console.log(4 * a.value ** 3 + 27 * b.value ** 2)
   return 4 * a.value ** 3 + 27 * b.value ** 2 === 0
 })
 

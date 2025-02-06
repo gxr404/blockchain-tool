@@ -76,7 +76,6 @@ async function randomTransaction() {
   isRandomFlag.value = false
   currentLoad = 'tx'
   const result = await getRandomTransaction()
-  console.log('result', result)
   if (!result || !result?.txHex) {
     ElMessage.error('服务错误请稍后重试')
     return

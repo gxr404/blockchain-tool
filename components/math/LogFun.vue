@@ -7,7 +7,6 @@ onMounted(() => {
 })
 
 function logFun() {
-  console.log(`log(${incrementalFunVal.value}) * x`)
   functionPlot({
     target: '#log',
     grid: true,

@@ -1,19 +1,17 @@
 <script lang="ts" setup>
 import BigNumber from 'bignumber.js'
 import { ec as EC } from 'elliptic'
+import type { RadixInput } from '#components'
+
+type RadixInputType = InstanceType<typeof RadixInput>
 
 const secp256k1Ec = new EC('secp256k1')
 const privateKeyInput = ref('')
-const radixPrefix = ref<RadixPrefix>('0x')
+const privateKeyInputRef = ref<RadixInputType>()
+
 const compressPubKey = ref('compress')
-const radixPrefixMap = {
-  '0d': 10,
-  '0x': 16,
-  '0b': 2,
-  '0o': 8,
-}
 const publicKeyInfo = computed(() => {
-  if (!privateKeyInput.value) {
+  if (!privateKeyInput.value || !privateKeyInputRef.value) {
     return {
       x: '',
       y: '',
@@ -21,7 +19,8 @@ const publicKeyInfo = computed(() => {
       compactPubKey: '',
     }
   }
-  const radix = radixPrefixMap[radixPrefix.value]
+
+  const radix = privateKeyInputRef.value.radixValue
   let _privateKeyInput = privateKeyInput.value
   if (radix !== 16) {
     _privateKeyInput = BigNumber(_privateKeyInput, radix).toString(16)
@@ -55,21 +54,14 @@ const publicKeySegment = computed(() => {
 
 function randomPrivate() {
   const key = secp256k1Ec.genKeyPair()
-  const radix = radixPrefixMap[radixPrefix.value]
-  privateKeyInput.value = key.getPrivate().toString(radix)
+  if (!privateKeyInputRef.value) return
+  privateKeyInputRef.value.updateRadix('0x')
+  privateKeyInput.value = key.getPrivate().toString(16)
 }
-
-watch(radixPrefix, (newRadixPrefix, oldRadixPrefix) => {
-  const radix = radixPrefixMap[newRadixPrefix]
-  const oldRadix = radixPrefixMap[oldRadixPrefix]
-  if (privateKeyInput.value && oldRadixPrefix) {
-    privateKeyInput.value = BigNumber(privateKeyInput.value, oldRadix).toString(radix)
-  }
-})
 </script>
 
 <template>
-  <div class="flex flex-col p-6 border rounded bg-white mt-10">
+  <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[860px]">
     <p class="font-bold text-md centre">生成公钥</p>
     <p class="text-sm text-gray-400 my-[10px]">从私钥计算公钥</p>
     <div>
@@ -81,20 +73,12 @@ watch(radixPrefix, (newRadixPrefix, oldRadixPrefix) => {
         <p class="font-bold text-lg mb-[20px]">进制转化</p>
       </template> -->
         <el-descriptions-item label="私钥">
-          <div class="inline-block min-w-[660px]">
-            <el-input v-model="privateKeyInput" clearable>
-              <template #prepend>
-                <el-select v-model="radixPrefix" style="width: 70px">
-                  <el-option label="0b" value="0b" />
-                  <el-option label="0x" value="0x" />
-                  <el-option label="0d" value="0d" />
-                </el-select>
-              </template>
-            </el-input>
+          <div class="inline-block w-[660px]">
+            <radix-input v-model="privateKeyInput" ref="privateKeyInputRef"></radix-input>
           </div>
         </el-descriptions-item>
         <el-descriptions-item label="公钥坐标">
-          <div class="h-[22px] inline-block min-w-[660px]"></div>
+          <div class="h-[22px] inline-block w-[660px]"></div>
         </el-descriptions-item>
         <el-descriptions-item>
           <template #label>

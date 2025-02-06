@@ -72,7 +72,6 @@ function onHexLittleEndianInput() {
   hexBigEndian.value = hexLittleEndian.value.match(/../g)?.reverse().join('') || ''
   decimal.value = BigNumber(hexBigEndian.value, 16).toString(10)
   filedSize.value = filedSizeMap[0].value
-  console.log(hexLittleEndianEl.value)
 }
 
 watch(filedSize, () => {
