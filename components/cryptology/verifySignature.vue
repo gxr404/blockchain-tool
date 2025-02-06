@@ -187,7 +187,10 @@ defineExpose({
 })
 </script>
 <template>
-  <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[860px]" ref="verifySignatureEl">
+  <div
+    class="flex flex-col p-6 border rounded bg-white mt-10 w-[860px] mb-[100px]"
+    ref="verifySignatureEl"
+  >
     <p class="font-bold text-md centre">验证签名</p>
     <p class="text-sm text-gray-400 my-[10px]">使用私钥签名消息，使用公钥进行验证</p>
 

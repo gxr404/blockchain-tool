@@ -10,9 +10,10 @@ const route = useRoute()
         <h1 class="font-bold text-[24px] text-white relative z-10">Blockchain Tool</h1>
       </div>
     </header>
-    <div class="h-[100vh] pt-[120px] -mt-[120px]">
+    <div class="h-[100vh] pt-[160px] -mt-[160px]">
       <div
         class="h-full pt-[40px] pl-[10px] -mt-[40px] overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-thumb-zinc-200 scrollbar-track-withe hover:scrollbar-thumb-secondary-foreground"
+        style="height: calc(100% + 40px)"
       >
         <el-menu
           router
