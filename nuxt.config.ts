@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   },
   vite: {
     optimizeDeps: {
-      include: ['dayjs'],
+      include: ['dayjs', 'elliptic'],
     },
   },
 })
