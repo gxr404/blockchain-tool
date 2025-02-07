@@ -111,42 +111,53 @@ function randomPrivate() {
             <el-radio-group class="w-[660px]" v-model="compressPubKey">
               <el-radio value="compress"> 压缩公钥 </el-radio>
               <el-radio value="none-compress">未压缩公钥 </el-radio>
+              <el-radio value="only-x">仅x坐标的公钥 </el-radio>
+              <!-- Taproot输出中使用仅限x的公钥。假设相应的y坐标是偶数。 -->
             </el-radio-group>
           </div>
         </el-descriptions-item>
         <el-descriptions-item label="公钥">
           <div class="inline-block w-[660px] align-middle">
             <div class="primary-box min-h-[40px]">
-              <el-tooltip
-                :content="
-                  compressPubKey === 'compress'
-                    ? 'y 坐标的奇偶性: 02表示偶数, 03 表示奇数'
-                    : '未压缩公钥04'
-                "
-                placement="top"
-                effect="red"
-              >
-                <span class="cursor-pointer hover:bg-[#F56C6C] hover:text-white text-[#F56C6C]">{{
-                  publicKeySegment.prefix
-                }}</span>
-              </el-tooltip>
-              <el-tooltip content="x 坐标" placement="top" effect="primary">
-                <span class="cursor-pointer hover:bg-[#409eff] hover:text-white break-all">
-                  {{ publicKeySegment.x }}
-                </span>
-              </el-tooltip>
-              <el-tooltip
-                v-if="compressPubKey === 'none-compress'"
-                content="y 坐标"
-                placement="bottom"
-                effect="green"
-              >
-                <span
-                  class="cursor-pointer hover:bg-[#67C23A] hover:text-white break-all text-[#67C23A]"
+              <template v-if="compressPubKey !== 'only-x'">
+                <el-tooltip
+                  :content="
+                    compressPubKey === 'compress'
+                      ? 'y 坐标的奇偶性: 02表示偶数, 03 表示奇数'
+                      : '未压缩公钥04'
+                  "
+                  placement="top"
+                  effect="red"
                 >
-                  {{ publicKeySegment.y }}
-                </span>
-              </el-tooltip>
+                  <span class="cursor-pointer hover:bg-[#F56C6C] hover:text-white text-[#F56C6C]">{{
+                    publicKeySegment.prefix
+                  }}</span>
+                </el-tooltip>
+                <el-tooltip content="x 坐标" placement="top" effect="primary">
+                  <span class="cursor-pointer hover:bg-[#409eff] hover:text-white break-all">
+                    {{ publicKeySegment.x }}
+                  </span>
+                </el-tooltip>
+                <el-tooltip
+                  v-if="compressPubKey === 'none-compress'"
+                  content="y 坐标"
+                  placement="bottom"
+                  effect="green"
+                >
+                  <span
+                    class="cursor-pointer hover:bg-[#67C23A] hover:text-white break-all text-[#67C23A]"
+                  >
+                    {{ publicKeySegment.y }}
+                  </span>
+                </el-tooltip>
+              </template>
+              <template v-else>
+                <el-tooltip content="Taproot输出 使用仅限x的公钥" placement="top" effect="primary">
+                  <span class="cursor-pointer hover:bg-[#409eff] hover:text-white break-all">
+                    {{ publicKeyInfo.x }}
+                  </span>
+                </el-tooltip>
+              </template>
             </div>
           </div>
         </el-descriptions-item>
