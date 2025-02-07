@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ec as EC } from 'elliptic'
+import * as elliptic from 'elliptic'
 import BN from 'bn.js'
 import sha256 from 'crypto-js/sha256'
 import enc from 'crypto-js/enc-hex'
@@ -19,6 +19,7 @@ const verifyInfo = {
 const emit = defineEmits<{
   goVerify: [verifyInfo: typeof verifyInfo]
 }>()
+const { ec: EC } = elliptic
 const secp256k1Ec = new EC('secp256k1')
 const privateKeyInput = ref('')
 const publicKeyInput = ref('')

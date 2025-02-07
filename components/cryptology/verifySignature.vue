@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { RadixInput } from '#components'
 import BigNumber from 'bignumber.js'
-import { ec as EC } from 'elliptic'
+import * as elliptic from 'elliptic'
 import { SuccessFilled, CircleCloseFilled } from '@element-plus/icons-vue'
 
+const { ec: EC } = elliptic
 const secp256k1Ec = new EC('secp256k1')
 
 type RadixInputType = InstanceType<typeof RadixInput>

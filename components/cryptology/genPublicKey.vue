@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import BigNumber from 'bignumber.js'
-import { ec as EC } from 'elliptic'
+import * as elliptic from 'elliptic'
+
 import type { RadixInput } from '#components'
 
 type RadixInputType = InstanceType<typeof RadixInput>
 
+const { ec: EC } = elliptic
 const secp256k1Ec = new EC('secp256k1')
 const privateKeyInput = ref('')
 const privateKeyInputRef = ref<RadixInputType>()
