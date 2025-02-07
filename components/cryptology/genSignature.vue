@@ -239,8 +239,8 @@ function resetSignature() {
               <template v-if="hashMsgOption === 0"> 签名Hash数据: </template>
               <template v-else>
                 签名数据: <br />
-                <span class="text-sm text-gray-400">(源数据未hash)</span></template
-              >
+                <span class="text-sm text-gray-400">(源数据未hash)</span>
+              </template>
             </p>
           </template>
           <div class="inline-block w-[660px] align-middle">
@@ -269,8 +269,12 @@ function resetSignature() {
             <el-checkbox v-model="isCustomNonce"></el-checkbox>
           </div>
         </el-descriptions-item>
-        <el-descriptions-item label="Nonce(ECC中的k): " v-show="isCustomNonce">
-          <div class="inline-block w-[660px]">
+        <el-descriptions-item v-show="isCustomNonce" label-class-name="align-middle">
+          <template #label>
+            Nonce: <br />
+            <span class="text-[12px] text-gray-400">(ECC中的k)</span>
+          </template>
+          <div class="inline-block w-[660px] align-middle">
             <radix-input v-model="nonceValue" @input-value="resetData" ref="nonceValueInputRef">
             </radix-input>
           </div>
