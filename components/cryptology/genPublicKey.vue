@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import BigNumber from 'bignumber.js'
-import * as elliptic from 'elliptic'
+import elliptic from 'elliptic'
 
 import type { RadixInput } from '#components'
 

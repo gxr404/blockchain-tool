@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { RadixInput } from '#components'
 import BigNumber from 'bignumber.js'
-import * as elliptic from 'elliptic'
+import elliptic from 'elliptic'
 import { SuccessFilled, CircleCloseFilled } from '@element-plus/icons-vue'
 
 const { ec: EC } = elliptic

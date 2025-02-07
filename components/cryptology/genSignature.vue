@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import * as elliptic from 'elliptic'
+import elliptic from 'elliptic'
 import BN from 'bn.js'
 import sha256 from 'crypto-js/sha256'
 import enc from 'crypto-js/enc-hex'
@@ -7,6 +7,7 @@ import BigNumber from 'bignumber.js'
 import type { RadixInput } from '#components'
 
 type RadixInputType = InstanceType<typeof RadixInput>
+const { ec: EC } = elliptic
 
 // hex data
 const verifyInfo = {
@@ -19,7 +20,6 @@ const verifyInfo = {
 const emit = defineEmits<{
   goVerify: [verifyInfo: typeof verifyInfo]
 }>()
-const { ec: EC } = elliptic
 const secp256k1Ec = new EC('secp256k1')
 const privateKeyInput = ref('')
 const publicKeyInput = ref('')
