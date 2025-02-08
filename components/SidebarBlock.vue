@@ -55,7 +55,28 @@ const route = useRoute()
               </el-menu-item>
             </el-sub-menu>
           </el-sub-menu>
-
+          <el-sub-menu index="address">
+            <template #title>
+              <span>地址</span>
+            </template>
+            <el-sub-menu index="bitcoin">
+              <template #title>
+                <span>Bitcoin</span>
+              </template>
+              <el-menu-item
+                index="address-bitcoin-base58"
+                :route="{ path: '/address/bitcoin/base58' }"
+              >
+                <span>Base58</span>
+              </el-menu-item>
+              <el-menu-item
+                index="address-bitcoin-bech32"
+                :route="{ path: '/address/bitcoin/bech32' }"
+              >
+                <span>Bech32</span>
+              </el-menu-item>
+            </el-sub-menu>
+          </el-sub-menu>
           <el-sub-menu index="general">
             <template #title>
               <span>通用</span>
