@@ -87,6 +87,12 @@ const route = useRoute()
             >
               <span>进制转换</span>
             </el-menu-item>
+            <el-menu-item
+              index="general-ascii-converter"
+              :route="{ path: '/general/ascii-converter' }"
+            >
+              <span>字节与ascii转换</span>
+            </el-menu-item>
             <el-menu-item index="general-little-endian" :route="{ path: '/general/little-endian' }">
               <span>小端字节序</span>
             </el-menu-item>
