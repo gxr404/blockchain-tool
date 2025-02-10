@@ -3,10 +3,12 @@ import BigNumber from 'bignumber.js'
 
 interface Props {
   defaultRadix?: RadixPrefix
+  disableSelect?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   defaultRadix: '0x',
+  disableSelect: false,
 })
 const emit = defineEmits(['changeRadix', 'inputValue'])
 
@@ -69,12 +71,17 @@ defineExpose({
 <template>
   <el-input v-model="inputValue" @input="onInput" clearable>
     <template #prepend>
-      <el-select v-model="radix" style="width: 70px">
-        <el-option label="0b" value="0b" />
-        <el-option label="0o" value="0o" />
-        <el-option label="0x" value="0x" />
-        <el-option label="0d" value="0d" />
-      </el-select>
+      <template v-if="disableSelect">
+        {{ radix }}
+      </template>
+      <template v-else>
+        <el-select v-model="radix" style="width: 70px">
+          <el-option label="0b" value="0b" />
+          <el-option label="0o" value="0o" />
+          <el-option label="0x" value="0x" />
+          <el-option label="0d" value="0d" />
+        </el-select>
+      </template>
     </template>
   </el-input>
 </template>

@@ -11,3 +11,10 @@ export function checkHex(str: string) {
   }
   return true
 }
+
+export function hexToUint8Array(hex: string) {
+  if (hex.length % 2 !== 0) {
+    throw new Error('Hex string length must be even')
+  }
+  return new Uint8Array((hex.match(/.{1,2}/g) || []).map((byte) => parseInt(byte, 16)))
+}

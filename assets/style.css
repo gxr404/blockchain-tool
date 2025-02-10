@@ -113,4 +113,44 @@
   color: #409eff;
   border-radius: 4px;
   padding: 8px 10px;
+  position: relative;
+  .red-span,
+  .green-span,
+  .blue-span {
+    cursor: pointer;
+    word-break: break-all;
+    &:hover {
+      color: white;
+    }
+  }
+  .red-span {
+    color: #f56c6c;
+    &:hover {
+      background-color: #f56c6c;
+    }
+  }
+  .green-span {
+    color: #67c23a;
+    &:hover {
+      background-color: #67c23a;
+    }
+  }
+  .blue-span {
+    color: #409eff;
+    &:hover {
+      background-color: #409eff;
+    }
+  }
+  &:hover {
+    .copy-btn {
+      display: block;
+    }
+  }
+  .copy-btn {
+    position: absolute;
+    display: none;
+    bottom: 6px;
+    right: 6px;
+    cursor: pointer;
+  }
 }

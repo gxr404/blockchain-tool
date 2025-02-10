@@ -198,7 +198,7 @@ function resetSignature() {
     <p class="text-sm text-gray-400 my-[10px]">使用私钥签名消息，使用公钥进行验证</p>
 
     <p>
-      <el-button @click="randomKey">随机生成私钥</el-button>
+      <el-button @click="randomKey">随机生成私钥公钥</el-button>
       <el-button @click="genSign">生成签名</el-button>
       <el-button @click="onGoVerify" :disabled="!signatureR || !signatureS">
         —> 去验证签名
