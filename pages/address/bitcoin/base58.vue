@@ -298,7 +298,7 @@ function onPrivateKeyInput() {
               <el-tooltip placement="top" effect="primary">
                 <template #content>
                   <p>P2SH-P2WPKH是使用 P2WPKH的锁定脚本 做为作为赎回脚本</p>
-                  <p>所以赎回脚本只会随公钥变化而变化</p>
+                  <p>所以赎回脚本只会随公钥变化而变化，<b>此时与自己的公钥无关</b></p>
                 </template>
                 <question-filled
                   class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
