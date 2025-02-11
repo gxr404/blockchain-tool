@@ -14,6 +14,9 @@ importers:
       '@nuxtjs/proxy':
         specifier: ^2.1.0
         version: 2.1.0
+      bech32:
+        specifier: ^2.0.0
+        version: 2.0.0
       bignumber.js:
         specifier: ^9.1.2
         version: 9.1.2
@@ -1370,6 +1373,9 @@ packages:
 
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
+
+  bech32@2.0.0:
+    resolution: {integrity: sha512-LcknSilhIGatDAsY1ak2I8VtGaHNhgMSYVxFrGLXv+xLHytaKZKcaUJJUE7qmBr7h33o5YQwP55pMI0xmkpJwg==}
 
   bignumber.js@9.1.2:
     resolution: {integrity: sha512-2/mKyZH9K85bzOEfhXDBFZTGd1CTs+5IHpeFQo9luiBG7hghdC851Pj2WAhb6E3R6b9tZj/XKhbg4fum+Kepug==}
@@ -5555,6 +5561,8 @@ snapshots:
   base-x@5.0.0: {}
 
   base64-js@1.5.1: {}
+
+  bech32@2.0.0: {}
 
   bignumber.js@9.1.2: {}
 

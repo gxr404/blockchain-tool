@@ -10,5 +10,5 @@
   },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "cSpell.words": ["Bech", "katex", "secp"]
+  "cSpell.words": ["Bech", "katex", "regtest", "secp"]
 }

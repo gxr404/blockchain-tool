@@ -158,6 +158,9 @@ function onPrivateKeyInput() {
     publicKeyInput.value = derivePublicKey(privatekeyHex.value)
   })
 }
+function onPublicKeyInput() {
+  privateKeyInput.value = ''
+}
 </script>
 
 <template>
@@ -202,7 +205,11 @@ function onPrivateKeyInput() {
           </el-descriptions-item>
           <el-descriptions-item label="公钥: ">
             <div class="inline-block w-[700px]">
-              <radix-input v-model="publicKeyInput" ref="publicKeyInputRef"> </radix-input>
+              <radix-input
+                v-model="publicKeyInput"
+                ref="publicKeyInputRef"
+                @input-value="onPublicKeyInput"
+              />
             </div>
           </el-descriptions-item>
           <el-descriptions-item label="网络: ">
