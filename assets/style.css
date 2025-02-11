@@ -86,6 +86,15 @@
     right: 0;
   }
 }
+.el-popper.is-origin {
+  padding: 6px 12px;
+  background: #e6a23c;
+  color: #fff;
+  .el-popper__arrow::before {
+    background: #e6a23c;
+    right: 0;
+  }
+}
 
 .el-input.error,
 .el-textarea.error {
@@ -114,15 +123,18 @@
   border-radius: 4px;
   padding: 8px 10px;
   position: relative;
+
   .red-span,
   .green-span,
-  .blue-span {
+  .blue-span,
+  .origin-span {
     cursor: pointer;
     word-break: break-all;
     &:hover {
       color: white;
     }
   }
+
   .red-span {
     color: #f56c6c;
     &:hover {
@@ -139,6 +151,12 @@
     color: #409eff;
     &:hover {
       background-color: #409eff;
+    }
+  }
+  .origin-span {
+    color: #e6a23c;
+    &:hover {
+      background-color: #e6a23c;
     }
   }
   &:hover {

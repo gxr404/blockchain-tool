@@ -10,6 +10,9 @@ const { ec: EC } = elliptic
 const secp256k1Ec = new EC('secp256k1')
 const privateKeyInput = ref('')
 const privateKeyInputRef = ref<RadixInputType>()
+const wifPrivateKeyInput = ref('')
+const wifPrivateKeyInputError = ref(false)
+const wifPrivateKeyInputErrorMsg = ref('')
 
 const compressPubKey = ref('compress')
 const publicKeyInfo = computed(() => {
@@ -63,7 +66,47 @@ function randomPrivate() {
   if (!privateKeyInputRef.value) return
   privateKeyInputRef.value.updateRadix('0x')
   privateKeyInput.value = key.getPrivate().toString(16)
+  nextTick(onPrivateKeyInput)
 }
+
+function onPrivateKeyInput() {
+  resetError()
+  if (!privateKeyHex.value) {
+    wifPrivateKeyInput.value = ''
+    return
+  }
+  try {
+    const compressFlag = ['compress', 'only-x'].includes(compressPubKey.value)
+    wifPrivateKeyInput.value = hexToWif(privateKeyHex.value, compressFlag)
+  } catch (e) {
+    wifPrivateKeyInput.value = ''
+    wifPrivateKeyInputError.value = true
+    wifPrivateKeyInputErrorMsg.value = (e as Error).message
+  }
+}
+function onWifPrivateKeyInput() {
+  resetError()
+  if (!wifPrivateKeyInput.value) {
+    privateKeyInput.value = ''
+    return
+  }
+  try {
+    const { privateKey, compress } = parseWif(wifPrivateKeyInput.value)
+    privateKeyInput.value = privateKey
+    compressPubKey.value = compress
+  } catch (e) {
+    wifPrivateKeyInputError.value = true
+    wifPrivateKeyInputErrorMsg.value = (e as Error).message || 'unknown error'
+  }
+}
+function resetError() {
+  wifPrivateKeyInputError.value = false
+  wifPrivateKeyInputErrorMsg.value = ''
+}
+
+watch(compressPubKey, () => {
+  nextTick(onPrivateKeyInput)
+})
 </script>
 
 <template>
@@ -80,14 +123,27 @@ function randomPrivate() {
       </template> -->
         <el-descriptions-item label="私钥">
           <div class="inline-block w-[660px]">
-            <radix-input v-model="privateKeyInput" ref="privateKeyInputRef" />
+            <radix-input
+              v-model="privateKeyInput"
+              ref="privateKeyInputRef"
+              @input-value="onPrivateKeyInput"
+            />
           </div>
         </el-descriptions-item>
-        <!-- <el-descriptions-item label="WIF私钥">
+        <el-descriptions-item label="WIF私钥">
           <div class="inline-block w-[660px]">
-            <radix-input v-model="privateKeyInput" />
+            <el-input
+              :class="wifPrivateKeyInputError ? 'error' : ''"
+              v-model="wifPrivateKeyInput"
+              @input="onWifPrivateKeyInput"
+            ></el-input>
           </div>
-        </el-descriptions-item> -->
+          <div class="mt-[12px] pr-[12px] w-[770px]" v-if="wifPrivateKeyInputError">
+            <el-alert type="error" :closable="false">
+              {{ wifPrivateKeyInputErrorMsg }}
+            </el-alert>
+          </div>
+        </el-descriptions-item>
         <el-descriptions-item label="公钥坐标">
           <div class="h-[22px] inline-block w-[660px]"></div>
         </el-descriptions-item>

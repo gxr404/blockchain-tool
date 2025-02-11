@@ -75,7 +75,9 @@ const route = useRoute()
               >
                 <span>Bech32</span>
               </el-menu-item>
-
+              <el-menu-item index="address-bitcoin-wif" :route="{ path: '/address/bitcoin/wif' }">
+                <span>WIF私钥</span>
+              </el-menu-item>
               <el-menu-item
                 index="address-bitcoin-opcode"
                 :route="{ path: '/address/bitcoin/opcode' }"
