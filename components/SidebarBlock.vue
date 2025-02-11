@@ -75,6 +75,13 @@ const route = useRoute()
               >
                 <span>Bech32</span>
               </el-menu-item>
+
+              <el-menu-item
+                index="address-bitcoin-opcode"
+                :route="{ path: '/address/bitcoin/opcode' }"
+              >
+                <span>Opcode列表</span>
+              </el-menu-item>
             </el-sub-menu>
           </el-sub-menu>
           <el-sub-menu index="general">

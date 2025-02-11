@@ -247,7 +247,7 @@ function onPrivateKeyInput() {
 
                   <div class="flex items-center mb-2">
                     <span class="mr-2">P2WPKH锁定脚本 ASM:</span>
-                    <div class="primary-box min-h-[41px] flex-1">OP_0 <公钥哈希></div>
+                    <div class="primary-box min-h-[41px] flex-1">OP_0 {{ '<公钥哈希>' }}</div>
                   </div>
                   <div class="flex items-center mb-2">
                     <span class="mr-2">Hex(对应的脚本哈希):</span>
