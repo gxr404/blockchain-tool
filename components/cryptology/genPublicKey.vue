@@ -22,13 +22,7 @@ const publicKeyInfo = computed(() => {
     }
   }
 
-  const radix = privateKeyInputRef.value.radixValue
-  let _privateKeyInput = privateKeyInput.value
-  if (radix !== 16) {
-    _privateKeyInput = BigNumber(_privateKeyInput, radix).toString(16)
-  }
-
-  const key = secp256k1Ec.keyFromPrivate(_privateKeyInput)
+  const key = secp256k1Ec.keyFromPrivate(privateKeyHex.value)
   const pubPoint = key.getPublic()
   return {
     x: pubPoint.getX().toString('hex'),
@@ -54,6 +48,16 @@ const publicKeySegment = computed(() => {
   }
 })
 
+const privateKeyHex = computed(() => {
+  if (!privateKeyInputRef.value || !privateKeyInput.value) return ''
+  const radix = privateKeyInputRef.value.radixValue
+  let _privateKeyInput = privateKeyInput.value
+  if (radix !== 16) {
+    _privateKeyInput = BigNumber(_privateKeyInput, radix).toString(16)
+  }
+  return _privateKeyInput
+})
+
 function randomPrivate() {
   const key = secp256k1Ec.genKeyPair()
   if (!privateKeyInputRef.value) return
@@ -76,9 +80,14 @@ function randomPrivate() {
       </template> -->
         <el-descriptions-item label="私钥">
           <div class="inline-block w-[660px]">
-            <radix-input v-model="privateKeyInput" ref="privateKeyInputRef"></radix-input>
+            <radix-input v-model="privateKeyInput" ref="privateKeyInputRef" />
           </div>
         </el-descriptions-item>
+        <!-- <el-descriptions-item label="WIF私钥">
+          <div class="inline-block w-[660px]">
+            <radix-input v-model="privateKeyInput" />
+          </div>
+        </el-descriptions-item> -->
         <el-descriptions-item label="公钥坐标">
           <div class="h-[22px] inline-block w-[660px]"></div>
         </el-descriptions-item>
