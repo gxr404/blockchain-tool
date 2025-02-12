@@ -138,8 +138,12 @@ function onPublicKeyInput() {
   <div class="p-10">
     <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
       <p class="font-bold text-lg centre">Bech32</p>
-      <p class="text-sm text-gray-400 my-[10px]">Bech32用于从公钥生成 <b>P2WPKH</b> 地址</p>
-
+      <p class="text-sm text-gray-400 mt-[10px]">
+        Bech32用于从公钥生成 <b>P2WPKH</b> 和 <b>P2WSH</b> 地址
+      </p>
+      <p class="text-sm text-gray-400 mt-[2px]">
+        P2WSH 与P2WPKH 流程一致，只是使用的是<b>赎回脚本</b>哈希
+      </p>
       <p class="mt-6">
         <el-button @click="randomKey">随机生成私钥公钥</el-button>
       </p>
