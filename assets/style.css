@@ -29,6 +29,12 @@
       color: #409eff;
     }
   }
+  .el-menu-item,
+  .el-sub-menu__title {
+    &:hover {
+      color: #409eff;
+    }
+  }
 }
 
 .el-button {
@@ -43,6 +49,14 @@
     cursor: not-allowed;
   }
 }
+
+.el-button.el-button--success {
+  background: linear-gradient(45deg, #529b2e 0%, #67c23a 60%, #95d475 100%) !important;
+}
+.el-button.el-button--danger {
+  background: linear-gradient(45deg, #c45656 0%, #f56c6c 60%, #f89898 100%) !important;
+}
+
 .el-button:hover {
   opacity: 0.9;
 }
@@ -116,6 +130,23 @@
 
 /* ========================= Element UI End ================================= */
 
+.danger-box {
+  color: #f56c6c;
+  background-color: #fef0f0;
+  border: 1px solid #f56c6c;
+  border-radius: 4px;
+  padding: 8px 10px;
+  position: relative;
+}
+.success-box {
+  color: #67c23a;
+  background-color: #f0f9eb;
+  border: 1px solid #67c23a;
+  border-radius: 4px;
+  padding: 8px 10px;
+  position: relative;
+}
+
 .primary-box {
   background-color: #ecf5ff;
   border: 1px solid #409eff;
@@ -123,7 +154,7 @@
   border-radius: 4px;
   padding: 8px 10px;
   position: relative;
-
+  word-wrap: break-word;
   .red-span,
   .green-span,
   .blue-span,
@@ -167,8 +198,23 @@
   .copy-btn {
     position: absolute;
     display: none;
-    bottom: 6px;
+    /* bottom: 6px; */
     right: 6px;
+    transform: translateY(-50%);
+    top: 50%;
     cursor: pointer;
   }
+}
+
+.emoji-span {
+  font-family: Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji';
+}
+
+.katex .katex-display {
+  margin: 0;
+}
+
+.collapse-border-none {
+  border: 0 !important;
+  --el-collapse-border-color: #e5e7eb !important;
 }

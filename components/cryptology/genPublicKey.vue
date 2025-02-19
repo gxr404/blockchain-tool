@@ -28,8 +28,8 @@ const publicKeyInfo = computed(() => {
   const key = secp256k1Ec.keyFromPrivate(privateKeyHex.value)
   const pubPoint = key.getPublic()
   return {
-    x: pubPoint.getX().toString('hex'),
-    y: pubPoint.getY().toString('hex'),
+    x: pubPoint.getX().toString('hex', 64),
+    y: pubPoint.getY().toString('hex', 64),
     pubKey: pubPoint.encode('hex', false),
     compactPubKey: pubPoint.encode('hex', true),
   }
@@ -65,7 +65,7 @@ function randomPrivate() {
   const key = secp256k1Ec.genKeyPair()
   if (!privateKeyInputRef.value) return
   privateKeyInputRef.value.updateRadix('0x')
-  privateKeyInput.value = key.getPrivate().toString(16)
+  privateKeyInput.value = key.getPrivate().toString(16, 64)
   nextTick(onPrivateKeyInput)
 }
 
@@ -111,7 +111,7 @@ watch(compressPubKey, () => {
 
 <template>
   <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[860px]">
-    <p class="font-bold text-md centre">生成公钥</p>
+    <p class="font-bold">生成公钥</p>
     <p class="text-sm text-gray-400 my-[10px]">从私钥计算公钥</p>
     <div>
       <el-button @click="randomPrivate">随机私钥</el-button>
@@ -133,7 +133,7 @@ watch(compressPubKey, () => {
         <el-descriptions-item label="WIF私钥">
           <div class="inline-block w-[660px]">
             <el-input
-              :class="wifPrivateKeyInputError ? 'error' : ''"
+              :class="['h-[38px]', wifPrivateKeyInputError ? 'error' : '']"
               v-model="wifPrivateKeyInput"
               @input="onWifPrivateKeyInput"
             ></el-input>
@@ -143,6 +143,9 @@ watch(compressPubKey, () => {
               {{ wifPrivateKeyInputErrorMsg }}
             </el-alert>
           </div>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <div class="border-t my-2"></div>
         </el-descriptions-item>
         <el-descriptions-item label="公钥坐标">
           <div class="h-[22px] inline-block w-[660px]"></div>
@@ -155,9 +158,7 @@ watch(compressPubKey, () => {
             X
           </template>
           <div class="inline-block w-[660px]">
-            <el-alert :closable="false" class="primary-alert">
-              <radix-box radix-prefix="0x" :num-data="publicKeyInfo.x"></radix-box>
-            </el-alert>
+            <radix-box radix-prefix="0x" :num-data="publicKeyInfo.x" />
           </div>
         </el-descriptions-item>
         <el-descriptions-item>
@@ -168,9 +169,7 @@ watch(compressPubKey, () => {
             Y
           </template>
           <div class="inline-block w-[660px]">
-            <el-alert :closable="false" class="primary-alert">
-              <radix-box radix-prefix="0x" :num-data="publicKeyInfo.y"></radix-box>
-            </el-alert>
+            <radix-box radix-prefix="0x" :num-data="publicKeyInfo.y" />
           </div>
         </el-descriptions-item>
         <el-descriptions-item label="&nbsp;">

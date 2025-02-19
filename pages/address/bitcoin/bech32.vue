@@ -51,7 +51,7 @@ function randomKey() {
   if (!privateKeyInputRef.value || !publicKeyInputRef.value) return
   resetHexRadix()
 
-  privateKeyInput.value = key.getPrivate().toString('hex')
+  privateKeyInput.value = key.getPrivate().toString('hex', 64)
   publicKeyInput.value = key.getPublic().encode('hex', true)
 }
 
@@ -68,40 +68,27 @@ const hash160Step = computed(() => {
   return hash160(_publicKey).ripemd160
 })
 
-const sliceGroupStep = computed(() => {
+const regroupBitsStep = computed(() => {
   if (!hash160Step.value) return ''
-  const binary = BigNumber(hash160Step.value, 16).toString(2)
+  const binary = BigNumber(hash160Step.value, 16).toString(2) //.padStart(160, '0')
   // bech32.toWords与sliceGroup类似的效果只是bech32.toWords返回的是10进制
   // bech32.toWords(hexToUint8Array(hash160Step.value))
-  const fixBinary = sliceGroup(binary, 5)
-  console.log(sliceGroup(binary, 5))
+
+  const fixBinary = regroupBits(binary, 5)
   return fixBinary.map((item) => BigNumber(item, 2).toString(16).padStart(2, '0')).join('')
 })
 
-function sliceGroup(binary: string, n: number) {
-  if (!binary) return []
-  let _binary = binary
-  const res = []
-  while (_binary) {
-    const len = _binary.length
-    const start = len - n < 0 ? 0 : len - n
-    const segment = _binary.slice(start, len).padStart(n, '0')
-    _binary = _binary.slice(0, start)
-    res.push(segment)
-  }
-  return res.reverse()
-}
-
 const versionPrefixStep = computed(() => {
-  if (!sliceGroupStep.value) {
+  if (!regroupBitsStep.value) {
     return {
       prefix: '',
       result: '',
     }
   }
+  const prefix = '00'
   return {
-    prefix: '00',
-    result: `00${sliceGroupStep.value}`,
+    prefix,
+    result: `${prefix}${regroupBitsStep.value}`,
   }
 })
 
@@ -137,13 +124,11 @@ function onPublicKeyInput() {
 <template>
   <div class="p-10">
     <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
-      <p class="font-bold text-lg centre">Bech32</p>
+      <p class="font-bold text-lg">Bech32</p>
       <p class="text-sm text-gray-400 mt-[10px]">
-        Bech32用于从公钥生成 <b>P2WPKH</b> 和 <b>P2WSH</b> 地址
+        Bech32用于从公钥生成 <b>P2WPKH</b> 和 <b>P2WSH</b> 地址, 不同的是 P2WSH 使用的是赎回脚本哈希
       </p>
-      <p class="text-sm text-gray-400 mt-[2px]">
-        P2WSH 与P2WPKH 流程一致，只是使用的是<b>赎回脚本</b>哈希
-      </p>
+
       <p class="mt-6">
         <el-button @click="randomKey">随机生成私钥公钥</el-button>
       </p>
@@ -195,17 +180,25 @@ function onPublicKeyInput() {
                 <span class="align-middle pr-1">Step 2: 字节分组</span>
                 <el-tooltip placement="top" effect="primary">
                   <template #content>
-                    <p>1. 转换 Hash160 为二进制</p>
+                    <p>1. 转换 Hash160 为二进制(转化后 不足8bit需补足)</p>
                     <p>2. 每 5 个比特位一组</p>
                     <p>3. 最后一组不足 5 位补零</p>
                     <p class="indent-2">示例:</p>
-                    <p class="indent-4">二进制数据: 0111 0101 0001 1110 0111 0110 1110 1000</p>
+                    <p class="indent-4">二进制数据: 01110101 00011110 01110110 111010(30bit)</p>
                     <p class="indent-4">
-                      每 5 位一组: 01 11010 10001 11100 11101 10111 01000 (从右往左分割5位)
+                      原数据按8bit分割头部不足需补零:
+                      <span class="font-bold text-[#F56C6C]">00</span>011101 01000111 10011101
+                      10111010(30bit)
+                    </p>
+
+                    <p class="indent-4">
+                      每 5 位一组: 00011 10101 00011 11001 11011 01110 10 (从左往右分割5位)
                     </p>
                     <p class="indent-4">
-                      最后一组(从右往左，最后一组即是第一组)不足5位往开头补零: 00001 11010 10001
-                      11100 11101 10111 01000
+                      最后一组(从左往右)不足5位结尾补零: 00011 10101 00011 11001 11011 01110 10<span
+                        class="font-bold text-[#F56C6C]"
+                        >000</span
+                      >
                     </p>
                     <p>4. 按5位一组转16进制, 转成的16机制不满两位补零</p>
                   </template>
@@ -217,7 +210,7 @@ function onPublicKeyInput() {
             </template>
             <div class="inline-block w-[700px] align-middle">
               <p class="text-sm text-gray-400 my-[10px]"></p>
-              <div class="primary-box min-h-[41px]">{{ sliceGroupStep }}</div>
+              <div class="primary-box min-h-[41px]">{{ regroupBitsStep }}</div>
             </div>
           </el-descriptions-item>
 
@@ -245,7 +238,7 @@ function onPublicKeyInput() {
                 </el-tooltip>
                 <el-tooltip content="字节分组" placement="top" effect="primary">
                   <span class="cursor-pointer hover:bg-[#409eff] hover:text-white break-all">
-                    {{ sliceGroupStep }}
+                    {{ regroupBitsStep }}
                   </span>
                 </el-tooltip>
               </div>

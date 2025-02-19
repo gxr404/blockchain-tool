@@ -133,7 +133,7 @@ function randomKey() {
   if (!privateKeyInputRef.value || !publicKeyInputRef.value) return
   resetHexRadix()
 
-  privateKeyInput.value = key.getPrivate().toString('hex')
+  privateKeyInput.value = key.getPrivate().toString('hex', 64)
   publicKeyInput.value = key.getPublic().encode('hex', true)
   // resetData()
 }
@@ -166,9 +166,15 @@ function onPublicKeyInput() {
 <template>
   <div class="p-10">
     <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
-      <p class="font-bold text-lg centre">Base58</p>
-      <p class="text-sm text-gray-400 my-[10px]">
+      <p class="font-bold text-lg">Base58</p>
+      <p class="text-sm text-gray-400 mt-[10px]">
         Base58 用于生成 <b>P2PKH</b> 和 <b>P2SH</b> 地址。
+      </p>
+      <p class="text-sm text-gray-400 mt-[2px]">
+        <b>Base58Check</b>: 从 Step 2 到 Step 4 这个过程称作Base58Check编码
+      </p>
+      <p class="text-sm text-gray-400 mb-[10px]">
+        P2WSH 与P2WPKH 流程一致，只是使用的是<b>赎回脚本</b>哈希
       </p>
       <p>相关提案:</p>
       <ul class="pl-4 my-2">
@@ -314,9 +320,7 @@ function onPublicKeyInput() {
             </template>
 
             <div class="inline-block w-[700px]">
-              <el-alert :closable="false" class="primary-alert">
-                <radix-box radix-prefix="0x" :num-data="redeemScriptP2WPKH"></radix-box>
-              </el-alert>
+              <radix-box radix-prefix="0x" :num-data="redeemScriptP2WPKH"></radix-box>
             </div>
           </el-descriptions-item>
 
@@ -327,7 +331,6 @@ function onPublicKeyInput() {
                 class="text-gray-400 hover:text-[#409eff] underline cursor-pointer px-2"
                 @click="
                   () => {
-                    console.log('test')
                     showMultiSignExampleRedeemScript = !showMultiSignExampleRedeemScript
                   }
                 "

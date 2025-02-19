@@ -118,7 +118,7 @@ const bytesCharArr = computed(() => {
     <el-collapse>
       <el-collapse-item name="1">
         <template #title>
-          <span class="text-md font-bold">Ascii表</span>
+          <span class="font-bold">Ascii表</span>
         </template>
         <general-ascii-table />
       </el-collapse-item>

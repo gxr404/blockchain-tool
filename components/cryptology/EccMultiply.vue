@@ -1,0 +1,271 @@
+<script setup lang="ts">
+import BigNumber from 'bignumber.js'
+import type { RadixInput, RadixBox } from '#components'
+
+type RadixInputType = InstanceType<typeof RadixInput>
+type RadixBoxType = InstanceType<typeof RadixBox>
+
+const a = ref()
+const b = ref()
+const aNegative = ref(false)
+const bNegative = ref(false)
+const modDecimal = ref('')
+const multiplier = ref('')
+const point1X = ref('')
+const point1Y = ref('')
+const aInputRef = ref<RadixInputType>()
+const bInputRef = ref<RadixInputType>()
+const point1XInputRef = ref<RadixInputType>()
+const point1YInputRef = ref<RadixInputType>()
+const modInputRef = ref<RadixInputType>()
+const multiplierInputRef = ref<RadixInputType>()
+const resultPointXRadixBoxRef = ref<RadixBoxType>()
+const resultPointYRadixBoxRef = ref<RadixBoxType>()
+
+const point1Err = ref(false)
+const point1ErrMsg = ref('')
+
+const resultPoint = computed(() => {
+  resetErr()
+  const defaultResultPoint = {
+    x: '',
+    y: '',
+  }
+  if (!point1X.value || !point1Y.value || !modDecimal.value || !multiplier.value || !a.value) {
+    return defaultResultPoint
+  }
+  const point1 = {
+    x: point1X.value,
+    y: point1Y.value,
+  }
+  if (!checkEccPoint(a.value, b.value, modDecimal.value, point1)) {
+    point1Err.value = true
+    point1ErrMsg.value = 'Point1 该点不在曲线上'
+    // 虽然有错 还是继续进行
+    // return defaultResultPoint
+  }
+
+  return eccMultiply(point1, multiplier.value, modDecimal.value, aSymbolValue.value)
+})
+
+const aSymbolValue = computed(() => {
+  if (aNegative.value) {
+    return '-' + a.value
+  }
+  return a.value
+})
+
+// const bSymbolValue = computed(() => {
+//   if (bNegative.value) {
+//     return '-' + b.value
+//   }
+//   return b.value
+// })
+
+function fillSecp256k1() {
+  a.value = '0'
+  b.value = '7'
+  aNegative.value = false
+  bNegative.value = false
+  const modValueHex = 'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F'
+  modDecimal.value = BigNumber(modValueHex, 16).toString(10)
+}
+
+function radixChange(radix: '0x' | '0d') {
+  aInputRef.value?.updateRadix(radix)
+  bInputRef.value?.updateRadix(radix)
+  point1XInputRef.value?.updateRadix(radix)
+  point1YInputRef.value?.updateRadix(radix)
+  modInputRef.value?.updateRadix(radix)
+  multiplierInputRef.value?.updateRadix(radix)
+  resultPointXRadixBoxRef.value?.updateRadix(radix)
+  resultPointYRadixBoxRef.value?.updateRadix(radix)
+}
+
+function resetErr() {
+  point1Err.value = false
+  point1ErrMsg.value = ''
+}
+</script>
+<template>
+  <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[860px]">
+    <el-collapse class="collapse-border-none">
+      <el-collapse-item name="1">
+        <template #title>
+          <p class="font-bold !text-[15px]">点倍乘</p>
+        </template>
+        <p class="mt-2 text-sm text-gray-400">P (x1,y2) , 计算 P * k = P + P + P ... P(k)</p>
+        <p class="mt-2 text-sm text-gray-400">
+          点倍乘 不能直接通过常规的数乘计算，而必须通过"两点相加"来完成
+        </p>
+        <p class="mt-2 text-sm text-gray-400">例如: P * 19</p>
+        <div class="mt-2 text-sm text-gray-400">
+          <p>计算过程(乘数采用二进制计算可优化计算过程):</p>
+          <ul class="pl-6 leading-6">
+            <li>1. 乘数转化成二进制 k = 19 = 0b10011</li>
+            <li>2. 最高位 1（起始值）→ 设 R = P</li>
+            <li>3. 读到 0 → 倍加（ R = 2P ）</li>
+            <li>4. 读到 0 → 倍加（ R = 4P ）</li>
+            <li>5. 读到 1 → 倍加 + 加（ R = 8P + P = 9P ）</li>
+            <li>6. 读到 1 → 倍加 + 加（ R = 18P + P = 19P ）</li>
+            <li>
+              最终结果:
+              <katex
+                class="katex-sm ml-2"
+                formula="19P = (((P \times 2) \times 2) \times 2 + P) \times 2 + P "
+              />
+            </li>
+          </ul>
+        </div>
+        <p class="text-sm text-gray-400 mt-[10px]">
+          在这个计算过程中， a, b 并未直接出现，但它们已经通过曲线方程<b>约束了所有点的坐标</b>。
+        </p>
+      </el-collapse-item>
+    </el-collapse>
+
+    <div class="mt-[20px] flex justify-between">
+      <div>
+        <el-button @click="fillSecp256k1">填入Secp256k1参数</el-button>
+      </div>
+      <div class="flex gap-2">
+        <el-button @click="radixChange('0x')">改为16进制输入</el-button>
+        <el-button @click="radixChange('0d')">改为10进制输入</el-button>
+      </div>
+    </div>
+
+    <div class="py-8">
+      <el-descriptions label-width="120" :column="1">
+        <!-- <template #title>
+          <p class="font-bold text-lg mb-[20px]">进制转化</p>
+        </template> -->
+        <el-descriptions-item label="Curve">
+          <div class="h-[22px] inline-block w-[660px]">&nbsp;</div>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <div
+              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+            ></div>
+            &nbsp;&nbsp;&nbsp;a
+          </template>
+          <div class="inline-flex items-center w-[660px]">
+            <div><el-checkbox v-model="aNegative">是否负数</el-checkbox></div>
+            <div class="ml-6 mr-2 min-w-[20px]">
+              <span :class="['text-[26px]', aNegative ? 'text-[#409eff]' : '']">
+                {{ aNegative ? '-' : '+' }}
+              </span>
+            </div>
+            <div class="flex-1">
+              <radix-input default-radix="0d" v-model:decimal="a" ref="aInputRef" />
+            </div>
+          </div>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <div
+              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+            ></div>
+            &nbsp;&nbsp;&nbsp;b
+          </template>
+          <div class="inline-flex items-center w-[660px]">
+            <div><el-checkbox v-model="bNegative">是否负数</el-checkbox></div>
+            <div class="ml-6 mr-2 min-w-[20px]">
+              <span :class="['text-[26px]', bNegative ? 'text-[#409eff]' : '']">
+                {{ bNegative ? '-' : '+' }}
+              </span>
+            </div>
+            <div class="flex-1">
+              <radix-input default-radix="0d" v-model:decimal="b" ref="bInputRef" />
+            </div>
+          </div>
+        </el-descriptions-item>
+        <el-descriptions-item label="Mod: ">
+          <div class="inline-block w-[660px]">
+            <radix-input default-radix="0d" v-model:decimal="modDecimal" ref="modInputRef" />
+          </div>
+        </el-descriptions-item>
+        <el-descriptions-item label="Point1">
+          <div class="h-[22px] inline-block w-[660px]">
+            &nbsp;
+            <div v-if="point1Err" class="text-[#F56C6C] text-sm my-2">
+              {{ point1ErrMsg }}
+            </div>
+          </div>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <div
+              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+            ></div>
+            &nbsp;&nbsp;&nbsp;x
+          </template>
+          <div class="inline-block w-[660px]">
+            <radix-input
+              :class="[point1Err ? 'error' : '']"
+              default-radix="0d"
+              v-model:decimal="point1X"
+              ref="point1XInputRef"
+            />
+          </div>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <div
+              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+            ></div>
+            &nbsp;&nbsp;&nbsp;y
+          </template>
+          <div class="inline-block w-[660px]">
+            <radix-input
+              :class="[point1Err ? 'error' : '']"
+              default-radix="0d"
+              v-model:decimal="point1Y"
+              ref="point1YInputRef"
+            />
+          </div>
+        </el-descriptions-item>
+        <el-descriptions-item label="Multiplier: ">
+          <div class="inline-block w-[660px]">
+            <radix-input default-radix="0d" v-model:decimal="multiplier" ref="multiplierInputRef" />
+          </div>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <div class="border-t my-2"></div>
+        </el-descriptions-item>
+        <el-descriptions-item label="Point1 * Multiplier">
+          <div class="h-[22px] inline-block w-[660px]">&nbsp;</div>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <div
+              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+            ></div>
+            &nbsp;&nbsp;&nbsp;x
+          </template>
+          <div class="inline-block w-[660px]">
+            <radix-box
+              radix-prefix="0d"
+              :num-data="resultPoint.x || ''"
+              ref="resultPointXRadixBoxRef"
+            />
+          </div>
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label>
+            <div
+              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+            ></div>
+            &nbsp;&nbsp;&nbsp;y
+          </template>
+          <div class="inline-block w-[660px]">
+            <radix-box
+              radix-prefix="0d"
+              :num-data="resultPoint.y || ''"
+              ref="resultPointYRadixBoxRef"
+            />
+          </div>
+        </el-descriptions-item>
+      </el-descriptions>
+    </div>
+  </div>
+</template>

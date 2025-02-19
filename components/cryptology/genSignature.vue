@@ -51,7 +51,7 @@ function randomKey() {
   if (!privateKeyInputRef.value) return
   privateKeyInputRef.value.updateRadix('0x')
 
-  privateKeyInput.value = key.getPrivate().toString('hex')
+  privateKeyInput.value = key.getPrivate().toString('hex', 64)
   publicKeyInput.value = key.getPublic().encode('hex', true)
   resetData()
 }
@@ -97,8 +97,8 @@ function genSign() {
   }
 
   const signatureInstance = key.sign(_hashMsg, signOptions)
-  signatureR.value = signatureInstance.r.toString('hex')
-  signatureS.value = signatureInstance.s.toString('hex')
+  signatureR.value = signatureInstance.r.toString('hex', 64)
+  signatureS.value = signatureInstance.s.toString('hex', 64)
   DEREncode.value = signatureInstance.toDER('hex')
 
   verifyInfo.publicKey = publicKeyInput.value
@@ -194,12 +194,12 @@ function resetSignature() {
 </script>
 <template>
   <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[860px]">
-    <p class="font-bold text-md centre">生成签名</p>
+    <p class="font-bold">生成签名</p>
     <p class="text-sm text-gray-400 my-[10px]">使用私钥签名消息，使用公钥进行验证</p>
 
     <p>
       <el-button @click="randomKey">随机生成私钥公钥</el-button>
-      <el-button @click="genSign">生成签名</el-button>
+      <el-button type="success" @click="genSign">生成签名</el-button>
       <el-button @click="onGoVerify" :disabled="!signatureR || !signatureS">
         —> 去验证签名
       </el-button>
@@ -211,9 +211,7 @@ function resetSignature() {
       </template> -->
         <el-descriptions-item label="公钥: ">
           <div class="inline-block w-[660px]">
-            <el-alert :closable="false" class="primary-alert">
-              <radix-box radix-prefix="0x" :num-data="publicKeyInput"></radix-box>
-            </el-alert>
+            <radix-box radix-prefix="0x" :num-data="publicKeyInput"></radix-box>
           </div>
         </el-descriptions-item>
         <el-descriptions-item label="私钥: ">
@@ -279,7 +277,9 @@ function resetSignature() {
             </radix-input>
           </div>
         </el-descriptions-item>
-
+        <el-descriptions-item>
+          <div class="border-t my-2"></div>
+        </el-descriptions-item>
         <el-descriptions-item label="Signature">
           <div class="h-[22px] inline-block w-[660px]">&nbsp;</div>
         </el-descriptions-item>
@@ -291,9 +291,7 @@ function resetSignature() {
             &nbsp;&nbsp;&nbsp;R
           </template>
           <div class="inline-block w-[660px]">
-            <el-alert :closable="false" class="primary-alert">
-              <radix-box radix-prefix="0x" :num-data="signatureR"></radix-box>
-            </el-alert>
+            <radix-box radix-prefix="0x" :num-data="signatureR"></radix-box>
           </div>
         </el-descriptions-item>
         <el-descriptions-item>
@@ -304,9 +302,7 @@ function resetSignature() {
             &nbsp;&nbsp;&nbsp;S
           </template>
           <div class="inline-block w-[660px]">
-            <el-alert :closable="false" class="primary-alert">
-              <radix-box radix-prefix="0x" :num-data="signatureS"></radix-box>
-            </el-alert>
+            <radix-box radix-prefix="0x" :num-data="signatureS"></radix-box>
           </div>
         </el-descriptions-item>
         <el-descriptions-item>
@@ -317,9 +313,7 @@ function resetSignature() {
             Msg Hash
           </template>
           <div class="inline-block w-[660px]">
-            <el-alert :closable="false" class="primary-alert">
-              <radix-box radix-prefix="0x" :num-data="hashMsg"></radix-box>
-            </el-alert>
+            <radix-box radix-prefix="0x" :num-data="hashMsg"></radix-box>
           </div>
         </el-descriptions-item>
 
@@ -342,9 +336,7 @@ function resetSignature() {
 
         <el-descriptions-item label="DER 编码">
           <div class="inline-block w-[660px]">
-            <el-alert :closable="false" class="primary-alert">
-              <radix-box radix-prefix="0x" :num-data="DEREncode"></radix-box>
-            </el-alert>
+            <radix-box radix-prefix="0x" :num-data="DEREncode"></radix-box>
           </div>
         </el-descriptions-item>
       </el-descriptions>

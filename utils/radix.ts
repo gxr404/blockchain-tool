@@ -20,10 +20,28 @@ export const radixPrefixNumberMap: Record<RadixPrefix, number> = {
 export function transformRadix(
   num: number | string,
   sourceRadixPrefix: RadixPrefix,
-  targetRadixPrefix: RadixPrefix,
+  targetRadixPrefix: RadixPrefix
 ) {
+  if (num === '') return ''
   if (sourceRadixPrefix === targetRadixPrefix) return String(num)
   return BigNumber(num, radixPrefixNumberMap[sourceRadixPrefix]).toString(
-    radixPrefixNumberMap[targetRadixPrefix],
+    radixPrefixNumberMap[targetRadixPrefix]
   )
+}
+
+export const byteToRadixBits = {
+  '0b': 8,
+  '0o': 3,
+  '0d': 3,
+  '0x': 2,
+}
+
+export function convertBytesToRadix(hexData: number | string, targetRadixPrefix: RadixPrefix) {
+  if (hexData === '') return ''
+  const dataArr = String(hexData).match(/../g) || []
+  return dataArr
+    .map((byte) => {
+      return parseInt(byte, 16).toString(radixPrefixNumberMap[targetRadixPrefix])
+    })
+    .join('')
 }

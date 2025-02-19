@@ -76,7 +76,6 @@ const checksumStep = computed(() => {
 })
 
 const base58Step = computed(() => {
-  console.log(checksumStep.value.result)
   if (!checksumStep.value.result) {
     return ''
   }
@@ -88,7 +87,7 @@ function randomKey() {
   if (!privateKeyInputRef.value) return
   resetHexRadix()
 
-  privateKeyInput.value = key.getPrivate().toString('hex')
+  privateKeyInput.value = key.getPrivate().toString('hex', 64)
   // resetData()
 }
 function resetHexRadix() {
@@ -101,7 +100,7 @@ function onPrivateKeyInput() {}
 <template>
   <div class="p-10">
     <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
-      <p class="font-bold text-lg centre">WIF</p>
+      <p class="font-bold text-lg">WIF</p>
       <p class="text-sm text-gray-400 my-[10px]">
         WIF(Wallet Import Format)是一种在钱包之间导入导出时使用的私钥格式。
       </p>

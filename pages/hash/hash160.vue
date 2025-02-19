@@ -53,19 +53,15 @@ const hash160Result = computed(() => {
         <p><span class="font-bold">Error</span>: {{ hash160Result.errMsg }}</p>
       </el-alert>
       <template v-else>
-        <el-alert class="primary-alert" :closable="false">
-          <p class="flex items-center">
-            <span class="font-bold min-w-fit">First Sha256</span>:
-            <radix-box radix-prefix="0x" :num-data="hash160Result.firstSha256" />
-          </p>
-        </el-alert>
+        <p class="flex items-center">
+          <span class="font-bold min-w-fit pr-4">First Sha256:</span>
+          <radix-box radix-prefix="0x" :num-data="hash160Result.firstSha256" />
+        </p>
         <div class="mt-2">
-          <el-alert class="primary-alert mt-2" :closable="false">
-            <p class="flex items-center">
-              <span class="font-bold min-w-fit">Hash Result(ripemd160)</span>:
-              <radix-box radix-prefix="0x" :num-data="hash160Result.ripemd160" />
-            </p>
-          </el-alert>
+          <p class="flex items-center">
+            <span class="font-bold min-w-fit pr-4">Hash Result(ripemd160):</span>
+            <radix-box radix-prefix="0x" :num-data="hash160Result.ripemd160" />
+          </p>
         </div>
       </template>
     </template>

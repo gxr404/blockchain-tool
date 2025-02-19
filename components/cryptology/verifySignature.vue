@@ -45,7 +45,7 @@ function randomKey() {
   if (!publicKeyInputRef.value) return
   publicKeyInputRef.value.updateRadix('0x')
 
-  privateKeyInput.value = key.getPrivate().toString('hex')
+  privateKeyInput.value = key.getPrivate().toString('hex', 64)
   publicKeyInput.value = key.getPublic().encode('hex', true)
 }
 
@@ -192,12 +192,12 @@ defineExpose({
     class="flex flex-col p-6 border rounded bg-white mt-10 w-[860px] mb-[100px]"
     ref="verifySignatureEl"
   >
-    <p class="font-bold text-md centre">验证签名</p>
+    <p class="font-bold">验证签名</p>
     <p class="text-sm text-gray-400 my-[10px]">使用私钥签名消息，使用公钥进行验证</p>
 
     <p class="flex gap-4 items-center">
       <el-button @click="randomKey">随机生成私钥公钥</el-button>
-      <el-button @click="verifySign">验证签名</el-button>
+      <el-button type="success" @click="verifySign">验证签名</el-button>
       <span class="text-sm inline-block align-middle" v-if="verifySignResult">
         <template v-if="verifySignResult === 'yes'">
           <success-filled class="w-[28px] inline-block mr-1 text-[#67C23A]" />

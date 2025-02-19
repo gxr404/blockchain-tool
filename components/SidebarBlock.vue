@@ -17,19 +17,21 @@ const route = useRoute()
       >
         <el-menu
           router
-          class="el-menu-vertical-demo"
+          class="!mb-10"
           :default-active="route.name === 'index' ? 'hash256' : route.name?.toString()"
         >
           <el-sub-menu index="hash">
             <template #title>
               <span>哈希算法</span>
             </template>
-            <el-menu-item index="hash256" :route="{ path: '/hash256' }">
-              <span>hash256</span>
+            <el-menu-item index="hash-hash256" :route="{ path: '/hash/hash256' }">
+              <span>Hash256</span>
             </el-menu-item>
-
-            <el-menu-item index="hash160" :route="{ path: '/hash160' }">
-              <span>hash160</span>
+            <el-menu-item index="hash-hash160" :route="{ path: '/hash/hash160' }">
+              <span>Hash160</span>
+            </el-menu-item>
+            <el-menu-item index="hash-tagged" :route="{ path: '/hash/tagged' }">
+              <span>Tagged Hash</span>
             </el-menu-item>
           </el-sub-menu>
 
@@ -43,6 +45,9 @@ const route = useRoute()
               </template>
               <el-menu-item index="cryptology-ecc" :route="{ path: '/cryptology/ecc' }">
                 <span>ECC</span>
+              </el-menu-item>
+              <el-menu-item index="cryptology-ecc-op" :route="{ path: '/cryptology/ecc-op' }">
+                <span>ECC常用操作</span>
               </el-menu-item>
               <el-menu-item index="cryptology-secp256k1" :route="{ path: '/cryptology/secp256k1' }">
                 <span>Secp256k1</span>
@@ -75,8 +80,20 @@ const route = useRoute()
               >
                 <span>Bech32</span>
               </el-menu-item>
+              <el-menu-item
+                index="address-bitcoin-bech32m"
+                :route="{ path: '/address/bitcoin/bech32m' }"
+              >
+                <span>Bech32m</span>
+              </el-menu-item>
               <el-menu-item index="address-bitcoin-wif" :route="{ path: '/address/bitcoin/wif' }">
                 <span>WIF私钥</span>
+              </el-menu-item>
+              <el-menu-item>
+                <a class="text-gray-400" href="https://bip32jp.github.io/english/"
+                  >助记词转化(待定...)</a
+                >
+                <!-- 源码库: https://github.com/iancoleman/bip39 -->
               </el-menu-item>
               <el-menu-item
                 index="address-bitcoin-opcode"
@@ -116,6 +133,18 @@ const route = useRoute()
             </template>
             <el-menu-item index="math-base" :route="{ path: '/math/base' }">
               <span>基础</span>
+            </el-menu-item>
+            <el-menu-item
+              index="math-mod-operation-theory"
+              :route="{ path: '/math/mod-operation-theory' }"
+            >
+              <span>模运算(理论)</span>
+            </el-menu-item>
+            <el-menu-item
+              index="math-mod-operation-app"
+              :route="{ path: '/math/mod-operation-app' }"
+            >
+              <span>模运算</span>
             </el-menu-item>
           </el-sub-menu>
         </el-menu>

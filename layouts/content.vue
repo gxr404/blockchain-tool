@@ -1,14 +1,11 @@
 <template>
-  <!-- <header class="h-20 flex items-center px-[20px] border-b">
-    <h1 class="font-bold text-lg">Blockchain Tool</h1>
-  </header> -->
-  <div class="flex h-[100vh] overflow-hidden">
+  <div class="flex min-h-[100vh] h-[100vh] overflow-hidden items-start">
     <div class="min-w-[240px] bg-white h-[100vh] border-r">
       <sidebar-block />
     </div>
-    <div class="content-box overflow-y-auto flex-1 h-full">
+    <div class="scroll-box overflow-y-auto flex-1 h-full min-h-[100vh] scroll-smooth">
       <slot />
-      <el-backtop target=".content-box" />
+      <el-backtop target=".scroll-box" />
     </div>
   </div>
 </template>
