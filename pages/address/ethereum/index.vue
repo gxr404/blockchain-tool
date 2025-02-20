@@ -55,7 +55,7 @@ const checksumAddress = computed(() => {
 //   console.log(toChecksumAddress(address))
 //   console.log(address === `0x${toChecksumAddress(address)}`)
 // }
-console.log(toChecksumAddress('0xa8dc2b2'))
+// console.log(toChecksumAddress('0xa8dc2b2'))
 
 function randomKey() {
   const key = secp256k1Ec.genKeyPair()
