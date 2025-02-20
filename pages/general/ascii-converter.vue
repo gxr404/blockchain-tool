@@ -45,83 +45,86 @@ const bytesCharArr = computed(() => {
 </script>
 <template>
   <div class="p-10">
-    <p class="font-bold text-lg mb-[20px]">Ascii Converter</p>
-    <p class="text-sm text-gray-400 mb-[10px]">字节(16进制)与 ascii字符之间的转换</p>
-    <div class="mt-8 max-w-[830px]">
-      <el-descriptions label-width="120" :column="1">
-        <el-descriptions-item label="Bytes">
-          <div class="inline-block w-[680px]">
-            <el-input
-              :class="bytesError ? 'error' : ''"
-              v-model="bytes"
-              clearable
-              @input="onBytesInput"
-            >
-              <template #prepend>0x</template>
-            </el-input>
-          </div>
-          <div class="mt-[12px] pr-[12px]" v-if="bytesError">
-            <el-alert type="error" :closable="false">
-              {{ bytesErrorMsg }}
-            </el-alert>
-          </div>
-        </el-descriptions-item>
-
-        <el-descriptions-item label="Ascii">
-          <div class="inline-block min-w-[680px] align-middle">
-            <el-input
-              type="textarea"
-              :rows="6"
-              v-model="asciiChar"
-              @input="onAsciiInput"
-            ></el-input>
-          </div>
-        </el-descriptions-item>
-
-        <el-descriptions-item v-if="bytes">
-          <template #label>
-            <span
-              class="hover:text-[#409eff] underline cursor-pointer px-2"
-              @click="
-                () => {
-                  isShowMore = !isShowMore
-                }
-              "
-            >
-              {{ isShowMore ? '隐藏' : '显示更多详情' }}
-            </span>
-          </template>
-          <div class="w-[680px] inline-flex flex-wrap gap-2" v-show="isShowMore">
-            <span
-              class="flex items-center justify-center px-2"
-              v-for="(item, index) in bytesCharArr"
-              :key="`${item.hex}-${index}`"
-            >
-              <span
-                class="inline-flex items-center justify-center border px-2 rounded min-w-[30px] min-h-[30px] text-[#409eff] bg-[#ecf5ff] border-[#a0cfff]"
+    <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
+      <p class="font-bold text-lg mb-[20px]">Ascii Converter</p>
+      <p class="text-sm text-gray-400 mb-[10px]">字节(16进制)与 ascii字符之间的转换</p>
+      <div class="mt-8 max-w-[830px]">
+        <el-descriptions label-width="120" :column="1">
+          <el-descriptions-item label="Bytes">
+            <div class="inline-block w-[680px]">
+              <el-input
+                :class="bytesError ? 'error' : ''"
+                v-model="bytes"
+                clearable
+                @input="onBytesInput"
               >
-                0x{{ item.hex }}
-              </span>
-              <span class="px-2">——></span>
+                <template #prepend>0x</template>
+              </el-input>
+            </div>
+            <div class="mt-[12px] pr-[12px]" v-if="bytesError">
+              <el-alert type="error" :closable="false">
+                {{ bytesErrorMsg }}
+              </el-alert>
+            </div>
+          </el-descriptions-item>
+
+          <el-descriptions-item label="Ascii">
+            <div class="inline-block min-w-[680px] align-middle">
+              <el-input
+                type="textarea"
+                :rows="6"
+                v-model="asciiChar"
+                @input="onAsciiInput"
+              ></el-input>
+            </div>
+          </el-descriptions-item>
+
+          <el-descriptions-item v-if="bytes">
+            <template #label>
               <span
-                class="inline-flex items-center justify-center border px-2 rounded min-w-[30px] min-h-[30px] text-[#F56C6C] bg-[#fef0f0] border-[#fab6b6]"
+                class="hover:text-[#409eff] underline cursor-pointer px-2"
+                @click="
+                  () => {
+                    isShowMore = !isShowMore
+                  }
+                "
               >
-                {{ item.char }}
+                {{ isShowMore ? '隐藏' : '显示更多详情' }}
               </span>
-            </span>
-          </div>
-          <div class="w-[680px] inline-flex flex-wrap gap-2"></div>
-        </el-descriptions-item>
-      </el-descriptions>
+            </template>
+            <div class="w-[680px] inline-flex flex-wrap gap-2" v-show="isShowMore">
+              <span
+                class="flex items-center justify-center px-2"
+                v-for="(item, index) in bytesCharArr"
+                :key="`${item.hex}-${index}`"
+              >
+                <span
+                  class="inline-flex items-center justify-center border px-2 rounded min-w-[30px] min-h-[30px] text-[#409eff] bg-[#ecf5ff] border-[#a0cfff]"
+                >
+                  0x{{ item.hex }}
+                </span>
+                <span class="px-2">——></span>
+                <span
+                  class="inline-flex items-center justify-center border px-2 rounded min-w-[30px] min-h-[30px] text-[#F56C6C] bg-[#fef0f0] border-[#fab6b6]"
+                >
+                  {{ item.char }}
+                </span>
+              </span>
+            </div>
+            <div class="w-[680px] inline-flex flex-wrap gap-2"></div>
+          </el-descriptions-item>
+        </el-descriptions>
+      </div>
     </div>
-    <el-divider class="!my-[60px]" />
-    <el-collapse>
-      <el-collapse-item name="1">
-        <template #title>
-          <span class="font-bold">Ascii表</span>
-        </template>
-        <general-ascii-table />
-      </el-collapse-item>
-    </el-collapse>
+    <div class="mt-12">
+      <el-collapse>
+        <el-collapse-item name="1">
+          <template #title>
+            <span class="font-bold">Ascii表</span>
+          </template>
+          <general-ascii-table />
+        </el-collapse-item>
+      </el-collapse>
+    </div>
   </div>
 </template>

@@ -125,108 +125,117 @@ function resetRandomInfo() {
 
 <template>
   <div class="p-10">
-    <h1 class="text-lg font-bold">Hash256</h1>
-    <p class="mt-4">双层SHA-256。用于BlockHeader、Transaction，以及大多数需要在比特币中hash</p>
-    <p><code>Hash256 = SHA-256(SHA-256(data))</code></p>
-    <!-- <block-info-box :block-info="example1.block"></block-info-box> -->
-    <div class="py-4">
-      <p class="py-2">Data (Hex-16进制):</p>
-      <el-input
-        style="width: 800px"
-        v-model="hexData"
-        :disabled="loading"
-        :rows="6"
-        :show-word-limit="true"
-        placeholder="Please input"
-        type="textarea"
-      />
-    </div>
-    <template v-if="hexData">
-      <el-alert type="error" :closable="false" v-if="hash256Result.isError">
-        <p><span class="font-bold">Error</span>: {{ hash256Result.errMsg }}</p>
-      </el-alert>
-      <template v-else>
-        <p class="flex items-center">
-          <span class="font-bold min-w-fit pr-4">First Sha256:</span>
-          <radix-box
-            convert-bytes-to-radix
-            radix-prefix="0x"
-            :num-data="hash256Result.firstSha256"
-          />
-        </p>
-        <div class="mt-2">
+    <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
+      <h1 class="text-[26px] font-bold">
+        Hash256
+        <tag-list :list="['bitcoin']" />
+      </h1>
+      <p class="mt-4">双层SHA-256。用于BlockHeader、Transaction，以及大多数需要在比特币中hash</p>
+      <p><code>Hash256 = SHA-256(SHA-256(data))</code></p>
+      <!-- <block-info-box :block-info="example1.block"></block-info-box> -->
+      <div class="py-4">
+        <p class="py-2">Data (Hex-16进制):</p>
+        <el-input
+          style="width: 800px"
+          v-model="hexData"
+          :disabled="loading"
+          :rows="6"
+          :show-word-limit="true"
+          placeholder="Please input"
+          type="textarea"
+        />
+      </div>
+      <template v-if="hexData">
+        <el-alert type="error" :closable="false" v-if="hash256Result.isError">
+          <p><span class="font-bold">Error</span>: {{ hash256Result.errMsg }}</p>
+        </el-alert>
+        <template v-else>
           <p class="flex items-center">
-            <span class="font-bold min-w-fit pr-4">Hash Result:</span>
+            <span class="font-bold min-w-fit pr-4">First Sha256:</span>
             <radix-box
               convert-bytes-to-radix
               radix-prefix="0x"
-              :num-data="hash256Result.secondSha256"
+              :num-data="hash256Result.firstSha256"
             />
           </p>
-        </div>
+          <div class="mt-2">
+            <p class="flex items-center">
+              <span class="font-bold min-w-fit pr-4">Hash Result:</span>
+              <radix-box
+                convert-bytes-to-radix
+                radix-prefix="0x"
+                :num-data="hash256Result.secondSha256"
+              />
+            </p>
+          </div>
+        </template>
       </template>
-    </template>
-    <div class="mt-4">
-      <el-button
-        @click="loadingWarp(randomBlockHeader)"
-        :loading="currentLoad === 'blockHeader' && loading"
-        :disabled="currentLoad !== 'blockHeader' && loading"
-      >
-        Random Block Header
-      </el-button>
-      <el-button
-        @click="loadingWarp(randomTransaction)"
-        :loading="currentLoad === 'tx' && loading"
-        :disabled="currentLoad !== 'tx' && loading"
-      >
-        Random Transaction Data
-      </el-button>
-    </div>
-    <div class="border p-4 mt-4 rounded" v-if="isRandomFlag">
-      <el-descriptions title="Random Info" :column="1">
-        <el-descriptions-item label="Block height:" label-class-name="font-bold">
-          <span class="text-gray-400 break-all">{{ randomInfo?.block?.height }}</span>
-        </el-descriptions-item>
-        <el-descriptions-item label="Block hash:" label-class-name="font-bold">
-          <span class="text-gray-400 break-all">{{ randomInfo?.block?.hash }}</span>
-        </el-descriptions-item>
-        <el-descriptions-item label="block hash第三方网站查看:" label-class-name="font-bold">
-          <span class="text-gray-400 break-all">
-            <a
-              target="_blank"
-              v-for="(item, key) in infoSite.block"
-              :key="key"
-              class="hover:text-[#409eff] underline cursor-pointer px-2"
-              :href="item"
-            >
-              <el-icon class="align-middle"><Link /></el-icon> {{ key }}
-            </a>
-          </span>
-        </el-descriptions-item>
-        <el-descriptions-item v-if="randomInfo?.txHex" label="txHex:" label-class-name="font-bold">
-          <span class="text-gray-400 break-all">{{ randomInfo?.txHex }}</span>
-        </el-descriptions-item>
-        <el-descriptions-item v-if="randomInfo?.txId" label="txId:" label-class-name="font-bold">
-          <span class="text-gray-400 break-all">{{ randomInfo?.txId }}</span>
-        </el-descriptions-item>
-        <el-descriptions-item
-          v-if="randomInfo?.txId"
-          label="tx hash第三方网站查看:"
-          label-class-name="font-bold"
+      <div class="mt-4">
+        <el-button
+          @click="loadingWarp(randomBlockHeader)"
+          :loading="currentLoad === 'blockHeader' && loading"
+          :disabled="currentLoad !== 'blockHeader' && loading"
         >
-          <span class="text-gray-400 break-all">
-            <a
-              target="_blank"
-              v-for="(item, key) in infoSite.tx"
-              :key="key"
-              class="hover:text-[#409eff] underline cursor-pointer px-2"
-              :href="item"
-            >
-              <el-icon class="align-middle"><Link /></el-icon> {{ key }}
-            </a>
-          </span>
-        </el-descriptions-item>
-      </el-descriptions>
+          Random Block Header
+        </el-button>
+        <el-button
+          @click="loadingWarp(randomTransaction)"
+          :loading="currentLoad === 'tx' && loading"
+          :disabled="currentLoad !== 'tx' && loading"
+        >
+          Random Transaction Data
+        </el-button>
+      </div>
+      <div class="border p-4 mt-4 rounded" v-if="isRandomFlag">
+        <el-descriptions title="Random Info" :column="1">
+          <el-descriptions-item label="Block height:" label-class-name="font-bold">
+            <span class="text-gray-400 break-all">{{ randomInfo?.block?.height }}</span>
+          </el-descriptions-item>
+          <el-descriptions-item label="Block hash:" label-class-name="font-bold">
+            <span class="text-gray-400 break-all">{{ randomInfo?.block?.hash }}</span>
+          </el-descriptions-item>
+          <el-descriptions-item label="block hash第三方网站查看:" label-class-name="font-bold">
+            <span class="text-gray-400 break-all">
+              <a
+                target="_blank"
+                v-for="(item, key) in infoSite.block"
+                :key="key"
+                class="hover:text-[#409eff] underline cursor-pointer px-2"
+                :href="item"
+              >
+                <el-icon class="align-middle"><Link /></el-icon> {{ key }}
+              </a>
+            </span>
+          </el-descriptions-item>
+          <el-descriptions-item
+            v-if="randomInfo?.txHex"
+            label="txHex:"
+            label-class-name="font-bold"
+          >
+            <span class="text-gray-400 break-all">{{ randomInfo?.txHex }}</span>
+          </el-descriptions-item>
+          <el-descriptions-item v-if="randomInfo?.txId" label="txId:" label-class-name="font-bold">
+            <span class="text-gray-400 break-all">{{ randomInfo?.txId }}</span>
+          </el-descriptions-item>
+          <el-descriptions-item
+            v-if="randomInfo?.txId"
+            label="tx hash第三方网站查看:"
+            label-class-name="font-bold"
+          >
+            <span class="text-gray-400 break-all">
+              <a
+                target="_blank"
+                v-for="(item, key) in infoSite.tx"
+                :key="key"
+                class="hover:text-[#409eff] underline cursor-pointer px-2"
+                :href="item"
+              >
+                <el-icon class="align-middle"><Link /></el-icon> {{ key }}
+              </a>
+            </span>
+          </el-descriptions-item>
+        </el-descriptions>
+      </div>
     </div>
   </div>
 </template>

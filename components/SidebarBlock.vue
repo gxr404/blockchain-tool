@@ -33,6 +33,9 @@ const route = useRoute()
             <el-menu-item index="hash-tagged" :route="{ path: '/hash/tagged' }">
               <span>Tagged Hash</span>
             </el-menu-item>
+            <el-menu-item index="hash-keccak256" :route="{ path: '/hash/keccak256' }">
+              <span>Keccak256</span>
+            </el-menu-item>
           </el-sub-menu>
 
           <el-sub-menu index="cryptology">
@@ -102,6 +105,9 @@ const route = useRoute()
                 <span>Opcode列表</span>
               </el-menu-item>
             </el-sub-menu>
+            <el-menu-item index="address-ethereum" :route="{ path: '/address/ethereum' }">
+              Ethereum
+            </el-menu-item>
           </el-sub-menu>
           <el-sub-menu index="general">
             <template #title>

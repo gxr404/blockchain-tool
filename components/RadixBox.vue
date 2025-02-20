@@ -53,7 +53,7 @@ defineExpose({
 </script>
 
 <template>
-  <el-alert :closable="false" class="primary-alert radix-box relative">
+  <el-alert :closable="false" class="primary-alert radix-box relative !pr-6">
     <div class="flex break-all items-center">
       <div v-if="showByteTransform" class="border-r border-current pr-2 mr-2">
         <!-- italic -->

@@ -40,7 +40,10 @@ function copyHashResult() {
 <template>
   <div class="p-10">
     <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
-      <p class="font-bold text-lg">Tagged Hash</p>
+      <h1 class="text-[26px] font-bold">
+        Tagged Hash
+        <tag-list :list="['bitcoin']" />
+      </h1>
       <p class="text-sm text-gray-400 mt-4">
         使用<b>标签前缀</b>创建数据哈希 (在传统哈希算法中添加标签来实现对不同数据类型的区分)
       </p>
@@ -59,7 +62,7 @@ function copyHashResult() {
                 v-model="tagPrefix"
                 placeholder="Select"
                 size="large"
-                @visible-change="(v) => (isAddTagPrefixOption = false)"
+                @visible-change="() => (isAddTagPrefixOption = false)"
               >
                 <el-option
                   v-for="item in tagPrefixOptions"

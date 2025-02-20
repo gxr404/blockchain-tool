@@ -118,9 +118,6 @@ watch(compressPubKey, () => {
     </div>
     <div class="py-10">
       <el-descriptions label-width="80" :column="1">
-        <!-- <template #title>
-        <p class="font-bold text-lg mb-[20px]">进制转化</p>
-      </template> -->
         <el-descriptions-item label="私钥">
           <div class="inline-block w-[660px]">
             <radix-input

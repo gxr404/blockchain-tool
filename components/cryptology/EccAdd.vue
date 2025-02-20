@@ -176,9 +176,6 @@ function resetErr() {
 
     <div class="py-8">
       <el-descriptions label-width="120" :column="1">
-        <!-- <template #title>
-          <p class="font-bold text-lg mb-[20px]">进制转化</p>
-        </template> -->
         <el-descriptions-item label="Curve">
           <div class="h-[22px] inline-block w-[660px]">&nbsp;</div>
         </el-descriptions-item>

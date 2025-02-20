@@ -94,80 +94,82 @@ function cleanError() {
 
 <template>
   <div class="p-10">
-    <el-descriptions label-width="200" :column="1">
-      <template #title>
-        <p class="font-bold text-lg mb-[20px]">小端字节序</p>
-        <p class="text-sm text-gray-400 mb-[20px]">
-          小端字节序(Little-Endian)指的是多字节数据在内存中存储时，
-          <b>低字节存储在低地址，高字节存储在高地址</b>
-        </p>
-      </template>
-      <el-descriptions-item label="十进制">
-        <div class="inline-block min-w-[680px]">
-          <el-input v-model="decimal" clearable @input="onDecimalInput">
-            <template #prepend>0d</template>
-          </el-input>
-        </div>
-      </el-descriptions-item>
-      <el-descriptions-item label="十六进制字节(大端字节)">
-        <div class="inline-block min-w-[680px]">
-          <el-input
-            :class="isHexBigEndianError ? 'error' : ''"
-            v-model="hexBigEndian"
-            clearable
-            @input="onHexBigEndianInput"
-          >
-            <template #prepend>0x</template>
-          </el-input>
-        </div>
-      </el-descriptions-item>
-      <el-descriptions-item label=" " v-if="hexBigEndian && !isHexBigEndianError">
-        <div class="inline-flex flex-wrap w-[680px] gap-2">
-          <span
-            class="flex items-center justify-center border rounded min-w-[30px] min-h-[30px] text-[#409eff] bg-[#ecf5ff] border-[#a0cfff]"
-            v-for="(item, index) in hexBigEndian.match(/../g)"
-            :key="`${item}-${index}`"
-          >
-            {{ item }}
-          </span>
-        </div>
-      </el-descriptions-item>
-      <el-descriptions-item label="十六进制字节(小端字节)">
-        <div class="inline-block min-w-[680px]">
-          <el-input
-            ref="hexLittleEndianEl"
-            v-model="hexLittleEndian"
-            :class="isHexLittleEndianError ? 'error' : ''"
-            clearable
-            @input="onHexLittleEndianInput"
-          >
-            <template #prepend>0x</template>
-          </el-input>
-        </div>
-      </el-descriptions-item>
-      <el-descriptions-item label=" " v-if="hexLittleEndian && !isHexLittleEndianError">
-        <div class="inline-flex flex-wrap w-[680px] gap-2">
-          <span
-            class="flex items-center justify-center border rounded min-w-[30px] min-h-[30px] text-[#409eff] bg-[#ecf5ff] border-[#a0cfff]"
-            v-for="(item, index) in hexLittleEndian.match(/../g)"
-            :key="`${item}-${index}`"
-          >
-            {{ item }}
-          </span>
-        </div>
-      </el-descriptions-item>
-    </el-descriptions>
-    <el-alert v-if="isHexLittleEndianError || isHexBigEndianError" type="error" :closable="false">
-      <!-- Error: Expecting a complete string of bytes. A whole byte is two hexadecimal digits. -->
-      错误, 一个完整的字节是两个16进制数字
-    </el-alert>
-    <div class="mt-2">
-      <span class="pr-2 align-text-bottom">字段大小: </span>
-      <el-radio-group v-model="filedSize">
-        <el-radio v-for="item in filedSizeMap" :key="item.value" :value="item.value">
-          {{ item.label }}
-        </el-radio>
-      </el-radio-group>
+    <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
+      <el-descriptions label-width="200" :column="1">
+        <template #title>
+          <p class="font-bold text-lg mb-[20px]">小端字节序</p>
+          <p class="text-sm text-gray-400 mb-[20px]">
+            小端字节序(Little-Endian)指的是多字节数据在内存中存储时，
+            <b>低字节存储在低地址，高字节存储在高地址</b>
+          </p>
+        </template>
+        <el-descriptions-item label="十进制">
+          <div class="inline-block min-w-[680px]">
+            <el-input v-model="decimal" clearable @input="onDecimalInput">
+              <template #prepend>0d</template>
+            </el-input>
+          </div>
+        </el-descriptions-item>
+        <el-descriptions-item label="十六进制字节(大端字节)">
+          <div class="inline-block min-w-[680px]">
+            <el-input
+              :class="isHexBigEndianError ? 'error' : ''"
+              v-model="hexBigEndian"
+              clearable
+              @input="onHexBigEndianInput"
+            >
+              <template #prepend>0x</template>
+            </el-input>
+          </div>
+        </el-descriptions-item>
+        <el-descriptions-item label=" " v-if="hexBigEndian && !isHexBigEndianError">
+          <div class="inline-flex flex-wrap w-[680px] gap-2">
+            <span
+              class="flex items-center justify-center border rounded min-w-[30px] min-h-[30px] text-[#409eff] bg-[#ecf5ff] border-[#a0cfff]"
+              v-for="(item, index) in hexBigEndian.match(/../g)"
+              :key="`${item}-${index}`"
+            >
+              {{ item }}
+            </span>
+          </div>
+        </el-descriptions-item>
+        <el-descriptions-item label="十六进制字节(小端字节)">
+          <div class="inline-block min-w-[680px]">
+            <el-input
+              ref="hexLittleEndianEl"
+              v-model="hexLittleEndian"
+              :class="isHexLittleEndianError ? 'error' : ''"
+              clearable
+              @input="onHexLittleEndianInput"
+            >
+              <template #prepend>0x</template>
+            </el-input>
+          </div>
+        </el-descriptions-item>
+        <el-descriptions-item label=" " v-if="hexLittleEndian && !isHexLittleEndianError">
+          <div class="inline-flex flex-wrap w-[680px] gap-2">
+            <span
+              class="flex items-center justify-center border rounded min-w-[30px] min-h-[30px] text-[#409eff] bg-[#ecf5ff] border-[#a0cfff]"
+              v-for="(item, index) in hexLittleEndian.match(/../g)"
+              :key="`${item}-${index}`"
+            >
+              {{ item }}
+            </span>
+          </div>
+        </el-descriptions-item>
+      </el-descriptions>
+      <el-alert v-if="isHexLittleEndianError || isHexBigEndianError" type="error" :closable="false">
+        <!-- Error: Expecting a complete string of bytes. A whole byte is two hexadecimal digits. -->
+        错误, 一个完整的字节是两个16进制数字
+      </el-alert>
+      <div class="mt-2">
+        <span class="pr-2 align-text-bottom">字段大小: </span>
+        <el-radio-group v-model="filedSize">
+          <el-radio v-for="item in filedSizeMap" :key="item.value" :value="item.value">
+            {{ item.label }}
+          </el-radio>
+        </el-radio-group>
+      </div>
     </div>
   </div>
 </template>

@@ -19,6 +19,11 @@ export function hexToUint8Array(hex: string) {
   return new Uint8Array((hex.match(/.{1,2}/g) || []).map((byte) => parseInt(byte, 16)))
 }
 
+export function utf8ToUint8Array(utf8: string) {
+  const encoder = new TextEncoder()
+  return encoder.encode(utf8)
+}
+
 /**
  * 将二进制字符串重新分组，如 8-bit 转 5-bit
  * 1. 若输入数据不足原始 bit 长度（如 8-bit），需在前面补 0
@@ -57,4 +62,13 @@ export function regroupBits(
   }
 
   return result
+}
+
+export function fixHex(hex: string, originalBitSize = 2) {
+  const paddingNeeded = hex.length % originalBitSize
+  if (paddingNeeded !== 0) {
+    // 不足 originalBitSize
+    hex = hex.padStart(hex.length + (originalBitSize - paddingNeeded), '0')
+  }
+  return hex
 }

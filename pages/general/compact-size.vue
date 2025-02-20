@@ -139,86 +139,84 @@ function onCompactSizePrefixChange() {
 </script>
 
 <template>
-  <div class="p-10 max-w-[900px]">
-    <h1 class="font-bold text-lg mb-[20px]">Compact Size</h1>
+  <div class="p-10">
+    <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
+      <h1 class="font-bold text-lg mb-[20px]">Compact Size</h1>
 
-    <p class="text-sm text-gray-400 mb-[10px]">
-      compact size是比特币(Bitcoin)协议中用于表示变长整数的一种编码格式。
-      它<b>用于减少数据大小</b>，特别是在存储或传输交易时，能节省存储空间。
-    </p>
+      <p class="text-sm text-gray-400 mb-[10px]">
+        compact size是比特币(Bitcoin)协议中用于表示变长整数的一种编码格式。
+        它<b>用于减少数据大小</b>，特别是在存储或传输交易时，能节省存储空间。
+      </p>
 
-    <p class="text-sm text-gray-400 mb-[10px]">
-      交易原始数据(raw transaction)和区块原始数据(raw block)中的很多字段，都使用这个格式编码
-    </p>
-    <p class="text-sm text-gray-400 mb-[10px]">
-      对于较小的数字(小于252)存储只需一个字节，且无前缀。
-    </p>
+      <p class="text-sm text-gray-400 mb-[10px]">
+        交易原始数据(raw transaction)和区块原始数据(raw block)中的很多字段，都使用这个格式编码
+      </p>
+      <p class="text-sm text-gray-400 mb-[10px]">
+        对于较小的数字(小于252)存储只需一个字节，且无前缀。
+      </p>
 
-    <p class="text-sm text-gray-400 mb-[40px]">
-      对于较大的数字，使用前缀 + 数据部分(接下来的2、4或8字节),<b>需注意, 数据部分是小端字节序</b>
-    </p>
+      <p class="text-sm text-gray-400 mb-[40px]">
+        对于较大的数字，使用前缀 + 数据部分(接下来的2、4或8字节),<b>需注意, 数据部分是小端字节序</b>
+      </p>
 
-    <div>
-      <el-descriptions label-width="130" :column="1">
-        <!-- <template #title>
-        <p class="font-bold text-lg mb-[20px]">进制转化</p>
-      </template> -->
-        <el-descriptions-item label="整数">
-          <div class="inline-block min-w-[660px]">
-            <radix-input
-              v-model="inputData"
-              :class="isInputDataError ? 'error' : ''"
-              default-radix="0d"
-              @change-radix="onRadixPrefixChange"
-              @input-value="onInputData"
-              ref="inputRef"
-            >
-            </radix-input>
-          </div>
-          <div class="mt-[12px] pr-[12px]" v-if="isInputDataError">
-            <el-alert type="error" :closable="false">
-              {{ errorMsg }}
-            </el-alert>
-          </div>
-        </el-descriptions-item>
-        <el-descriptions-item label="Compact Size">
-          <div class="inline-block min-w-[660px]">
-            <el-input
-              :class="isCompactSizeInputError ? 'error' : ''"
-              v-model="compactSizeValue"
-              clearable
-              @input="onInputCompactSizeValue"
-            >
-            </el-input>
-          </div>
-          <div class="mt-[12px] pr-[12px]" v-if="isCompactSizeInputError">
-            <el-alert type="error" :closable="false">
-              {{ errorMsg }}
-            </el-alert>
-          </div>
-        </el-descriptions-item>
-        <el-descriptions-item label="前缀">
-          <div class="inline-block min-w-[660px]">
-            <el-radio-group
-              v-model="compactSizePrefix"
-              class="w-[660px]"
-              @change="onCompactSizePrefixChange"
-            >
-              <el-radio
-                v-for="item in compactSizePrefixMap"
-                :key="item.value"
-                :value="item.value"
-                class="w-[600px]"
+      <div>
+        <el-descriptions label-width="130" :column="1">
+          <el-descriptions-item label="整数">
+            <div class="inline-block min-w-[660px]">
+              <radix-input
+                v-model="inputData"
+                :class="isInputDataError ? 'error' : ''"
+                default-radix="0d"
+                @change-radix="onRadixPrefixChange"
+                @input-value="onInputData"
+                ref="inputRef"
               >
-                {{ item.label }}
-                <span class="text-[12px] text-gray-400">—— {{ item.description }}</span>
-              </el-radio>
-            </el-radio-group>
-          </div>
-        </el-descriptions-item>
-      </el-descriptions>
+              </radix-input>
+            </div>
+            <div class="mt-[12px] pr-[12px]" v-if="isInputDataError">
+              <el-alert type="error" :closable="false">
+                {{ errorMsg }}
+              </el-alert>
+            </div>
+          </el-descriptions-item>
+          <el-descriptions-item label="Compact Size">
+            <div class="inline-block min-w-[660px]">
+              <el-input
+                :class="isCompactSizeInputError ? 'error' : ''"
+                v-model="compactSizeValue"
+                clearable
+                @input="onInputCompactSizeValue"
+              >
+              </el-input>
+            </div>
+            <div class="mt-[12px] pr-[12px]" v-if="isCompactSizeInputError">
+              <el-alert type="error" :closable="false">
+                {{ errorMsg }}
+              </el-alert>
+            </div>
+          </el-descriptions-item>
+          <el-descriptions-item label="前缀">
+            <div class="inline-block min-w-[660px]">
+              <el-radio-group
+                v-model="compactSizePrefix"
+                class="w-[660px]"
+                @change="onCompactSizePrefixChange"
+              >
+                <el-radio
+                  v-for="item in compactSizePrefixMap"
+                  :key="item.value"
+                  :value="item.value"
+                  class="w-[600px]"
+                >
+                  {{ item.label }}
+                  <span class="text-[12px] text-gray-400">—— {{ item.description }}</span>
+                </el-radio>
+              </el-radio-group>
+            </div>
+          </el-descriptions-item>
+        </el-descriptions>
 
-      <!-- <div class="mt-2">
+        <!-- <div class="mt-2">
         <h2>前缀</h2>
         <el-radio-group v-model="compactSizePrefix">
           <el-radio
@@ -231,6 +229,7 @@ function onCompactSizePrefixChange() {
           </el-radio>
         </el-radio-group>
       </div> -->
+      </div>
     </div>
     <div class="mt-20">
       <el-collapse>

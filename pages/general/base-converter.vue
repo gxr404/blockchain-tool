@@ -68,38 +68,40 @@ function reset() {
 
 <template>
   <div class="p-10">
-    <el-descriptions label-width="80" :column="1">
-      <template #title>
-        <p class="font-bold text-lg mb-[20px]">进制转化</p>
-      </template>
-      <el-descriptions-item label="十进制">
-        <div class="inline-block min-w-[680px]">
-          <el-input v-model="decimal" clearable @input="onDecimalInput">
-            <template #prepend>0d</template>
-          </el-input>
-        </div>
-      </el-descriptions-item>
-      <el-descriptions-item label="二进制">
-        <div class="inline-block min-w-[680px]">
-          <el-input v-model="binary" clearable @input="onBinaryInput">
-            <template #prepend>0b</template>
-          </el-input>
-        </div>
-      </el-descriptions-item>
-      <el-descriptions-item label="八进制">
-        <div class="inline-block min-w-[680px]">
-          <el-input v-model="octal" clearable @input="onOctalInput">
-            <template #prepend>0o</template>
-          </el-input>
-        </div>
-      </el-descriptions-item>
-      <el-descriptions-item label="十六进制">
-        <div class="inline-block min-w-[680px]">
-          <el-input v-model="hex" clearable @input="onHexInput">
-            <template #prepend>0x</template>
-          </el-input>
-        </div>
-      </el-descriptions-item>
-    </el-descriptions>
+    <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
+      <el-descriptions label-width="80" :column="1">
+        <template #title>
+          <p class="font-bold text-lg mb-[20px]">进制转化</p>
+        </template>
+        <el-descriptions-item label="十进制">
+          <div class="inline-block min-w-[680px]">
+            <el-input v-model="decimal" clearable @input="onDecimalInput">
+              <template #prepend>0d</template>
+            </el-input>
+          </div>
+        </el-descriptions-item>
+        <el-descriptions-item label="二进制">
+          <div class="inline-block min-w-[680px]">
+            <el-input v-model="binary" clearable @input="onBinaryInput">
+              <template #prepend>0b</template>
+            </el-input>
+          </div>
+        </el-descriptions-item>
+        <el-descriptions-item label="八进制">
+          <div class="inline-block min-w-[680px]">
+            <el-input v-model="octal" clearable @input="onOctalInput">
+              <template #prepend>0o</template>
+            </el-input>
+          </div>
+        </el-descriptions-item>
+        <el-descriptions-item label="十六进制">
+          <div class="inline-block min-w-[680px]">
+            <el-input v-model="hex" clearable @input="onHexInput">
+              <template #prepend>0x</template>
+            </el-input>
+          </div>
+        </el-descriptions-item>
+      </el-descriptions>
+    </div>
   </div>
 </template>
