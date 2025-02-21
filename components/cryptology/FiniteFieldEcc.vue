@@ -55,7 +55,7 @@ const formatTooltip = (val: number) => {
     </p>
     <p class="text-sm indent-[16px]">
       例如 <span class="text-[12px]"><katex formula="F_{5} = \{0, 1, 2, 3, 4\}" /> </span>,
-      <span class="text-red-400">
+      <span class="text-[#F56C6C]">
         表示 x 和 y 坐标的值只能是
         <span class="text-[12px]"><katex formula="\{0, 1, 2, 3, 4\}" /></span>中的一个 </span
       >。
