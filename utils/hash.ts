@@ -5,13 +5,8 @@ import ripemd160 from 'crypto-js/ripemd160'
 import { keccak_256 } from '@noble/hashes/sha3'
 
 export function hash256(hexData: string) {
-  // sha256Data 1 a76dd73790def7b57776f22fa211d19cf43121a709a37eaeda17230eaac258f5
-  // HashView.vue:11 hash256Data e6552a4bdb0ab6e2f487fd3a3f683180bb675a664c142f34004534f054520e39
-  // console.log('hexData', hexData)
-
   const firstSha256 = sha256(encHex.parse(hexData)).toString()
   const secondSha256 = sha256(encHex.parse(firstSha256)).toString()
-
   return {
     firstSha256,
     secondSha256,

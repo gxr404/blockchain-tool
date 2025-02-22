@@ -205,7 +205,7 @@ function onPublicKeyInput() {
               </span>
             </template>
             <div class="inline-block w-[660px]">
-              <radix-box radix-prefix="0x" :num-data="tweak" />
+              <radix-box default-radix="0x" :num-data="tweak" />
             </div>
           </el-descriptions-item>
           <el-descriptions-item>
@@ -240,7 +240,7 @@ function onPublicKeyInput() {
               </span>
             </template>
             <div class="inline-block w-[660px] align-middle">
-              <radix-box radix-prefix="0x" :num-data="taprootPublicKey.x || ''" />
+              <radix-box default-radix="0x" :num-data="taprootPublicKey.x || ''" />
             </div>
           </el-descriptions-item>
 

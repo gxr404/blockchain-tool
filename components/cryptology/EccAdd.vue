@@ -67,8 +67,8 @@ const resultPoint = computed(() => {
     // return defaultResultPoint
   }
   try {
-    // return eccAddElliptic(point1, point2, modDecimal.value, aSymbolValue.value, b.value)
-    const res = eccAdd(point1, point2, modDecimal.value, aSymbolValue.value)
+    // return eccAddElliptic(aSymbolValue.value, b.value, modDecimal.value, point1, point2)
+    const res = eccAdd(aSymbolValue.value, b.value, modDecimal.value, point1, point2)
     return res
   } catch (e: unknown) {
     point1Err.value = true
@@ -331,7 +331,7 @@ function resetErr() {
           </template>
           <div class="inline-block w-[660px]">
             <radix-box
-              radix-prefix="0d"
+              default-radix="0d"
               :num-data="resultPoint.x || ''"
               ref="resultPointXRadixBoxRef"
             />
@@ -346,7 +346,7 @@ function resetErr() {
           </template>
           <div class="inline-block w-[660px]">
             <radix-box
-              radix-prefix="0d"
+              default-radix="0d"
               :num-data="resultPoint.y || ''"
               ref="resultPointYRadixBoxRef"
             />

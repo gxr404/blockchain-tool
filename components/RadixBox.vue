@@ -2,7 +2,7 @@
 import { CopyDocument } from '@element-plus/icons-vue'
 
 interface Props {
-  radixPrefix: RadixPrefix
+  defaultRadix: RadixPrefix
   numData: number | string
   convertBytesToRadix?: boolean
 }
@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<Props>(), {
   byteTransformForRadix: false,
 })
 
-const radixPrefix = ref<RadixPrefix>(props.radixPrefix)
+const radixPrefix = ref<RadixPrefix>(props.defaultRadix)
 const fnType = ref<TFnType>('direct')
 // const radixData = ref<string | number>(props.numData)
 
@@ -22,7 +22,7 @@ const radixData = computed(() => {
   if (fnType.value === 'byte') {
     return convertBytesToRadix(props.numData, radixPrefix.value)
   }
-  return transformRadix(props.numData, props.radixPrefix, radixPrefix.value)
+  return transformRadix(props.numData, props.defaultRadix, radixPrefix.value)
 })
 
 function updateRadix(radix: RadixPrefix) {
@@ -34,10 +34,10 @@ const radixValue = computed(() => {
 })
 
 const showByteTransform = computed(() => {
-  if (props.convertBytesToRadix && props.radixPrefix !== '0x') {
+  if (props.convertBytesToRadix && props.defaultRadix !== '0x') {
     console.warn('[RadixBox]: 按字节转化功能需 传入的值为16进制数据')
   }
-  return props.convertBytesToRadix && props.radixPrefix === '0x'
+  return props.convertBytesToRadix && props.defaultRadix === '0x'
 })
 
 function copyHexData() {
@@ -56,19 +56,19 @@ defineExpose({
   <el-alert :closable="false" class="primary-alert radix-box relative !pr-6">
     <div class="flex break-all items-center">
       <div v-if="showByteTransform" class="border-r border-current pr-2 mr-2">
-        <!-- italic -->
         <select v-model="fnType" class="outline-0 bg-transparent cursor-pointer">
           <option label="直接转化进制" value="direct">直接转化进制</option>
           <option label="按字节转化" value="byte"></option>
         </select>
       </div>
       <div>
-        <!-- italic -->
         <select v-model="radixPrefix" class="outline-0 bg-transparent cursor-pointer">
           <option v-for="item in radixPrefixMap" :key="item" :label="item" :value="item"></option>
         </select>
       </div>
-      <div class="border-l pl-2 ml-2 border-current">{{ radixData || '&nbsp;' }}</div>
+      <div class="border-l pl-2 ml-2 border-current radix-box-content">
+        {{ radixData || '&nbsp;' }}
+      </div>
     </div>
     <span class="copy-btn" @click="copyHexData" v-if="radixData">
       <copy-document class="inline-block w-[16px] h-[16px]"></copy-document>

@@ -47,7 +47,7 @@ export const getEccFormula = (a: number, b: number, p?: number) => {
  * aV 椭圆曲线上的a
  * 入参都为10进制
  */
-export function eccAdd(p1: Point, p2: Point, pV: string, aV: string) {
+export function eccAdd(aV: string, bV: string, pV: string, p1: Point, p2: Point) {
   const x1 = BigNumber(p1.x, 10)
   const y1 = BigNumber(p1.y, 10)
 
@@ -159,22 +159,24 @@ export function checkEccPoint(aV: string, bV: string, pV: string, point: Point) 
  * @param pV 曲线方程中mod值 p
  * @param aV 曲线方程中 a
  */
-export function eccMultiply(p1: Point, multiplyV: string, pV: string, aV: string) {
+export function eccMultiply(aV: string, bV: string, pV: string, p1: Point, multiplyV: string) {
   const multiply = BigNumber(multiplyV, 10)
   let _R0: Point = p1
   const multiplyBinary = multiply.toString(2)
   for (let i = 1; i < multiplyBinary.length; i++) {
     if (multiplyBinary[i] === '1') {
-      _R0 = eccAdd(_R0, _R0, pV, aV) as Point
-      _R0 = eccAdd(_R0, p1, pV, aV) as Point
+      _R0 = eccAdd(aV, bV, pV, _R0, _R0) as Point
+      _R0 = eccAdd(aV, bV, pV, _R0, p1) as Point
     } else {
-      _R0 = eccAdd(_R0, _R0, pV, aV) as Point
+      _R0 = eccAdd(aV, bV, pV, _R0, _R0) as Point
     }
   }
   return _R0
 }
 
-const Secp256k1 = {
+export const SECP256K1_CONST = {
+  a: BigNumber('0', 10),
+  b: BigNumber('7', 10),
   G: {
     x: BigNumber('79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798', 16),
     y: BigNumber('483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8', 16),
@@ -183,7 +185,7 @@ const Secp256k1 = {
 }
 
 /**
- * 生成taproot公钥点 Q = P + t * G
+ * Secp256k1 生成taproot公钥点 Q = P + t * G
  *  - G点 为Secp256k1算法的常量值
  *  - t tweak 10进制
  *  - P 为 公钥point
@@ -193,12 +195,13 @@ const Secp256k1 = {
  */
 export function genTaprootPublicKey(publicKeyPoint: Point, tweak: string) {
   const G = {
-    x: Secp256k1.G.x.toString(10),
-    y: Secp256k1.G.y.toString(10),
+    x: SECP256K1_CONST.G.x.toString(10),
+    y: SECP256K1_CONST.G.y.toString(10),
   }
-
-  const modDecimal = Secp256k1.mod.toString(10)
-  const mulPoint = eccMultiply(G, tweak, modDecimal, '0')
+  const a = BigNumber(SECP256K1_CONST.a, 10).toString(10)
+  const b = BigNumber(SECP256K1_CONST.b, 10).toString(10)
+  const modDecimal = SECP256K1_CONST.mod.toString(10)
+  const mulPoint = eccMultiply(a, b, modDecimal, G, tweak)
   const publicKeyY = BigNumber(publicKeyPoint.y, 10)
   const _internalPublicKey = {
     x: publicKeyPoint.x,
@@ -206,7 +209,7 @@ export function genTaprootPublicKey(publicKeyPoint: Point, tweak: string) {
   }
   // 公钥y坐标为奇数的 取 -P
   if (publicKeyY.mod(2).eq(1)) {
-    _internalPublicKey.y = publicKeyY.negated().mod(Secp256k1.mod).toString(10)
+    _internalPublicKey.y = publicKeyY.negated().mod(SECP256K1_CONST.mod).toString(10)
   }
-  return eccAdd(_internalPublicKey, mulPoint, modDecimal, '0')
+  return eccAdd(a, b, modDecimal, _internalPublicKey, mulPoint)
 }

@@ -70,7 +70,7 @@ function resetErr() {
       例:
       <katex
         class="katex-sm"
-        formula="a/x = d \bmod m \iff a \times x^{-1} = d \bmod m \iff a \times x\text{的逆元} = d \bmod m"
+        formula="a/x \equiv d \bmod m \iff a \times x^{-1} = d \bmod m \iff a \times x\text{的逆元} = d \bmod m"
       />
     </div>
     <div class="pt-6">
@@ -106,7 +106,7 @@ function resetErr() {
         <el-descriptions-item label="Inverse逆元: ">
           <div class="inline-block w-[660px]">
             <!-- <radix-input default-radix="0d" v-model="modulus" ref="modulusInputRef" /> -->
-            <radix-box radix-prefix="0d" :num-data="inverse" />
+            <radix-box default-radix="0d" :num-data="inverse" />
           </div>
         </el-descriptions-item>
       </el-descriptions>

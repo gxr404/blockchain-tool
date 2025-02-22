@@ -54,24 +54,24 @@ export function genTaprootPublicKeyElliptic(publicKeyPoint: Point, tweak: string
 // const customEC = new ec(customCurve);
 
 // 使用 elliptic 做两点相加
-export function eccAddElliptic(p1: Point, p2: Point, pV: string, aV: string, bV: string) {
-  console.log(p1, p2, pV, aV, bV)
+export function eccAddElliptic(aV: string, bV: string, pV: string, p1: Point, p2: Point) {
   const customCurve = new curve.short({
-    p: new BN(pV, 10).toString(16),
-    a: aV,
-    b: bV,
+    p: new BN(pV, 10),
+    a: new BN(aV, 10),
+    b: new BN(bV, 10),
   })
   const point1 = customCurve.point(new BN(p1.x, 10), new BN(p1.y, 10))
   const point2 = customCurve.point(new BN(p2.x, 10), new BN(p2.y, 10))
   const res = point1.add(point2)
+  // 使用 getX 不要直接 .x 否则会 被压缩
   return { x: res.getX().toString(10), y: res.getY().toString(10) }
 }
 export function eccMultiplyElliptic(
-  p1: Point,
-  multiplyV: string,
-  pV: string,
   aV: string,
-  bV: string
+  bV: string,
+  pV: string,
+  p1: Point,
+  multiplyV: string
 ) {
   const customCurve = new curve.short({
     p: new BN(pV, 10).toString(16),
@@ -80,5 +80,8 @@ export function eccMultiplyElliptic(
   })
   const point1 = customCurve.point(new BN(p1.x, 10), new BN(p1.y, 10))
   const res = point1.mul(new BN(multiplyV, 10))
+  if (res.isInfinity()) {
+    return { x: '', y: '' }
+  }
   return { x: res.getX().toString(10), y: res.getY().toString(10) }
 }

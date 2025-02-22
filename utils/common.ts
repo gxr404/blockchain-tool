@@ -89,8 +89,6 @@ export function isPrime(num: string) {
   if (!bigNum.mod(6).eq(1) && !bigNum.mod(6).eq(5)) return false
   let index = BigNumber(5)
   while (index.pow(2).isLessThanOrEqualTo(bigNum)) {
-    console.log(bigNum.mod(index).eq(0), bigNum.toString(10), index.toString(10))
-    console.log(bigNum.mod(index.plus(2)).eq(0))
     if (bigNum.mod(index).eq(0) || bigNum.mod(index.plus(2)).eq(0)) {
       return false
     }

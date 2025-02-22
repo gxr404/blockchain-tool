@@ -208,7 +208,7 @@ function resetSignature() {
       <el-descriptions label-width="120" :column="1">
         <el-descriptions-item label="公钥: ">
           <div class="inline-block w-[660px]">
-            <radix-box radix-prefix="0x" :num-data="publicKeyInput"></radix-box>
+            <radix-box default-radix="0x" :num-data="publicKeyInput" />
           </div>
         </el-descriptions-item>
         <el-descriptions-item label="私钥: ">
@@ -288,7 +288,7 @@ function resetSignature() {
             &nbsp;&nbsp;&nbsp;R
           </template>
           <div class="inline-block w-[660px]">
-            <radix-box radix-prefix="0x" :num-data="signatureR"></radix-box>
+            <radix-box default-radix="0x" :num-data="signatureR" />
           </div>
         </el-descriptions-item>
         <el-descriptions-item>
@@ -299,7 +299,7 @@ function resetSignature() {
             &nbsp;&nbsp;&nbsp;S
           </template>
           <div class="inline-block w-[660px]">
-            <radix-box radix-prefix="0x" :num-data="signatureS"></radix-box>
+            <radix-box default-radix="0x" :num-data="signatureS" />
           </div>
         </el-descriptions-item>
         <el-descriptions-item>
@@ -310,7 +310,7 @@ function resetSignature() {
             Msg Hash
           </template>
           <div class="inline-block w-[660px]">
-            <radix-box radix-prefix="0x" :num-data="hashMsg"></radix-box>
+            <radix-box default-radix="0x" :num-data="hashMsg" />
           </div>
         </el-descriptions-item>
 
@@ -333,7 +333,7 @@ function resetSignature() {
 
         <el-descriptions-item label="DER 编码">
           <div class="inline-block w-[660px]">
-            <radix-box radix-prefix="0x" :num-data="DEREncode"></radix-box>
+            <radix-box default-radix="0x" :num-data="DEREncode" />
           </div>
         </el-descriptions-item>
       </el-descriptions>

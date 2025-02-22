@@ -32,7 +32,6 @@ function secp256k1Plot() {
 
 function secp256k1FinitePlot() {
   const points = countSecp256k1Finite(11)
-  console.log(points)
   const getTextLabelList = points.map(([x, y]) => {
     return {
       graphType: 'text' as const,
@@ -160,7 +159,7 @@ const formatTooltip = (val: number) => {
           </div>
           <div class="my-2 w-[690px]">
             <radix-box
-              radix-prefix="0x"
+              default-radix="0x"
               num-data="FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F"
             />
           </div>
@@ -172,7 +171,7 @@ const formatTooltip = (val: number) => {
 
             <p class="flex items-center">
               <radix-box
-                radix-prefix="0x"
+                default-radix="0x"
                 num-data="79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798"
               />
               <!-- 0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798 -->
@@ -183,7 +182,7 @@ const formatTooltip = (val: number) => {
 
             <p class="flex items-center">
               <radix-box
-                radix-prefix="0x"
+                default-radix="0x"
                 num-data="483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8"
               />
               <!-- Gy = 0x483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8 -->
@@ -198,7 +197,7 @@ const formatTooltip = (val: number) => {
 
             <p class="flex items-center">
               <radix-box
-                radix-prefix="0x"
+                default-radix="0x"
                 num-data="FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141"
               />
               <!-- 0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798 -->

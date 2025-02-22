@@ -59,12 +59,12 @@ const hash160Result = computed(() => {
         <template v-else>
           <p class="flex items-center">
             <span class="font-bold min-w-fit pr-4">First Sha256:</span>
-            <radix-box radix-prefix="0x" :num-data="hash160Result.firstSha256" />
+            <radix-box default-radix="0x" :num-data="hash160Result.firstSha256" />
           </p>
           <div class="mt-2">
             <p class="flex items-center">
               <span class="font-bold min-w-fit pr-4">Hash Result(ripemd160):</span>
-              <radix-box radix-prefix="0x" :num-data="hash160Result.ripemd160" />
+              <radix-box default-radix="0x" :num-data="hash160Result.ripemd160" />
             </p>
           </div>
         </template>

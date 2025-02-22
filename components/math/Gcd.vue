@@ -77,17 +77,17 @@ const result = computed(() => {
 
         <el-descriptions-item label="最大公约数: ">
           <div class="inline-block w-[660px]">
-            <radix-box radix-prefix="0d" :num-data="result.gcd" />
+            <radix-box default-radix="0d" :num-data="result.gcd" />
           </div>
         </el-descriptions-item>
         <el-descriptions-item label="s: ">
           <div class="inline-block w-[660px]">
-            <radix-box radix-prefix="0d" :num-data="result.s || ''" />
+            <radix-box default-radix="0d" :num-data="result.s || ''" />
           </div>
         </el-descriptions-item>
         <el-descriptions-item label="t: ">
           <div class="inline-block w-[660px]">
-            <radix-box radix-prefix="0d" :num-data="result.t || ''" />
+            <radix-box default-radix="0d" :num-data="result.t || ''" />
           </div>
         </el-descriptions-item>
       </el-descriptions>

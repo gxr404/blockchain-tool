@@ -80,7 +80,7 @@ const lcmRes = computed(() => {
 
         <el-descriptions-item label="最小公倍数: ">
           <div class="inline-block w-[660px]">
-            <radix-box radix-prefix="0d" :num-data="lcmRes" />
+            <radix-box default-radix="0d" :num-data="lcmRes" />
           </div>
         </el-descriptions-item>
       </el-descriptions>

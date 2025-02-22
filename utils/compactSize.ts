@@ -51,8 +51,9 @@ export function compactSizeToHex(compactSize: string) {
   compactSize = compactSize.toLocaleLowerCase()
   const hex = compactSize
   if (compactSize.length <= 2) {
-    const decimal = BigNumber(compactSize, 16).toString(10)
-    if (Number(decimal) <= 252) {
+    const decimal = BigNumber(compactSize, 16)
+
+    if (decimal.isLessThanOrEqualTo(252)) {
       return {
         hex,
         prefix: '',
@@ -63,7 +64,7 @@ export function compactSizeToHex(compactSize: string) {
   const data = compactSize.slice(2)
   const reverseHex = data.match(/../g)?.reverse().join('') || '0'
   const dataDecimal = BigNumber(reverseHex, 16)
-  if (prefix === 'fe') {
+  if (prefix === 'fd') {
     const hexLen = 2 * 2
     if (
       data.length === hexLen &&
@@ -71,15 +72,16 @@ export function compactSizeToHex(compactSize: string) {
       dataDecimal.comparedTo(65535, 10) <= 0
     ) {
       return {
-        prefix: 'fe',
+        prefix: 'fd',
         hex: data.match(/../g)?.reverse().join('') || '',
       }
     }
     if (data.length !== hexLen) {
-      throw new Error(`Compact Size 错误, 前缀FE应不${data.length > hexLen ? '超过' : '少于'}2字节`)
+      throw new Error(`Compact Size 错误, 前缀FD应不${data.length > hexLen ? '超过' : '少于'}2字节`)
     }
-    throw new Error(`Compact Size 错误, 前缀FE数据范围为 253 ~ 65535 `)
-  } else if (prefix === 'fd') {
+    // 长度为2个字节 但不在  253 ~ 65535 范围时报错 如 fd1000
+    throw new Error(`Compact Size 错误, 前缀FD数据范围为 253 ~ 65535`)
+  } else if (prefix === 'fe') {
     const hexLen = 2 * 4
     if (
       data.length === hexLen &&
@@ -87,16 +89,15 @@ export function compactSizeToHex(compactSize: string) {
       dataDecimal.comparedTo(4294967295, 10) <= 0
     ) {
       return {
-        prefix: 'fd',
+        prefix: 'fe',
         hex: data.match(/../g)?.reverse().join('') || '',
       }
     }
     if (data.length !== hexLen) {
-      throw new Error(
-        `Compact Size 错误, 前缀FD 应不${data.length > hexLen ? '超过' : '少于'}4字节`
-      )
+      throw new Error(`Compact Size 错误, 前缀FE应不${data.length > hexLen ? '超过' : '少于'}4字节`)
     }
-    throw new Error(`Compact Size 错误, 前缀FD数据范围为 65536 ~ 4294967295 `)
+    // 长度为4个字节 但不在  65536 ~ 4294967295 范围时报错 如 fe10000000
+    throw new Error(`Compact Size 错误, 前缀FE数据范围为 65536 ~ 4294967295`)
   } else if (prefix === 'ff') {
     const hexLen = 2 * 8
     if (
@@ -113,6 +114,7 @@ export function compactSizeToHex(compactSize: string) {
     if (data.length !== hexLen) {
       throw new Error(`Compact Size 错误, 前缀FF应不${data.length > hexLen ? '超过' : '少于'}8字节`)
     }
+    // 长度为8个字节 但不在  4294967296 ~ 18446744073709551615 范围时报错 如 ff1000000000000000
     throw new Error(`Compact Size 错误, 前缀FF数据范围为 4294967296 ~ 18446744073709551615`)
   }
   throw new Error('Compact Size 错误, 无有效前缀')

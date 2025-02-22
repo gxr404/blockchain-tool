@@ -320,7 +320,7 @@ function onPublicKeyInput() {
             </template>
 
             <div class="inline-block w-[700px]">
-              <radix-box radix-prefix="0x" :num-data="redeemScriptP2WPKH"></radix-box>
+              <radix-box default-radix="0x" :num-data="redeemScriptP2WPKH" />
             </div>
           </el-descriptions-item>
 

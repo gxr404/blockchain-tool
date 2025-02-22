@@ -45,7 +45,7 @@ const resultPoint = computed(() => {
     // return defaultResultPoint
   }
   try {
-    const res = eccMultiply(point1, multiplier.value, modDecimal.value, aSymbolValue.value)
+    const res = eccMultiply(aSymbolValue.value, b.value, modDecimal.value, point1, multiplier.value)
     // const res = eccMultiplyElliptic(
     //   point1,
     //   multiplier.value,
@@ -254,7 +254,7 @@ function resetErr() {
           </template>
           <div class="inline-block w-[660px]">
             <radix-box
-              radix-prefix="0d"
+              default-radix="0d"
               :num-data="resultPoint.x || ''"
               ref="resultPointXRadixBoxRef"
             />
@@ -269,7 +269,7 @@ function resetErr() {
           </template>
           <div class="inline-block w-[660px]">
             <radix-box
-              radix-prefix="0d"
+              default-radix="0d"
               :num-data="resultPoint.y || ''"
               ref="resultPointYRadixBoxRef"
             />

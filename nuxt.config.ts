@@ -6,7 +6,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['unplugin-icons/nuxt', '@element-plus/nuxt'],
+  modules: ['unplugin-icons/nuxt', '@element-plus/nuxt', '@nuxt/test-utils/module'],
   postcss: {
     plugins: {
       tailwindcss: {},

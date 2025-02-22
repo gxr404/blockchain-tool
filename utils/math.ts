@@ -18,6 +18,17 @@ export function gcd(num1: string, num2: string, nonNegativeS = false) {
       if (nonNegativeS && sVal?.isNegative()) {
         sVal = sVal.plus(_num2).mod(_num2)
       }
+      // 最大公约数的结果为负数时 转正 并将 s t 取反
+      if (num1.isNegative()) {
+        return {
+          gcd: num1.abs().toString(10),
+          s: sVal?.negated()?.toString(10),
+          t: t
+            .at(index - 1)
+            ?.negated()
+            ?.toString(10),
+        }
+      }
       return {
         gcd: num1.toString(10),
         s: sVal?.toString(10),

@@ -155,7 +155,7 @@ watch(compressPubKey, () => {
             X
           </template>
           <div class="inline-block w-[660px]">
-            <radix-box radix-prefix="0x" :num-data="publicKeyInfo.x" />
+            <radix-box default-radix="0x" :num-data="publicKeyInfo.x" />
           </div>
         </el-descriptions-item>
         <el-descriptions-item>
@@ -166,7 +166,7 @@ watch(compressPubKey, () => {
             Y
           </template>
           <div class="inline-block w-[660px]">
-            <radix-box radix-prefix="0x" :num-data="publicKeyInfo.y" />
+            <radix-box default-radix="0x" :num-data="publicKeyInfo.y" />
           </div>
         </el-descriptions-item>
         <el-descriptions-item label="&nbsp;">

@@ -154,7 +154,7 @@ function resetRandomInfo() {
             <span class="font-bold min-w-fit pr-4">First Sha256:</span>
             <radix-box
               convert-bytes-to-radix
-              radix-prefix="0x"
+              default-radix="0x"
               :num-data="hash256Result.firstSha256"
             />
           </p>
@@ -163,7 +163,7 @@ function resetRandomInfo() {
               <span class="font-bold min-w-fit pr-4">Hash Result:</span>
               <radix-box
                 convert-bytes-to-radix
-                radix-prefix="0x"
+                default-radix="0x"
                 :num-data="hash256Result.secondSha256"
               />
             </p>
