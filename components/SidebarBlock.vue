@@ -61,6 +61,30 @@ const route = useRoute()
               >
                 <span>Secp256k1的应用</span>
               </el-menu-item>
+              <el-sub-menu index="cryptology-sign">
+                <template #title>
+                  <span>签名算法</span>
+                </template>
+
+                <el-menu-item
+                  index="cryptology-sign-ecdsa"
+                  :route="{ path: '/cryptology/sign/ecdsa' }"
+                >
+                  <span>ECDSA</span>
+                </el-menu-item>
+                <el-menu-item
+                  index="cryptology-sign-eddsa"
+                  :route="{ path: '/cryptology/sign/eddsa' }"
+                >
+                  <span>EdDSA</span>
+                </el-menu-item>
+                <el-menu-item
+                  index="cryptology-sign-schnorr"
+                  :route="{ path: '/cryptology/sign/schnorr' }"
+                >
+                  <span>Schnorr</span>
+                </el-menu-item>
+              </el-sub-menu>
             </el-sub-menu>
           </el-sub-menu>
           <el-sub-menu index="address">

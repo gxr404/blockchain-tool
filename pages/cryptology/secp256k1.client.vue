@@ -3,6 +3,7 @@ import functionPlot from 'function-plot'
 
 onMounted(() => {
   secp256k1Plot()
+  secp256k1FinitePlot()
 })
 
 function secp256k1Plot() {
@@ -29,9 +30,68 @@ function secp256k1Plot() {
   })
 }
 
-watchEffect(() => {
-  secp256k1Plot()
-})
+function secp256k1FinitePlot() {
+  const points = countSecp256k1Finite(11)
+  console.log(points)
+  const getTextLabelList = points.map(([x, y]) => {
+    return {
+      graphType: 'text' as const,
+      location: [x, y] as [number, number],
+      text: `(${x}, ${y})`,
+      attr: {
+        fill: '#F56C6C',
+      },
+    }
+  })
+  functionPlot({
+    target: '#secp256k1-finite',
+    grid: true,
+    tip: {
+      renderer(x, y) {
+        return `(${formatTooltip(x)}, ${formatTooltip(y)})`
+      },
+      xLine: true,
+      yLine: true,
+    },
+    xAxis: {
+      domain: [-1, 12],
+    },
+    yAxis: {
+      domain: [-1, 12],
+    },
+    data: [
+      {
+        points,
+        fnType: 'points',
+        graphType: 'scatter',
+        color: 'red', //'#F56C6C',
+      },
+      ...getTextLabelList,
+    ],
+    disableZoom: true,
+  })
+}
+
+/** 该函数 没用BigNumber 不支持过大的值  */
+function countSecp256k1Finite(p: number) {
+  const pointList = []
+  for (let i = 0; i < p; i++) {
+    for (let j = 0; j < p; j++) {
+      const isEccPoint = checkEccPoint('0', '7', String(p), {
+        x: String(i),
+        y: String(j),
+      })
+      if (isEccPoint) {
+        pointList.push([i, j])
+      }
+    }
+  }
+  return pointList
+}
+
+// watchEffect(() => {
+//   secp256k1Plot()
+// })
 
 const formatTooltip = (val: number) => {
   return Math.floor(val * 100) / 100
@@ -47,28 +107,48 @@ const formatTooltip = (val: number) => {
         <li class="list-disc">
           Sec 是 Standards for Efficient Cryptography(高效密码学标准) 的缩写
         </li>
-        <li class="list-disc">p 是素数 prime 的缩写, 256 表示素数是 256 位</li>
+        <li class="list-disc">
+          p 是素数 prime 的缩写, 256 表示素数是 256 位
+          <span class="text-sm text-gray-400"
+            >(所以使用该算法得到的点坐标都是256位Bit(64个16进制字符))</span
+          >
+        </li>
         <li class="list-disc">k 表示 Koblitz 曲线的缩写, 1 表示是第一个具有这些特征的曲线</li>
       </ul>
-      <p class="text-sm py-2">
-        在 Secp256k1 椭圆曲线方程中
-        <span class="text-[12px] mr-1"><katex formula="a = 0, b = 7" /></span>
-        即为:
-        <span class="text-[12px]"><katex formula="y^2=x^3+7\mod \ p" /></span>
-      </p>
-      <p>
-        <span class="font-bold text-red-500">实数域的曲线 </span>
-        <span class="text-[12px]"><katex formula="y^2=x^3+7" /></span>
-        如下:
-      </p>
-      <div id="secp256k1"></div>
-
-      <div>
-        <span class="font-bold text-red-500">有限域域的曲线 </span>
-        <span class="text-[12px]"><katex formula="y^2=x^3+7\mod p" /></span>
+      <div class="py-2">
+        <p class="text-sm">
+          在 Secp256k1 椭圆曲线方程中
+          <span class="text-[12px] mr-1 text-[#F56C6C]"><katex formula="a = 0, b = 7" /></span>
+        </p>
+        <p class="text-sm">
+          代入椭圆曲线方程后即为:
+          <span class="text-[12px] text-[#F56C6C]"
+            ><katex formula="y^2 \equiv x^3+7 \bmod p"
+          /></span>
+        </p>
       </div>
+      <div class="my-2">
+        <p>
+          <span class="font-bold text-[#F56C6C]">实数域的曲线方程 </span>
+          <span class="text-[12px] mx-2"><katex formula="y^2=x^3+7" /></span>
+          如下:
+        </p>
+        <div id="secp256k1"></div>
 
-      <h1 class="font-bold text-lg py-2">一些常量</h1>
+        <div class="mt-4">
+          <span class="font-bold text-[#F56C6C]">有限域的曲线方程 </span>
+          <span class="text-[12px] mx-2"><katex formula="y^2 \equiv x^3+7\bmod p" /></span>
+          平面直角坐标系为一些分散的点组成，如下:
+        </div>
+
+        <div id="secp256k1-finite"></div>
+        <div class="text-sm indent-6 mt-4">
+          这里<b>为了演示p取11</b>而非Secp256k1中规定的
+          <katex class="katex-sm" formula="p=2^{256} - 2^{32} - 2^9 - 2^8 - 2^7 - 2^6 - 2^4 -1" />
+          <span class="text-gray-400">(否则算出来的点会是256Bit的大数字)</span>
+        </div>
+      </div>
+      <h1 class="font-bold py-2 mt-4">Secp256k1中常量</h1>
       <ul class="pl-6">
         <li class="list-disc">
           <div class="mt-1">
@@ -87,8 +167,8 @@ const formatTooltip = (val: number) => {
         </li>
         <li class="list-disc">
           <div>基点 G 的坐标</div>
-          <div class="flex items-center mt-2 w-[690px]">
-            <span class="min-w-[36px] font-bold">Gx =</span>
+          <div class="flex items-center mt-2">
+            <span class="min-w-[36px] font-bold pr-2">Gx =</span>
 
             <p class="flex items-center">
               <radix-box
@@ -98,8 +178,8 @@ const formatTooltip = (val: number) => {
               <!-- 0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798 -->
             </p>
           </div>
-          <div class="flex items-center my-2 w-[690px]">
-            <span class="min-w-[36px] font-bold">Gy =</span>
+          <div class="flex items-center my-2">
+            <span class="min-w-[36px] font-bold pr-2">Gy =</span>
 
             <p class="flex items-center">
               <radix-box
@@ -113,8 +193,8 @@ const formatTooltip = (val: number) => {
 
         <li class="list-disc">
           <div>基点 G 的阶 n</div>
-          <div class="flex items-center my-2 w-[690px]">
-            <span class="min-w-[30px] font-bold">n =</span>
+          <div class="flex items-center my-2">
+            <span class="min-w-[30px] font-bold pr-2">n =</span>
 
             <p class="flex items-center">
               <radix-box
@@ -126,8 +206,6 @@ const formatTooltip = (val: number) => {
           </div>
         </li>
       </ul>
-
-      <p class="font-bold my-2">从 [1, n-1] 中选择一个随机数 k 作为私钥, 而公钥 H = k * G</p>
 
       <p>
         在bitcoin中Secp256k1用于

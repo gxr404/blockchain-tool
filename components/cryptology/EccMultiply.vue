@@ -44,8 +44,21 @@ const resultPoint = computed(() => {
     // 虽然有错 还是继续进行
     // return defaultResultPoint
   }
-
-  return eccMultiply(point1, multiplier.value, modDecimal.value, aSymbolValue.value)
+  try {
+    const res = eccMultiply(point1, multiplier.value, modDecimal.value, aSymbolValue.value)
+    // const res = eccMultiplyElliptic(
+    //   point1,
+    //   multiplier.value,
+    //   modDecimal.value,
+    //   aSymbolValue.value,
+    //   b.value
+    // )
+    return res
+  } catch (e: unknown) {
+    point1Err.value = true
+    point1ErrMsg.value = (e as Error).message || 'unknown error'
+    return defaultResultPoint
+  }
 })
 
 const aSymbolValue = computed(() => {
@@ -263,6 +276,55 @@ function resetErr() {
           </div>
         </el-descriptions-item>
       </el-descriptions>
+      <div class="py-10">
+        <el-collapse>
+          <el-collapse-item name="2">
+            <template #title>
+              <p class="font-bold !text-[15px]">通过阶计算点倍乘</p>
+            </template>
+            <p class="mt-2 text-sm">有限域中椭圆曲线中的乘法会存在一个<span>循环</span></p>
+            <p class="mt-2 text-sm">
+              例如: <katex class="katex-sm" formula="E_{97}(2, 3): y^2 = x^3+2x+3 \bmod 7" /> 其中
+              点P(3, 6)
+            </p>
+            <div class="mt-2 text-sm">
+              <ul class="pl-6 leading-6">
+                <li>1 * P = (3, 6)</li>
+                <li>2 * P = P + P = (80, 10)</li>
+                <li>3 * P = 2P + P = (80, 87)</li>
+                <li>4 * P = 3P + P = (3, 91)</li>
+                <li>5 * P = 4P + P = <span class="font-bold text-[#F56C6C]">0</span> (ps: 是零)</li>
+                <li>6 * P = 5P + P = (3, 6)</li>
+                <li>7 * P = 6P + P = (80, 10)</li>
+                <li>...</li>
+              </ul>
+            </div>
+            <p class="text-sm">
+              点 P(3,6) 的循环次数为 5, 以及循环计算得到的点集 称 循环子群。
+              <span class="font-bold">该点集的数量就叫做阶</span>。 即 点P(3,6)的阶 为 5。
+            </p>
+            <p class="text-sm">可以看出 如果使用阶的形式 上面的 7 * P = 2P, 这样算点倍乘更优</p>
+            <p class="text-sm mt-2">如何计算阶呢?</p>
+            <div class="pl-4">
+              <p>1. 计算椭圆曲线的阶 N (N 是有限域上椭圆曲线的<b>有效点的数量</b>)</p>
+              <p>2. 找出 N 的所有因子</p>
+              <p>3. 对每个因子计算 n * P</p>
+              <p>4. 找到最小的且满足 n * P=O 的 n, n 就是该点的阶</p>
+              <p>例如:</p>
+              <div class="pl-4">
+                <p>
+                  对于椭圆曲线
+                  <katex class="katex-sm" formula="E_{37}(-1, 3): y^2 = x^3-x+3 \bmod 37" />
+                </p>
+                <p>1. 共有 42 个点，因此 N = 42.</p>
+                <p>2. 42的因子有 1, 2, 3, 6, 7, 14, 21, 42</p>
+                <p>3. 依次与点 P(2, 3)相乘</p>
+                <p>4. 1P ≠ 0, 2P≠0, ...7P=0, 因此P的阶是7</p>
+              </div>
+            </div>
+          </el-collapse-item>
+        </el-collapse>
+      </div>
     </div>
   </div>
 </template>

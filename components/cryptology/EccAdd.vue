@@ -10,6 +10,7 @@ const b = ref()
 const aNegative = ref(false)
 const bNegative = ref(false)
 const modDecimal = ref('')
+const modWarnShow = ref(false)
 const point1X = ref('')
 const point1Y = ref('')
 const point2X = ref('')
@@ -65,18 +66,16 @@ const resultPoint = computed(() => {
     // 虽然有错 还是继续进行
     // return defaultResultPoint
   }
-  // const _resultPoint = eccAdd(point1, point2, modDecimal.value, aSymbolValue.value)
-  // console.log(_resultPoint)
-  // let _x = _resultPoint.x || ''
-  // console.log(resultPointXRadixBoxRef.value?.radixValue)
-  // if (resultPointXRadixBoxRef.value?.radixValue !== 10 && _x) {
-  //   _x = BigNumber(_x, 10).toString(resultPointXRadixBoxRef.value?.radixValue)
-  // }
-  // let _y = _resultPoint.y || ''
-  // if (resultPointYRadixBoxRef.value?.radixValue !== 10 && _y) {
-  //   _y = BigNumber(_y, 10).toString(resultPointYRadixBoxRef.value?.radixValue)
-  // }
-  return eccAdd(point1, point2, modDecimal.value, aSymbolValue.value)
+  try {
+    // return eccAddElliptic(point1, point2, modDecimal.value, aSymbolValue.value, b.value)
+    const res = eccAdd(point1, point2, modDecimal.value, aSymbolValue.value)
+    return res
+  } catch (e: unknown) {
+    point1Err.value = true
+    point2Err.value = true
+    point1ErrMsg.value = (e as Error).message || 'unknown error'
+    return defaultResultPoint
+  }
 })
 
 const aSymbolValue = computed(() => {
@@ -100,6 +99,10 @@ function fillSecp256k1() {
   bNegative.value = false
   const modValueHex = 'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F'
   modDecimal.value = BigNumber(modValueHex, 16).toString(10)
+}
+
+function onModInput() {
+  modWarnShow.value = !isPrime(modDecimal.value)
 }
 
 function radixChange(radix: '0x' | '0d') {
@@ -217,9 +220,20 @@ function resetErr() {
             </div>
           </div>
         </el-descriptions-item>
-        <el-descriptions-item label="Mod: ">
+        <el-descriptions-item>
+          <template #label>
+            <span>
+              Mod:
+              <span class="text-[#E6A23C]">{{ modWarnShow ? '模数非素数' : '' }}</span>
+            </span>
+          </template>
           <div class="inline-block w-[660px]">
-            <radix-input default-radix="0d" v-model:decimal="modDecimal" ref="modInputRef" />
+            <radix-input
+              default-radix="0d"
+              v-model:decimal="modDecimal"
+              ref="modInputRef"
+              @input-value="onModInput"
+            />
           </div>
         </el-descriptions-item>
         <el-descriptions-item label="Point1">

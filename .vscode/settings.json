@@ -10,7 +10,7 @@
   },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "cSpell.words": ["Bech", "katex", "keccak", "regtest", "ripemd", "secp"],
+  "cSpell.words": ["Bech", "katex", "keccak", "regtest", "ripemd", "schnorr", "secp", "Solana"],
   "vue3snippets.enable-compile-vue-file-on-did-save-code": false,
   "typescript.tsdk": "node_modules/typescript/lib"
 }

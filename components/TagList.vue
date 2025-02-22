@@ -30,7 +30,7 @@ const tagList = computed(() => {
 
 <template>
   <div class="pl-2 inline-flex">
-    <span class="pl-2 inline-flex">
+    <span class="pl-2 inline-flex gap-2">
       <el-tag
         type="primary"
         size="small"

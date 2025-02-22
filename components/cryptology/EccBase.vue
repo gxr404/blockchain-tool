@@ -55,12 +55,12 @@ const computeFormula = computed(() => {
     <p class="text-sm text-gray-400 py-2">
       椭圆曲线加密算法(Elliptic curve cryptography)简称 ECC, 是一种非对称加密算法。
     </p>
-    <p class="text-center font-bold">
+    <p class="text-center font-bold mt-4">
       <katex formula="y^2=x^3+ax+b,\space\space 4a^3+27b^2\neq0" />
     </p>
     <div id="ecc"></div>
-    <p class="text-[12px] text-[#F56C6C] flex justify-center mb-2">
-      <katex :formula="computeFormula" />
+    <p class="text-[#F56C6C] flex justify-center mb-6">
+      <katex class="katex-sm" :formula="computeFormula" />
     </p>
     <div class="flex justify-center gap-6">
       <div class="flex items-center">

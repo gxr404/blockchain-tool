@@ -37,7 +37,7 @@ export const getEccFormula = (a: number, b: number, p?: number) => {
 // )
 
 /**
- * 有限域 Secp256k1 点加
+ * 有限域点相加
  * - step1: 先求斜率 m = (y2-y1)/(x2-x1) mod p
  * - step2: 计算新点 x坐标
  * - step2: 计算新点 y坐标
@@ -58,7 +58,9 @@ export function eccAdd(p1: Point, p2: Point, pV: string, aV: string) {
 
   // P1 + (-P1) = 无穷远点
   if (x1.eq(x2) && y1.eq(y2.negated())) {
-    return { x: null, y: null }
+    console.warn('-p1 = p2', p1, p2)
+    throw new Error('计算结果为零')
+    // return { x: null, y: null }
   }
 
   // step1 计算斜率
@@ -85,7 +87,10 @@ export function eccAdd(p1: Point, p2: Point, pV: string, aV: string) {
 
   // 分母不能0
   if (denominator.isZero()) {
-    return { x: null, y: null } // 无穷远点
+    console.warn('分母不能0', p1, p2)
+    throw new Error('计算结果为零 可能为点的阶')
+    // return { x: null, y: null }
+    // return { x: '0', y: '0' } // 无穷远点
   }
 
   // step1.3 注意 除法在模运算中需 使用模逆 转乘法
@@ -166,7 +171,6 @@ export function eccMultiply(p1: Point, multiplyV: string, pV: string, aV: string
       _R0 = eccAdd(_R0, _R0, pV, aV) as Point
     }
   }
-
   return _R0
 }
 
