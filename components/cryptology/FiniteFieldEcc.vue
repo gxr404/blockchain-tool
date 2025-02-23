@@ -42,8 +42,8 @@ const formatTooltip = (val: number) => {
 }
 </script>
 <template>
-  <div class="flex flex-col p-10 border rounded bg-white finite-field-ecc">
-    <h1 class="text-center font-bold">有限域椭圆曲线</h1>
+  <div class="flex flex-col p-10 border rounded bg-white finite-field-ecc w-[860px]">
+    <h1 class="text-lg font-bold mb-4">有限域椭圆曲线</h1>
     <div class="my-4">
       <p class="text-sm">
         在实数域上的椭圆曲线具有连续性的, 这种连续性并不适用于安全加密。<span

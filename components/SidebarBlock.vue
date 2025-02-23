@@ -2,7 +2,7 @@
 const route = useRoute()
 </script>
 <template>
-  <div class="min-w-[240px] bg-white h-[100vh]">
+  <div class="min-w-[280px] bg-white h-[100vh]">
     <header id="header" class="h-[160px] relative z-10">
       <!-- -mt-[94px] -->
       <div id="hd-bg" class="absolute w-full"></div>
@@ -63,7 +63,7 @@ const route = useRoute()
               </el-menu-item>
               <el-sub-menu index="cryptology-sign">
                 <template #title>
-                  <span>签名算法</span>
+                  <span>基于椭圆曲线的签名算法</span>
                 </template>
 
                 <el-menu-item
