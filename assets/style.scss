@@ -222,9 +222,21 @@
   margin: 0;
 }
 
+.collapse-top-border-none,
 .collapse-border-none {
   border: 0 !important;
   --el-collapse-border-color: #e5e7eb !important;
+}
+.collapse-border-none,
+.collapse-bottom-border-none {
+  .el-collapse-item {
+    &:last-child {
+      .el-collapse-item__header,
+      .el-collapse-item__wrap {
+        border-bottom: 0 !important;
+      }
+    }
+  }
 }
 
 /* 加深x轴Y轴 */
