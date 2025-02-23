@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { init } from './utils/localforage'
 
-import './assets/style.css'
+import './assets/style.scss'
 
 const layout = 'content'
 // const route = useRoute()
