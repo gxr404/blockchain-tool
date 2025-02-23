@@ -29,7 +29,7 @@ const tagList = computed(() => {
 </script>
 
 <template>
-  <div class="pl-2 inline-flex">
+  <span class="pl-2 inline-flex">
     <span class="pl-2 inline-flex gap-2">
       <el-tag
         type="primary"
@@ -41,5 +41,5 @@ const tagList = computed(() => {
         <span><component :is="item.icon" class="inline-block mr-[2px]" />{{ item.text }}</span>
       </el-tag>
     </span>
-  </div>
+  </span>
 </template>

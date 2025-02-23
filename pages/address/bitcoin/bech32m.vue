@@ -123,10 +123,11 @@ function onPublicKeyInput() {
 }
 </script>
 <template>
-  <div class="p-10">
-    <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
-      <p class="font-bold text-lg">Bech32m</p>
-      <p class="text-sm text-gray-400 mt-[10px]">Bech32m用于从公钥生成 <b>P2TR</b> 地址</p>
+  <div class="flex flex-wrap gap-10 p-10">
+    <content-card title="Bech32m">
+      <template #description>
+        <p class="text-sm text-gray-400 mt-[10px]">Bech32m用于从公钥生成 <b>P2TR</b> 地址</p>
+      </template>
       <p class="mt-6">
         <el-button @click="randomKey">随机生成私钥公钥</el-button>
       </p>
@@ -370,6 +371,6 @@ function onPublicKeyInput() {
           </el-descriptions-item>
         </el-descriptions>
       </div>
-    </div>
+    </content-card>
   </div>
 </template>

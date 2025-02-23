@@ -24,14 +24,13 @@ function copyHashResult() {
 }
 </script>
 <template>
-  <div class="p-10">
-    <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
-      <h1 class="text-[26px] font-bold">
-        Keccak256
-        <tag-list :list="['ethereum']" />
-      </h1>
-      <p class="text-sm text-gray-400 mt-4">在Ethereum中用于生成地址时使用</p>
-
+  <div class="flex flex-wrap gap-10 p-10">
+    <content-card
+      title="Keccak256"
+      :tag-data="['ethereum']"
+      title-large
+      description="在Ethereum中用于生成地址时使用"
+    >
       <div class="mt-8">
         <el-descriptions label-width="100" :column="1">
           <el-descriptions-item label="输入数据类型: ">
@@ -64,6 +63,6 @@ function copyHashResult() {
           </el-descriptions-item>
         </el-descriptions>
       </div>
-    </div>
+    </content-card>
   </div>
 </template>

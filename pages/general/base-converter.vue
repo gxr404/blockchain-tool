@@ -67,12 +67,9 @@ function reset() {
 </script>
 
 <template>
-  <div class="p-10">
-    <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
+  <div class="flex flex-wrap gap-10 p-10">
+    <content-card title="进制转化">
       <el-descriptions label-width="80" :column="1">
-        <template #title>
-          <p class="font-bold text-lg mb-[20px]">进制转化</p>
-        </template>
         <el-descriptions-item label="十进制">
           <div class="inline-block min-w-[680px]">
             <el-input v-model="decimal" clearable @input="onDecimalInput">
@@ -102,6 +99,6 @@ function reset() {
           </div>
         </el-descriptions-item>
       </el-descriptions>
-    </div>
+    </content-card>
   </div>
 </template>

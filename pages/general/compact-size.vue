@@ -139,26 +139,29 @@ function onCompactSizePrefixChange() {
 </script>
 
 <template>
-  <div class="p-10">
-    <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
-      <h1 class="font-bold text-lg mb-[20px]">Compact Size</h1>
+  <div class="flex flex-wrap gap-10 p-10">
+    <content-card title="Compact Size">
+      <template #description>
+        <p class="text-sm text-gray-400 mb-[10px]">
+          compact size是比特币(Bitcoin)协议中用于表示变长整数的一种编码格式。
+        </p>
+        <p class="text-sm text-gray-400 mb-[10px]">
+          它<b>用于减少数据大小</b>，特别是在存储或传输交易时，能节省存储空间。
+        </p>
 
-      <p class="text-sm text-gray-400 mb-[10px]">
-        compact size是比特币(Bitcoin)协议中用于表示变长整数的一种编码格式。
-        它<b>用于减少数据大小</b>，特别是在存储或传输交易时，能节省存储空间。
-      </p>
+        <p class="text-sm text-gray-400 mb-[10px]">
+          交易原始数据(raw transaction)和区块原始数据(raw block)中的很多字段，都使用这个格式编码
+        </p>
+        <p class="text-sm text-gray-400 mb-[10px]">
+          对于较小的数字(小于252)存储只需一个字节，且无前缀。
+        </p>
 
-      <p class="text-sm text-gray-400 mb-[10px]">
-        交易原始数据(raw transaction)和区块原始数据(raw block)中的很多字段，都使用这个格式编码
-      </p>
-      <p class="text-sm text-gray-400 mb-[10px]">
-        对于较小的数字(小于252)存储只需一个字节，且无前缀。
-      </p>
-
-      <p class="text-sm text-gray-400 mb-[40px]">
-        对于较大的数字，使用前缀 + 数据部分(接下来的2、4或8字节),<b>需注意, 数据部分是小端字节序</b>
-      </p>
-
+        <p class="text-sm text-gray-400 mb-[40px]">
+          对于较大的数字，使用前缀 + 数据部分(接下来的2、4或8字节),<b
+            >需注意, 数据部分是小端字节序</b
+          >
+        </p>
+      </template>
       <div>
         <el-descriptions label-width="130" :column="1">
           <el-descriptions-item label="整数">
@@ -230,9 +233,7 @@ function onCompactSizePrefixChange() {
         </el-radio-group>
       </div> -->
       </div>
-    </div>
-    <div class="mt-20">
-      <el-collapse>
+      <el-collapse class="mt-20">
         <!-- <el-collapse-item title="规则" name="1"> </el-collapse-item> -->
         <el-collapse-item title="🤔 为什么节省空间呢？" name="2">
           <p>
@@ -268,7 +269,7 @@ function onCompactSizePrefixChange() {
           </div>
         </el-collapse-item>
       </el-collapse>
-    </div>
+    </content-card>
   </div>
 </template>
 <style scoped>

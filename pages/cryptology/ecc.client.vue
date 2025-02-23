@@ -14,12 +14,11 @@ import { Link } from '@element-plus/icons-vue'
         <span class="font-bold">&nbsp;建议看 bitcoin ninja 的ecc</span>
       </a>
     </div>
-    <div class="flex flex-wrap gap-6 p-6">
+    <div class="flex flex-wrap gap-10 p-10">
       <cryptology-ecc-base />
       <cryptology-finite-field-ecc />
-      <div class="flex flex-col p-10 border rounded bg-white finite-field-ecc">
-        <!-- <h1 class="text-center font-bold">有限域椭圆曲线</h1> -->
-        <h1 class="font-bold py-2">公钥计算</h1>
+      <!-- 公钥计算 -->
+      <content-card title="公钥计算">
         <p class="my-2">在椭圆曲线加密算法中，给定椭圆曲线E 和 曲线上的基点 G。</p>
         <p class="text-sm">计算出 G 的阶为 n, 之后在 {1, ..., n-1}中随机选择一个整数 k 作为私钥</p>
         <p class="text-sm">
@@ -41,7 +40,45 @@ import { Link } from '@element-plus/icons-vue'
         <p class="font-bold my-2">
           总结即是: 从 [1, n-1] 中选择一个随机数 k 作为私钥, 而公钥 H = k * G
         </p>
-      </div>
+      </content-card>
+      <content-card title="椭圆曲线的应用">
+        <ul>
+          <li class="list-disc">
+            <p>
+              数字签名: 用于确 <span class="font-bold">保数据的完整性</span> 和
+              <span class="font-bold">身份验证</span> ，防止篡改和伪造
+            </p>
+          </li>
+          <li>
+            <p>加密: 用于 保护数据的机密性，确保只有授权方能够读取数据内容</p>
+          </li>
+
+          <li>
+            数字签名和 加密的区别
+            <p>
+              数字签名是为了证明 <span class="font-bold">谁</span>发送了数据，并且确保数据没被篡改
+            </p>
+            <p>加密： 隐藏数据，使未经授权的人无法读取</p>
+
+            <p>
+              签名: 发送方用私钥签名，接收方用公钥验证 加密:
+              发送方用接收方公钥加密，接收方用私钥解密
+            </p>
+            <p>签名:数据仍是明文 加密: 数据变为密文</p>
+            <p>签名: 能确定是 A 发送了数据(即使签名数据被盗了也能确定是A本人发送过的数据 )</p>
+            <p>
+              加密: 并不能确定数据是否是对方的，虽然是对方发的也有可能是对方盗用的
+              无法确定是她发送的
+            </p>
+
+            <p>数字签名：任何人 都可以用公钥验证签名的真实性和数据完整性。</p>
+            <p>加密：只有授权的人（即持有对应私钥的人）才能解密并查看数据内容。</p>
+          </li>
+
+          <li>密钥交换</li>
+          <li>...</li>
+        </ul>
+      </content-card>
     </div>
   </div>
 </template>

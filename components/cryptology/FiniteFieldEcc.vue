@@ -33,7 +33,6 @@ const a = ref(-1)
 const b = ref(1)
 
 watchEffect(() => {
-  // console.log('effect')
   ecc()
 })
 
@@ -42,9 +41,8 @@ const formatTooltip = (val: number) => {
 }
 </script>
 <template>
-  <div class="flex flex-col p-10 border rounded bg-white finite-field-ecc w-[860px]">
-    <h1 class="text-lg font-bold mb-4">有限域椭圆曲线</h1>
-    <div class="my-4">
+  <content-card title="有限域椭圆曲线">
+    <div class="mb-4">
       <p class="text-sm">
         在实数域上的椭圆曲线具有连续性的, 这种连续性并不适用于安全加密。<span
           class="text-gray-50"
@@ -137,7 +135,7 @@ const formatTooltip = (val: number) => {
         <katex class="katex-sm" formula="y^2 \equiv x^3 + x + 1\mod\ 5" />
       </p> -->
     </div>
-  </div>
+  </content-card>
 </template>
 <style>
 .finite-field-ecc .katex-display {

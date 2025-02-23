@@ -50,29 +50,28 @@ function resetErr() {
 </script>
 
 <template>
-  <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[860px]" id="modular-inverse">
-    <p class="font-bold">
-      乘法逆元
-      <span class="text-sm text-gray-400">(Modular Inverse)</span>
-    </p>
-    <div class="text-sm text-gray-400 mt-[10px]">
-      如果一个线性同余方程
-      <katex class="katex-sm" formula=" ax \equiv 1 (\bmod b) \iff ax \bmod b = 1 \bmod b" />，则 x
-      称为
-      <katex class="katex-sm" formula="a \bmod b" />
-      的逆元，记作<katex class="katex-sm" formula="a^{-1}" />
-    </div>
-    <div class="text-sm text-gray-400 mt-[10px]">
-      乘法逆元的作用:
-      在模运算下<b>无法直接执行除法</b>(直接乘法可能出现小数)，所以在模运算下乘上<b>逆元</b>就相当于除以了一个数
-    </div>
-    <div class="text-sm text-gray-400">
-      例:
-      <katex
-        class="katex-sm"
-        formula="a/x \equiv d \bmod m \iff a \times x^{-1} = d \bmod m \iff a \times x\text{的逆元} = d \bmod m"
-      />
-    </div>
+  <content-card title="乘法逆元" sub-title="(Modular Inverse)">
+    <template #description>
+      <div class="text-sm text-gray-400 mt-[10px]">
+        如果一个线性同余方程
+        <katex class="katex-sm" formula=" ax \equiv 1 (\bmod b) \iff ax \bmod b = 1 \bmod b" />，则
+        x 称为
+        <katex class="katex-sm" formula="a \bmod b" />
+        的逆元，记作<katex class="katex-sm" formula="a^{-1}" />
+      </div>
+      <div class="text-sm text-gray-400 mt-[10px]">
+        乘法逆元的作用:
+        在模运算下<b>无法直接执行除法</b>(直接乘法可能出现小数)，所以在模运算下乘上<b>逆元</b>就相当于除以了一个数
+      </div>
+      <div class="text-sm text-gray-400">
+        例:
+        <katex
+          class="katex-sm"
+          formula="a/x \equiv d \bmod m \iff a \times x^{-1} = d \bmod m \iff a \times x\text{的逆元} = d \bmod m"
+        />
+      </div>
+    </template>
+
     <div class="pt-6">
       <el-descriptions label-width="120" :column="1">
         <el-descriptions-item label="Number: ">
@@ -111,5 +110,5 @@ function resetErr() {
         </el-descriptions-item>
       </el-descriptions>
     </div>
-  </div>
+  </content-card>
 </template>

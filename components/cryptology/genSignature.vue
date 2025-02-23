@@ -193,10 +193,7 @@ function resetSignature() {
 }
 </script>
 <template>
-  <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[860px]">
-    <p class="font-bold">生成签名</p>
-    <p class="text-sm text-gray-400 my-[10px]">使用私钥签名消息，使用公钥进行验证</p>
-
+  <content-card title="生成签名" description="使用私钥签名消息，使用公钥进行验证">
     <p>
       <el-button @click="randomKey">随机生成私钥公钥</el-button>
       <el-button type="success" @click="genSign">生成签名</el-button>
@@ -351,5 +348,5 @@ function resetSignature() {
         </el-collapse-item>
       </el-collapse>
     </div>
-  </div>
+  </content-card>
 </template>

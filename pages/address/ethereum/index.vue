@@ -92,23 +92,24 @@ function onPublicKeyInput() {
 </script>
 
 <template>
-  <div class="p-10">
-    <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[880px]">
-      <p class="font-bold text-lg">Ethereum地址生成</p>
-      <p class="text-sm text-gray-400 mt-[12px]">
-        主网和测试网，以太坊地址的格式是相同的(地址的生成与网络无关)
-      </p>
-      <p class="text-sm mt-[6px]">相关提案:</p>
-      <ul class="text-sm pl-4 my-2">
-        <li class="list-disc">
-          <a
-            class="underline text-[#409eff] hover:text-[#347ecc]"
-            href="https://eips.ethereum.org/EIPS/eip-55"
-          >
-            ERC-55: 混合大小写校验和地址编码
-          </a>
-        </li>
-      </ul>
+  <div class="flex flex-wrap gap-10 p-10">
+    <content-card title="Ethereum地址生成">
+      <template #description>
+        <p class="text-sm text-gray-400 mt-[12px]">
+          主网和测试网，以太坊地址的格式是相同的(地址的生成与网络无关)
+        </p>
+        <p class="text-sm mt-[6px]">相关提案:</p>
+        <ul class="text-sm pl-4 my-2">
+          <li class="list-disc">
+            <a
+              class="underline text-[#409eff] hover:text-[#347ecc]"
+              href="https://eips.ethereum.org/EIPS/eip-55"
+            >
+              ERC-55: 混合大小写校验和地址编码
+            </a>
+          </li>
+        </ul>
+      </template>
       <p class="mt-6">
         <el-button @click="randomKey">随机生成私钥公钥</el-button>
       </p>
@@ -226,7 +227,7 @@ function onPublicKeyInput() {
           </el-descriptions-item>
         </el-descriptions>
       </div>
-    </div>
+    </content-card>
   </div>
 </template>
 <style>

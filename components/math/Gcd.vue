@@ -42,23 +42,22 @@ const result = computed(() => {
 })
 </script>
 <template>
-  <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[860px]">
-    <p class="font-bold">
-      最大公约数 <span class="text-sm text-gray-400">(Greatest Common Divisor, GCD)</span>
-    </p>
-    <p class="text-sm text-gray-400 mt-[10px]">
-      如果数a能被数b整除，a就叫做b的<b>倍数</b>，b就叫做a的<b>约数</b>。
-    </p>
-    <p class="text-sm text-gray-400">
-      几个整数中公有的约数，叫做这几个数的公约数；其中最大的一个，叫做这几个数的<b>最大公约数</b>。
-    </p>
-    <p class="text-sm text-gray-400 pl-4">
-      例如 12, 16 <br />
-      其中 12 的约数(这里只讨论正约数) 1, 2, 3, 4, 6, 12<br />
-      16的约数 1, 2, 4, 8, 16 <br />
-      可以看出来 12 16的公约数是 1, 2, 4, 其中最大公约数是 4
-    </p>
-    <p class="text-sm text-gray-400 mt-[10px]">使用扩展的欧几里得算法</p>
+  <content-card title="最大公约数" sub-title="(Greatest Common Divisor, GCD)">
+    <template #description>
+      <p class="text-sm text-gray-400 mt-[10px]">
+        如果数a能被数b整除，a就叫做b的<b>倍数</b>，b就叫做a的<b>约数</b>。
+      </p>
+      <p class="text-sm text-gray-400">
+        几个整数中公有的约数，叫做这几个数的公约数；其中最大的一个，叫做这几个数的<b>最大公约数</b>。
+      </p>
+      <p class="text-sm text-gray-400 pl-4">
+        例如 12, 16 <br />
+        其中 12 的约数(这里只讨论正约数) 1, 2, 3, 4, 6, 12<br />
+        16的约数 1, 2, 4, 8, 16 <br />
+        可以看出来 12 16的公约数是 1, 2, 4, 其中最大公约数是 4
+      </p>
+      <p class="text-sm text-gray-400 mt-[10px]">使用扩展的欧几里得算法</p>
+    </template>
     <div class="pt-6">
       <el-descriptions label-width="120" :column="1">
         <el-descriptions-item label="Number1: ">
@@ -100,7 +99,7 @@ const result = computed(() => {
         />
       </div>
     </div>
-  </div>
+  </content-card>
 </template>
 
 <style></style>

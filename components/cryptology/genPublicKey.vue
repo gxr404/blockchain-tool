@@ -110,9 +110,7 @@ watch(compressPubKey, () => {
 </script>
 
 <template>
-  <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[860px]">
-    <p class="font-bold">生成公钥</p>
-    <p class="text-sm text-gray-400 my-[10px]">从私钥计算公钥</p>
+  <content-card title="生成公钥" description="从私钥计算公钥">
     <div>
       <el-button @click="randomPrivate">随机私钥</el-button>
     </div>
@@ -226,5 +224,5 @@ watch(compressPubKey, () => {
         </el-descriptions-item>
       </el-descriptions>
     </div>
-  </div>
+  </content-card>
 </template>

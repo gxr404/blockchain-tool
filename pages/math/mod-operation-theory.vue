@@ -11,10 +11,8 @@ const collapseVal = ref([
 </script>
 
 <template>
-  <div class="p-10">
-    <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[860px]">
-      <h1 class="text-lg font-bold mt-2 mb-6 text-center flex-1">模运算</h1>
-
+  <div class="flex flex-wrap gap-10 p-10">
+    <content-card title="模运算">
       <el-collapse v-model="collapseVal" class="collapse-bottom-border-none">
         <el-collapse-item name="mod-diff">
           <template #title>
@@ -311,6 +309,6 @@ const collapseVal = ref([
           </p>
         </el-collapse-item>
       </el-collapse>
-    </div>
+    </content-card>
   </div>
 </template>

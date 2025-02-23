@@ -98,19 +98,20 @@ function onPrivateKeyInput() {}
 </script>
 
 <template>
-  <div class="p-10">
-    <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
-      <p class="font-bold text-lg">WIF</p>
-      <p class="text-sm text-gray-400 my-[10px]">
-        WIF(Wallet Import Format)是一种在钱包之间导入导出时使用的私钥格式。
-      </p>
-      <p class="text-sm text-gray-400 mt-[4px]">WIF私钥对比hex私钥的好处:</p>
-      <ul class="text-gray-400 pl-6 text-sm">
-        <li class="list-disc">⭐️有网络标识，可区分是主网还是测试网</li>
-        <li class="list-disc">⭐️可添加压缩标志，标识公钥是否压缩格式</li>
-        <li class="list-disc">有检验和，能够检查输入错误</li>
-        <li class="list-disc">长度更短 hex私钥64个字符 wif私钥 约51字符(带压缩标识则52字符)</li>
-      </ul>
+  <div class="flex flex-wrap gap-10 p-10">
+    <content-card title="WIF">
+      <template #description>
+        <p class="text-sm text-gray-400 my-[10px]">
+          WIF(Wallet Import Format)是一种在钱包之间导入导出时使用的私钥格式。
+        </p>
+        <p class="text-sm text-gray-400 mt-[4px]">WIF私钥对比hex私钥的好处:</p>
+        <ul class="text-gray-400 pl-6 text-sm">
+          <li class="list-disc">⭐️有网络标识，可区分是主网还是测试网</li>
+          <li class="list-disc">⭐️可添加压缩标志，标识公钥是否压缩格式</li>
+          <li class="list-disc">有检验和，能够检查输入错误</li>
+          <li class="list-disc">长度更短 hex私钥64个字符 wif私钥 约51字符(带压缩标识则52字符)</li>
+        </ul>
+      </template>
       <p class="mt-6">
         <el-button @click="randomKey">随机生成私钥公钥</el-button>
       </p>
@@ -259,7 +260,7 @@ function onPrivateKeyInput() {}
           </el-descriptions-item>
         </el-descriptions>
       </div>
-    </div>
+    </content-card>
   </div>
 </template>
 <style>

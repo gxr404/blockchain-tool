@@ -188,43 +188,41 @@ defineExpose({
 })
 </script>
 <template>
-  <div
-    class="flex flex-col p-6 border rounded bg-white mt-10 w-[860px] mb-[100px]"
-    ref="verifySignatureEl"
-  >
-    <p class="font-bold">验证签名</p>
-    <p class="text-sm text-gray-400 my-[10px]">使用私钥签名消息，使用公钥进行验证</p>
-
-    <p class="flex gap-4 items-center">
-      <el-button @click="randomKey">随机生成私钥公钥</el-button>
-      <el-button type="success" @click="verifySign">验证签名</el-button>
-      <span class="text-sm inline-block align-middle" v-if="verifySignResult">
-        <template v-if="verifySignResult === 'yes'">
-          <success-filled class="w-[28px] inline-block mr-1 text-[#67C23A]" />
-          <span class="text-sm text-gray-400">该公钥成功验证了该签名信息</span>
-        </template>
-        <template v-else-if="verifySignResult === 'no'">
-          <circle-close-filled class="w-[28px] inline-block mr-1 text-[#F56C6C]" />
-          <span class="text-sm text-gray-400">该公钥对签名信息验证失败了</span>
-        </template>
-      </span>
-    </p>
-    <div class="py-10">
-      <el-descriptions label-width="120" :column="1">
-        <el-descriptions-item label="公钥: ">
-          <div class="inline-block w-[660px]">
-            <radix-input
-              :class="hasError.publicKeyInput.error ? 'error' : ''"
-              v-model="publicKeyInput"
-              ref="publicKeyInputRef"
-              @input-value="onInputValue"
-            ></radix-input>
-          </div>
-          <div v-if="hasError.publicKeyInput.error" class="text-[#F56C6C] text-sm pl-[136px] my-2">
-            {{ hasError.publicKeyInput.errmsg }}
-          </div>
-        </el-descriptions-item>
-        <!-- <el-descriptions-item label="私钥: ">
+  <div ref="verifySignatureEl">
+    <content-card title="验证签名" description="使用私钥签名消息，使用公钥进行验证">
+      <p class="flex gap-4 items-center">
+        <el-button @click="randomKey">随机生成私钥公钥</el-button>
+        <el-button type="success" @click="verifySign">验证签名</el-button>
+        <span class="text-sm inline-block align-middle" v-if="verifySignResult">
+          <template v-if="verifySignResult === 'yes'">
+            <success-filled class="w-[28px] inline-block mr-1 text-[#67C23A]" />
+            <span class="text-sm text-gray-400">该公钥成功验证了该签名信息</span>
+          </template>
+          <template v-else-if="verifySignResult === 'no'">
+            <circle-close-filled class="w-[28px] inline-block mr-1 text-[#F56C6C]" />
+            <span class="text-sm text-gray-400">该公钥对签名信息验证失败了</span>
+          </template>
+        </span>
+      </p>
+      <div class="py-10">
+        <el-descriptions label-width="120" :column="1">
+          <el-descriptions-item label="公钥: ">
+            <div class="inline-block w-[660px]">
+              <radix-input
+                :class="hasError.publicKeyInput.error ? 'error' : ''"
+                v-model="publicKeyInput"
+                ref="publicKeyInputRef"
+                @input-value="onInputValue"
+              ></radix-input>
+            </div>
+            <div
+              v-if="hasError.publicKeyInput.error"
+              class="text-[#F56C6C] text-sm pl-[136px] my-2"
+            >
+              {{ hasError.publicKeyInput.errmsg }}
+            </div>
+          </el-descriptions-item>
+          <!-- <el-descriptions-item label="私钥: ">
           <div class="inline-block min-w-[660px]">
             <radix-input
               :class="hasError.privateKeyInput.error ? 'error' : ''"
@@ -234,57 +232,58 @@ defineExpose({
           </div>
         </el-descriptions-item> -->
 
-        <el-descriptions-item>
-          <template #label>
-            <p class="inline-block align-middle">签名数据Hash:</p>
-          </template>
-          <div class="inline-block w-[660px] align-middle">
-            <radix-input
-              :class="hasError.hashMsg.error ? 'error' : ''"
-              v-model="hashMsg"
-              ref="hashMsgInputRef"
-              @input-value="onInputValue"
-            >
-            </radix-input>
-          </div>
-        </el-descriptions-item>
+          <el-descriptions-item>
+            <template #label>
+              <p class="inline-block align-middle">签名数据Hash:</p>
+            </template>
+            <div class="inline-block w-[660px] align-middle">
+              <radix-input
+                :class="hasError.hashMsg.error ? 'error' : ''"
+                v-model="hashMsg"
+                ref="hashMsgInputRef"
+                @input-value="onInputValue"
+              >
+              </radix-input>
+            </div>
+          </el-descriptions-item>
 
-        <el-descriptions-item label="Signature">
-          <div class="h-[22px] inline-block w-[660px]">&nbsp;</div>
-        </el-descriptions-item>
-        <el-descriptions-item>
-          <template #label>
-            <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-10 inline-block relative -top-[2px]"
-            ></div>
-            &nbsp;&nbsp;&nbsp;R
-          </template>
-          <div class="inline-block w-[660px]">
-            <radix-input
-              :class="hasError.signatureR.error ? 'error' : ''"
-              v-model="signatureR"
-              ref="signatureRInputRef"
-              @input-value="onInputValue"
-            ></radix-input>
-          </div>
-        </el-descriptions-item>
-        <el-descriptions-item>
-          <template #label>
-            <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-10 inline-block relative -top-[2px]"
-            ></div>
-            &nbsp;&nbsp;&nbsp;S
-          </template>
-          <div class="inline-block w-[660px]">
-            <radix-input
-              :class="hasError.signatureS.error ? 'error' : ''"
-              v-model="signatureS"
-              ref="signatureSInputRef"
-              @input-value="onInputValue"
-            ></radix-input>
-          </div>
-        </el-descriptions-item>
-      </el-descriptions>
-    </div>
+          <el-descriptions-item label="Signature">
+            <div class="h-[22px] inline-block w-[660px]">&nbsp;</div>
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template #label>
+              <div
+                class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-10 inline-block relative -top-[2px]"
+              ></div>
+              &nbsp;&nbsp;&nbsp;R
+            </template>
+            <div class="inline-block w-[660px]">
+              <radix-input
+                :class="hasError.signatureR.error ? 'error' : ''"
+                v-model="signatureR"
+                ref="signatureRInputRef"
+                @input-value="onInputValue"
+              ></radix-input>
+            </div>
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template #label>
+              <div
+                class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-10 inline-block relative -top-[2px]"
+              ></div>
+              &nbsp;&nbsp;&nbsp;S
+            </template>
+            <div class="inline-block w-[660px]">
+              <radix-input
+                :class="hasError.signatureS.error ? 'error' : ''"
+                v-model="signatureS"
+                ref="signatureSInputRef"
+                @input-value="onInputValue"
+              ></radix-input>
+            </div>
+          </el-descriptions-item>
+        </el-descriptions>
+      </div>
+    </content-card>
   </div>
 </template>

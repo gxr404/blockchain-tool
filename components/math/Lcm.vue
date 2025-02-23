@@ -38,29 +38,28 @@ const lcmRes = computed(() => {
 })
 </script>
 <template>
-  <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[860px]">
-    <p class="font-bold">
-      最小公倍数 <span class="text-sm text-gray-400">(Least Common Multiple, LCM)</span>
-    </p>
-    <p class="text-sm text-gray-400 mt-[10px]">
-      如果数a能被数b整除，a就叫做b的<b>倍数</b>，b就叫做a的<b>约数</b>。
-    </p>
-    <p class="text-sm text-gray-400">
-      几个整数中公有的倍数，叫做这几个数的公倍数；其中最小的一个，叫做这几个数的<b>最小公倍数</b>。
-    </p>
-    <p class="text-sm text-gray-400 pl-4">
-      例如 12, 16 <br />
-      其中 12 的倍数 12, 24, 36, 48, 60, 72, 84, 96 ...<br />
-      16的倍数 16, 32, 48, 64, 80, 96... <br />
-      可以看出来 12 16的公倍数是 48, 96... 其中最小倍数是 48
-    </p>
-    <p class="text-sm text-gray-400 mt-[10px]">最小公倍数可以借助最大公约数的算法得出,公式:</p>
-    <div class="my-4">
-      <katex
-        class="katex-sm"
-        formula="\text{lcm(Number1, Number2)} = \frac{ |\text{Number1} \times \text{Number2}| }{\text{gcd(Number1, Number2)}} = \text{最小公倍数}"
-      />
-    </div>
+  <content-card title="最小公倍数" sub-title="(Least Common Multiple, LCM)">
+    <template #description>
+      <p class="text-sm text-gray-400 mt-[10px]">
+        如果数a能被数b整除，a就叫做b的<b>倍数</b>，b就叫做a的<b>约数</b>。
+      </p>
+      <p class="text-sm text-gray-400">
+        几个整数中公有的倍数，叫做这几个数的公倍数；其中最小的一个，叫做这几个数的<b>最小公倍数</b>。
+      </p>
+      <p class="text-sm text-gray-400 pl-4">
+        例如 12, 16 <br />
+        其中 12 的倍数 12, 24, 36, 48, 60, 72, 84, 96 ...<br />
+        16的倍数 16, 32, 48, 64, 80, 96... <br />
+        可以看出来 12 16的公倍数是 48, 96... 其中最小倍数是 48
+      </p>
+      <p class="text-sm text-gray-400 mt-[10px]">最小公倍数可以借助最大公约数的算法得出,公式:</p>
+      <div class="my-4">
+        <katex
+          class="katex-sm"
+          formula="\text{lcm(Number1, Number2)} = \frac{ |\text{Number1} \times \text{Number2}| }{\text{gcd(Number1, Number2)}} = \text{最小公倍数}"
+        />
+      </div>
+    </template>
 
     <div class="pt-6">
       <el-descriptions label-width="120" :column="1">
@@ -85,7 +84,7 @@ const lcmRes = computed(() => {
         </el-descriptions-item>
       </el-descriptions>
     </div>
-  </div>
+  </content-card>
 </template>
 
 <style></style>

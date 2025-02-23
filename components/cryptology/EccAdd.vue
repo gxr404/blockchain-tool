@@ -125,7 +125,7 @@ function resetErr() {
 }
 </script>
 <template>
-  <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[860px]">
+  <content-card class="py-4">
     <el-collapse class="collapse-top-border-none">
       <el-collapse-item name="1">
         <template #title>
@@ -354,5 +354,5 @@ function resetErr() {
         </el-descriptions-item>
       </el-descriptions>
     </div>
-  </div>
+  </content-card>
 </template>

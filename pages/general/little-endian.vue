@@ -93,16 +93,16 @@ function cleanError() {
 </script>
 
 <template>
-  <div class="p-10">
-    <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
+  <div class="flex flex-wrap gap-10 p-10">
+    <content-card title="小端字节序">
+      <template #description>
+        <p class="text-sm text-gray-400 mb-[20px]">
+          小端字节序(Little-Endian)指的是多字节数据在内存中存储时，
+          <b>低字节存储在低地址，高字节存储在高地址</b>
+        </p>
+      </template>
+
       <el-descriptions label-width="200" :column="1">
-        <template #title>
-          <p class="font-bold text-lg mb-[20px]">小端字节序</p>
-          <p class="text-sm text-gray-400 mb-[20px]">
-            小端字节序(Little-Endian)指的是多字节数据在内存中存储时，
-            <b>低字节存储在低地址，高字节存储在高地址</b>
-          </p>
-        </template>
         <el-descriptions-item label="十进制">
           <div class="inline-block min-w-[680px]">
             <el-input v-model="decimal" clearable @input="onDecimalInput">
@@ -170,7 +170,7 @@ function cleanError() {
           </el-radio>
         </el-radio-group>
       </div>
-    </div>
+    </content-card>
   </div>
 </template>
 

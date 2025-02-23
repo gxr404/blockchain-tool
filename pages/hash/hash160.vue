@@ -27,18 +27,17 @@ const hash160Result = computed(() => {
 </script>
 
 <template>
-  <div class="p-10">
-    <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
-      <h1 class="text-[26px] font-bold">
-        Hash160
-        <tag-list :list="['bitcoin']" />
-      </h1>
-      <p class="mt-4">在bitcoin里用于:</p>
-      <ul class="pl-4">
-        <li class="list-disc">在转换成address之前, 压缩公钥</li>
-        <li class="list-disc">bitcoin交易script中, 压缩公钥</li>
-      </ul>
-      <p><code>Hash160 = RIPEMD-160(SHA-256(data))</code></p>
+  <div class="flex flex-wrap gap-10 p-10">
+    <content-card title="Hash160" :tag-data="['bitcoin']" title-large>
+      <template #description>
+        <p>在bitcoin里用于:</p>
+        <ul class="pl-4">
+          <li class="list-disc">在转换成address之前, 压缩公钥</li>
+          <li class="list-disc">bitcoin交易script中, 压缩公钥</li>
+        </ul>
+        <p><code>Hash160 = RIPEMD-160(SHA-256(data))</code></p>
+      </template>
+
       <!-- <block-info-box :block-info="example1.block"></block-info-box> -->
       <div class="py-4">
         <p class="py-2">Data (Hex-16进制):</p>
@@ -69,6 +68,6 @@ const hash160Result = computed(() => {
           </div>
         </template>
       </template>
-    </div>
+    </content-card>
   </div>
 </template>

@@ -124,15 +124,13 @@ function resetRandomInfo() {
 </script>
 
 <template>
-  <div class="p-10">
-    <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
-      <h1 class="text-[26px] font-bold">
-        Hash256
-        <tag-list :list="['bitcoin']" />
-      </h1>
-      <p class="mt-4">双层SHA-256。用于BlockHeader、Transaction，以及大多数需要在比特币中hash</p>
-      <p><code>Hash256 = SHA-256(SHA-256(data))</code></p>
-      <!-- <block-info-box :block-info="example1.block"></block-info-box> -->
+  <div class="flex flex-wrap gap-10 p-10">
+    <content-card title="Hash256" :tag-data="['bitcoin']" title-large>
+      <template #description>
+        <p class="mt-4">双层SHA-256。用于BlockHeader、Transaction，以及大多数需要在比特币中hash</p>
+        <p><code>Hash256 = SHA-256(SHA-256(data))</code></p>
+      </template>
+
       <div class="py-4">
         <p class="py-2">Data (Hex-16进制):</p>
         <el-input
@@ -236,7 +234,7 @@ function resetRandomInfo() {
           </el-descriptions-item>
         </el-descriptions>
       </div>
-    </div>
+    </content-card>
   </div>
 </template>
 

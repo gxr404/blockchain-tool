@@ -50,11 +50,13 @@ const computeFormula = computed(() => {
 })
 </script>
 <template>
-  <div class="flex flex-col p-10 border rounded bg-white w-[860px]">
-    <h1 class="text-lg font-bold mb-4">椭圆曲线</h1>
-    <p class="text-sm text-gray-400 py-2">
+  <content-card
+    title="椭圆曲线"
+    description="椭圆曲线加密算法(Elliptic curve cryptography)简称 ECC, 是一种非对称加密算法。"
+  >
+    <!-- <p class="text-sm text-gray-400 py-2">
       椭圆曲线加密算法(Elliptic curve cryptography)简称 ECC, 是一种非对称加密算法。
-    </p>
+    </p> -->
     <p class="text-center font-bold mt-4">
       <katex formula="y^2=x^3+ax+b,\space\space 4a^3+27b^2\neq0" />
     </p>
@@ -79,5 +81,5 @@ const computeFormula = computed(() => {
         </span>
       </div>
     </div>
-  </div>
+  </content-card>
 </template>

@@ -38,21 +38,19 @@ function copyHashResult() {
 }
 </script>
 <template>
-  <div class="p-10">
-    <div class="flex flex-col p-6 border rounded bg-white mt-10 w-[960px]">
-      <h1 class="text-[26px] font-bold">
-        Tagged Hash
-        <tag-list :list="['bitcoin']" />
-      </h1>
-      <p class="text-sm text-gray-400 mt-4">
-        使用<b>标签前缀</b>创建数据哈希 (在传统哈希算法中添加标签来实现对不同数据类型的区分)
-      </p>
-      <p class="text-sm text-gray-400">
-        应用在 <b>Schnorr签名</b>, <b>Schnorr验证</b> 和 <b>Taproot地址生成</b>...
-      </p>
-      <p class="text-sm text-gray-400 mt-2">
-        Tagged Hash = SHA256(SHA256(Tag Prefix) + SHA256(Tag Prefix) + data)
-      </p>
+  <div class="flex flex-wrap gap-10 p-10">
+    <content-card title="Tagged Hash" :tag-data="['bitcoin']" title-large>
+      <template #description>
+        <p class="text-sm text-gray-400">
+          使用<b>标签前缀</b>创建数据哈希 (在传统哈希算法中添加标签来实现对不同数据类型的区分)
+        </p>
+        <p class="text-sm text-gray-400">
+          应用在 <b>Schnorr签名</b>, <b>Schnorr验证</b> 和 <b>Taproot地址生成</b>...
+        </p>
+        <p class="text-sm text-gray-400 mt-2">
+          Tagged Hash = SHA256(SHA256(Tag Prefix) + SHA256(Tag Prefix) + data)
+        </p>
+      </template>
 
       <div class="mt-8">
         <el-descriptions label-width="100" :column="1">
@@ -111,6 +109,6 @@ function copyHashResult() {
           </el-descriptions-item>
         </el-descriptions>
       </div>
-    </div>
+    </content-card>
   </div>
 </template>

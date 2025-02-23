@@ -97,9 +97,8 @@ const formatTooltip = (val: number) => {
 }
 </script>
 <template>
-  <div class="flex flex-wrap gap-6 p-6 secp256k1">
-    <div class="flex flex-col p-10 border rounded bg-white">
-      <h1 class="text-center font-bold">Secp256k1</h1>
+  <div class="flex flex-wrap gap-10 p-10 secp256k1">
+    <content-card title="Secp256k1" :tag-data="['bitcoin', 'ethereum']" title-large>
       <p class="text-sm py-2">Secp256k1是一条特定的椭圆曲线</p>
 
       <ul class="pl-6">
@@ -214,45 +213,45 @@ const formatTooltip = (val: number) => {
       </p>
 
       <!-- <el-descriptions :column="1" size="small" label-width="140">
-        <el-descriptions-item
-          label="x = 0, y = 1"
-          label-class-name="font-bold relative pl-4 before:content-['•'] before:absolute before:left-0 before:top-0 before:text-black"
-        >
-        </el-descriptions-item>
-        <el-descriptions-item
-          label="a > 1, y单调递增: "
-          label-class-name="font-bold relative pl-4 before:content-['•'] before:absolute before:left-0 before:top-0 before:text-black"
-        >
-          <div class="inline-block pl-1">
-            <el-slider
-              class="red-bar"
-              size="small"
-              v-model="incrementalFunVal"
-              :format-tooltip="formatTooltip"
-              :min="2"
-              :max="10"
-              :step="0.01"
-            />
-          </div>
-        </el-descriptions-item>
-        <el-descriptions-item
-          label="0 < a < 1, y单调递减: "
-          label-class-name="font-bold relative pl-4 before:content-['•'] before:absolute before:left-0 before:top-0 before:text-black"
-        >
-          <div class="inline-block pl-1">
-            <el-slider
-              class="green-bar"
-              size="small"
-              v-model="decreaseFunVal"
-              :format-tooltip="formatTooltip"
-              :max="1"
-              :min="0.01"
-              :step="0.01"
-            />
-          </div>
-        </el-descriptions-item>
-      </el-descriptions> -->
+  <el-descriptions-item
+    label="x = 0, y = 1"
+    label-class-name="font-bold relative pl-4 before:content-['•'] before:absolute before:left-0 before:top-0 before:text-black"
+  >
+  </el-descriptions-item>
+  <el-descriptions-item
+    label="a > 1, y单调递增: "
+    label-class-name="font-bold relative pl-4 before:content-['•'] before:absolute before:left-0 before:top-0 before:text-black"
+  >
+    <div class="inline-block pl-1">
+      <el-slider
+        class="red-bar"
+        size="small"
+        v-model="incrementalFunVal"
+        :format-tooltip="formatTooltip"
+        :min="2"
+        :max="10"
+        :step="0.01"
+      />
     </div>
+  </el-descriptions-item>
+  <el-descriptions-item
+    label="0 < a < 1, y单调递减: "
+    label-class-name="font-bold relative pl-4 before:content-['•'] before:absolute before:left-0 before:top-0 before:text-black"
+  >
+    <div class="inline-block pl-1">
+      <el-slider
+        class="green-bar"
+        size="small"
+        v-model="decreaseFunVal"
+        :format-tooltip="formatTooltip"
+        :max="1"
+        :min="0.01"
+        :step="0.01"
+      />
+    </div>
+  </el-descriptions-item>
+</el-descriptions> -->
+    </content-card>
   </div>
 </template>
 

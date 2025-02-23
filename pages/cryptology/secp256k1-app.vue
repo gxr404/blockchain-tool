@@ -20,15 +20,17 @@ function updateVerifyData(verifyData: VerifyInfo) {
 </script>
 
 <template>
-  <div class="p-10">
+  <div class="p-10 pb-0">
     <p class="font-bold text-lg mb-[20px]">
       Secp256k1应用 <tag-list :list="['bitcoin', 'ethereum']"></tag-list>
     </p>
     <p class="text-sm text-gray-400 mb-[10px]">
       在bitcoin中Secp256k1应用于 <b>生成公钥</b>和 <b>交易时生成签名</b>
     </p>
-    <cryptology-gen-public-key></cryptology-gen-public-key>
-    <cryptology-gen-signature @go-verify="updateVerifyData"></cryptology-gen-signature>
-    <cryptology-verify-signature ref="verifySignatureRef"></cryptology-verify-signature>
+  </div>
+  <div class="flex flex-wrap gap-10 p-10">
+    <cryptology-gen-public-key />
+    <cryptology-gen-signature @go-verify="updateVerifyData" />
+    <cryptology-verify-signature ref="verifySignatureRef" />
   </div>
 </template>
