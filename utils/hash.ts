@@ -1,4 +1,5 @@
 import sha256 from 'crypto-js/sha256'
+import sha512 from 'crypto-js/sha512'
 import encHex from 'crypto-js/enc-hex'
 import encUtf8 from 'crypto-js/enc-utf8'
 import ripemd160 from 'crypto-js/ripemd160'
@@ -61,4 +62,8 @@ export function keccak256(data: string, inputType: InputType = 'hex') {
     return new Uint8Array([])
   }
   return keccak_256(getCurrentWordFn(data))
+}
+
+export function sha512Fn(hex: string) {
+  return sha512(encHex.parse(hex)).toString(encHex)
 }

@@ -21,8 +21,11 @@ const latexHtml = computed(() => {
   <div class="katex inline-block" v-html="latexHtml"></div>
 </template>
 
-<style>
+<style lang="scss">
 .katex-sm {
   font-size: 1em;
+  .katex-display {
+    margin: 0;
+  }
 }
 </style>

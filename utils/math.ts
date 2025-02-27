@@ -62,3 +62,25 @@ export function lcm(num1: string, num2: string) {
   const gcdNum = BigNumber(gcdRes.gcd, 10)
   return _num1.times(_num2).abs().div(gcdNum).toString(10)
 }
+
+/*
+  根据数论可以把数字分为六大部分，6i、6i + 1、6i + 2、6i + 3、6i + 4、6i + 5，
+  其中 6i、6i + 2、6i + 3、6i + 4 一定是合数，只有 6i + 1、6i + 5 才有可能是素数，
+  所以一个数 x 对 6 取余，余数一定是 0、1、2、3、4、5 这六个数字，
+  只有当余数为 1 或 5 时才有可能是素数，余数为 0、2、3、4 的一定是合数
+ */
+export function isPrime(num: string) {
+  if (num === '2' || num === '3' || num === '5') return true
+  const bigNum = BigNumber(num, 10)
+  if (bigNum.isLessThanOrEqualTo(1)) return false
+  // 余数为 0、2、3、4 的是合数
+  if (!bigNum.mod(6).eq(1) && !bigNum.mod(6).eq(5)) return false
+  let index = BigNumber(5)
+  while (index.pow(2).isLessThanOrEqualTo(bigNum)) {
+    if (bigNum.mod(index).eq(0) || bigNum.mod(index.plus(2)).eq(0)) {
+      return false
+    }
+    index = index.plus(6)
+  }
+  return true
+}

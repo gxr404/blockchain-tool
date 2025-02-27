@@ -146,6 +146,7 @@
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
 }
+
 .success-box {
   color: #67c23a;
   background-color: #f0f9eb;
@@ -155,6 +156,14 @@
   position: relative;
 }
 
+.primary-tips {
+  color: #409eff;
+  background-color: #ecf5ff;
+  border-left: 6px solid #409eff;
+  padding: 8px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
 .primary-box {
   background-color: #ecf5ff;
   border: 1px solid #409eff;
@@ -163,6 +172,7 @@
   padding: 8px 10px;
   position: relative;
   word-wrap: break-word;
+  padding-right: 22px;
   .red-span,
   .green-span,
   .blue-span,
