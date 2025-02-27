@@ -212,6 +212,10 @@ const formatTooltip = (val: number) => {
         <span class="font-bold">签名数据</span>
       </p>
 
+      <!-- <p class="text-sm text-gray-400 mb-[10px]">
+        在bitcoin中Secp256k1应用于 <b>生成公钥</b>和 <b>交易时生成签名</b>
+      </p> -->
+
       <!-- <el-descriptions :column="1" size="small" label-width="140">
   <el-descriptions-item
     label="x = 0, y = 1"

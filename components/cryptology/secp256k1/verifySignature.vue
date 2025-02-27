@@ -189,7 +189,7 @@ defineExpose({
 </script>
 <template>
   <div ref="verifySignatureEl">
-    <content-card title="验证签名" description="使用私钥签名消息，使用公钥进行验证">
+    <content-card title="Secp256k1 — 验证签名" description="使用私钥签名消息，使用公钥进行验证">
       <p class="flex gap-4 items-center">
         <el-button @click="randomKey">随机生成私钥公钥</el-button>
         <el-button type="success" @click="verifySign">验证签名</el-button>

@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import TokenSolana from '~icons/token/solana'
+import TokenEthereum from '~icons/token/ethereum'
+import TokenBitcoin from '~icons/token/bitcoin'
 const route = useRoute()
 </script>
 <template>
@@ -7,6 +10,9 @@ const route = useRoute()
       <!-- -mt-[94px] -->
       <div id="hd-bg" class="absolute w-full"></div>
       <div class="h-[100px] flex items-center justify-center">
+        <div class="w-[40px] h-[40px] relative z-10 mr-2">
+          <img src="/logo.png" class="inline-block" />
+        </div>
         <h1 class="font-bold text-[24px] text-white relative z-10">Blockchain Tool</h1>
       </div>
     </header>
@@ -47,7 +53,7 @@ const route = useRoute()
                 <span>椭圆曲线</span>
               </template>
               <el-menu-item index="cryptology-ecc" :route="{ path: '/cryptology/ecc' }">
-                <span>ECC</span>
+                <span>ECC基础</span>
               </el-menu-item>
               <el-menu-item index="cryptology-ecc-op" :route="{ path: '/cryptology/ecc-op' }">
                 <span>ECC常用操作</span>
@@ -55,11 +61,12 @@ const route = useRoute()
               <el-menu-item index="cryptology-secp256k1" :route="{ path: '/cryptology/secp256k1' }">
                 <span>Secp256k1</span>
               </el-menu-item>
+
               <el-menu-item
-                index="cryptology-secp256k1-app"
-                :route="{ path: '/cryptology/secp256k1-app' }"
+                index="cryptology-twisted-edwards"
+                :route="{ path: '/cryptology/twisted-edwards' }"
               >
-                <span>Secp256k1的应用</span>
+                <span>Twisted Edwards</span>
               </el-menu-item>
               <el-sub-menu index="cryptology-sign">
                 <template #title>
@@ -85,6 +92,30 @@ const route = useRoute()
                   <span>Schnorr</span>
                 </el-menu-item>
               </el-sub-menu>
+              <el-sub-menu index="cryptology-key-exchange">
+                <template #title>
+                  <span>基于椭圆曲线的密钥交换</span>
+                </template>
+
+                <el-menu-item
+                  index="cryptology-key-exchange-ecdh"
+                  :route="{ path: '/cryptology/key-exchange/ecdh' }"
+                >
+                  <span>ECDH</span>
+                </el-menu-item>
+              </el-sub-menu>
+              <!-- <el-sub-menu index="cryptology-crypto">
+                <template #title>
+                  <span>基于椭圆曲线的加密算法</span>
+                </template>
+
+                <el-menu-item
+                  index="cryptology-crypto-ecc"
+                  :route="{ path: '/cryptology/crypto/ecies' }"
+                >
+                  <span>ECIES</span>
+                </el-menu-item>
+              </el-sub-menu> -->
             </el-sub-menu>
           </el-sub-menu>
           <el-sub-menu index="address">
@@ -93,8 +124,15 @@ const route = useRoute()
             </template>
             <el-sub-menu index="bitcoin">
               <template #title>
+                <span class="text-sm mr-1"><token-bitcoin /></span>
                 <span>Bitcoin</span>
               </template>
+              <el-menu-item
+                index="address-bitcoin-gen-public-key"
+                :route="{ path: '/address/bitcoin/gen-public-key' }"
+              >
+                <span>公钥生成</span>
+              </el-menu-item>
               <el-menu-item
                 index="address-bitcoin-base58"
                 :route="{ path: '/address/bitcoin/base58' }"
@@ -130,8 +168,23 @@ const route = useRoute()
               </el-menu-item>
             </el-sub-menu>
             <el-menu-item index="address-ethereum" :route="{ path: '/address/ethereum' }">
-              Ethereum
+              <span class="text-sm mr-1"> <token-ethereum /></span>Ethereum
             </el-menu-item>
+            <el-menu-item index="address-solana" :route="{ path: '/address/solana' }">
+              <span class="text-sm mr-1"><token-solana /></span>Solana
+            </el-menu-item>
+            <!-- <el-sub-menu index="solana">
+              <template #title>
+                <span>Solana</span>
+              </template>
+
+              <el-menu-item
+                index="address-solana-gen-public-key"
+                :route="{ path: '/address/solana/gen-public-key' }"
+              >
+                <span>公钥生成</span>
+              </el-menu-item>
+            </el-sub-menu> -->
           </el-sub-menu>
           <el-sub-menu index="general">
             <template #title>

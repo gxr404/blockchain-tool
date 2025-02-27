@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import BigNumber from 'bignumber.js'
 import elliptic from 'elliptic'
+import { QuestionFilled, CopyDocument } from '@element-plus/icons-vue'
 
 import type { RadixInput } from '#components'
 
 type RadixInputType = InstanceType<typeof RadixInput>
+type CompressType = 'compress' | 'none-compress' | 'only-x'
 
 const { ec: EC } = elliptic
 const secp256k1Ec = new EC('secp256k1')
@@ -14,7 +16,7 @@ const wifPrivateKeyInput = ref('')
 const wifPrivateKeyInputError = ref(false)
 const wifPrivateKeyInputErrorMsg = ref('')
 
-const compressPubKey = ref('compress')
+const compressPubKey = ref<CompressType>('compress')
 const publicKeyInfo = computed(() => {
   if (!privateKeyInput.value || !privateKeyInputRef.value) {
     return {
@@ -24,6 +26,10 @@ const publicKeyInfo = computed(() => {
       compactPubKey: '',
     }
   }
+  // 手动计算与 key.getPublic()是一致
+  // const H = secp256k1Ec.g.mul(new BN(privateKeyHex.value, 16))
+  // console.log(H.getX().toString('hex', 64))
+  // console.log(H.getY().toString('hex', 64))
 
   const key = secp256k1Ec.keyFromPrivate(privateKeyHex.value)
   const pubPoint = key.getPublic()
@@ -41,12 +47,14 @@ const publicKeySegment = computed(() => {
       prefix: publicKeyInfo.value.compactPubKey.slice(0, 2),
       x: publicKeyInfo.value.compactPubKey.slice(2),
       y: '',
+      res: publicKeyInfo.value.compactPubKey,
     }
   } else {
     return {
       prefix: publicKeyInfo.value.pubKey.slice(0, 2),
       x: publicKeyInfo.value.pubKey.slice(2, 66),
       y: publicKeyInfo.value.pubKey.slice(66),
+      res: compressPubKey.value === 'only-x' ? publicKeyInfo.value.x : publicKeyInfo.value.pubKey,
     }
   }
 })
@@ -93,7 +101,7 @@ function onWifPrivateKeyInput() {
   try {
     const { privateKey, compress } = parseWif(wifPrivateKeyInput.value)
     privateKeyInput.value = privateKey
-    compressPubKey.value = compress
+    compressPubKey.value = compress as CompressType
   } catch (e) {
     wifPrivateKeyInputError.value = true
     wifPrivateKeyInputErrorMsg.value = (e as Error).message || 'unknown error'
@@ -107,10 +115,15 @@ function resetError() {
 watch(compressPubKey, () => {
   nextTick(onPrivateKeyInput)
 })
+
+function copy(data: string) {
+  navigator.clipboard.writeText(data)
+  ElMessage.success('copy success')
+}
 </script>
 
 <template>
-  <content-card title="生成公钥" description="从私钥计算公钥">
+  <content-card title="生成公钥" description="从私钥计算公钥" :tag-data="['bitcoin', 'ethereum']">
     <div>
       <el-button @click="randomPrivate">随机私钥</el-button>
     </div>
@@ -143,6 +156,19 @@ watch(compressPubKey, () => {
           <div class="border-t my-2"></div>
         </el-descriptions-item>
         <el-descriptions-item label="公钥坐标">
+          <template #label>
+            <span>公钥坐标</span>
+            <el-tooltip placement="top" effect="primary">
+              <template #content>
+                <p>公钥坐标H = k * G</p>
+                <p class="indent-4">其中k为私钥</p>
+                <p class="indent-4">G为 Secp256k1的基点</p>
+              </template>
+              <question-filled
+                class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer ml-1"
+              />
+            </el-tooltip>
+          </template>
           <div class="h-[22px] inline-block w-[660px]"></div>
         </el-descriptions-item>
         <el-descriptions-item>
@@ -219,6 +245,14 @@ watch(compressPubKey, () => {
                   </span>
                 </el-tooltip>
               </template>
+
+              <span
+                class="copy-btn"
+                @click="copy(publicKeySegment.res)"
+                v-if="publicKeySegment.res"
+              >
+                <copy-document class="inline-block w-[16px] h-[16px]"></copy-document>
+              </span>
             </div>
           </div>
         </el-descriptions-item>

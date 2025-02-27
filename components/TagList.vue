@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import MdiEthereum from '~icons/mdi/ethereum'
-import Bitcoin from '~icons/mdi/bitcoin'
+// import MdiEthereum from '~icons/mdi/ethereum'
+// import Bitcoin from '~icons/mdi/bitcoin'
+import TokenSolana from '~icons/token/solana'
+import TokenEthereum from '~icons/token/ethereum'
+import TokenBitcoin from '~icons/token/bitcoin'
 
 // import LogosEthereum from '~icons/logos/ethereum'
 
@@ -13,11 +16,15 @@ const props = defineProps<Props>()
 const allTagList = [
   {
     text: 'bitcoin',
-    icon: Bitcoin,
+    icon: TokenBitcoin,
   },
   {
     text: 'ethereum',
-    icon: MdiEthereum,
+    icon: TokenEthereum,
+  },
+  {
+    text: 'solana',
+    icon: TokenSolana,
   },
 ]
 

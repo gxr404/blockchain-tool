@@ -52,6 +52,7 @@ const computeFormula = computed(() => {
 <template>
   <content-card
     title="椭圆曲线"
+    sub-title="(Short Weierstrass)"
     description="椭圆曲线加密算法(Elliptic curve cryptography)简称 ECC, 是一种非对称加密算法。"
   >
     <!-- <p class="text-sm text-gray-400 py-2">

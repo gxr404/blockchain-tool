@@ -4,9 +4,12 @@ import BN from 'bn.js'
 import sha256 from 'crypto-js/sha256'
 import enc from 'crypto-js/enc-hex'
 import BigNumber from 'bignumber.js'
-import type { RadixInput } from '#components'
+import { QuestionFilled } from '@element-plus/icons-vue'
+
+import type { RadixInput, RadixBox } from '#components'
 
 type RadixInputType = InstanceType<typeof RadixInput>
+type RadixBoxType = InstanceType<typeof RadixBox>
 const { ec: EC } = elliptic
 
 // hex data
@@ -24,7 +27,7 @@ const secp256k1Ec = new EC('secp256k1')
 const privateKeyInput = ref('')
 const publicKeyInput = ref('')
 const privateKeyInputRef = ref<RadixInputType>()
-
+const publicKeyBoxRef = ref<RadixBoxType>()
 const signatureR = ref('')
 const signatureS = ref('')
 const DEREncode = ref('')
@@ -132,6 +135,7 @@ random number   (k): 12345
 message:             ECDSA is the most fun I have ever experienced
 sha256(message) (z): 103318048148376957923607078689899464500752411597387986125144636642406244063093
 private key     (d): 112757557418114203588093402336452206775565751179231977388358956335153294300646
+public key      (d): 265470464574445810029196565269418164448686920245889450103445799081777681130161
 
 random point (k*G = R): {
   x = 108607064596551879580190606910245687803607295064141551927605737287325610911759,
@@ -151,15 +155,20 @@ function fillExample() {
   if (nonceValueInputRef.value) {
     nonceValueInputRef.value.updateRadix('0d')
   }
+  if (publicKeyBoxRef.value) {
+    publicKeyBoxRef.value.updateRadix('0d')
+  }
   isCustomNonce.value = true
   hashMsgOption.value = 2
 
   nextTick(() => {
     nonceValue.value = '12345'
     msg.value = 'ECDSA is the most fun I have ever experienced'
+    // decimal
     privateKeyInput.value =
       '112757557418114203588093402336452206775565751179231977388358956335153294300646'
-    publicKeyInput.value = ''
+    // hex
+    publicKeyInput.value = '024aeaf55040fa16de37303d13ca1dde85f4ca9baa36e2963a27a1c0c1165fe2b1'
     genSign()
   })
 }
@@ -193,7 +202,7 @@ function resetSignature() {
 }
 </script>
 <template>
-  <content-card title="生成签名" description="使用私钥签名消息，使用公钥进行验证">
+  <content-card title="Secp256k1 — 生成签名" description="使用私钥签名消息，使用公钥进行验证">
     <p>
       <el-button @click="randomKey">随机生成私钥公钥</el-button>
       <el-button type="success" @click="genSign">生成签名</el-button>
@@ -205,7 +214,7 @@ function resetSignature() {
       <el-descriptions label-width="120" :column="1">
         <el-descriptions-item label="公钥: ">
           <div class="inline-block w-[660px]">
-            <radix-box default-radix="0x" :num-data="publicKeyInput" />
+            <radix-box default-radix="0x" :num-data="publicKeyInput" ref="publicKeyBoxRef" />
           </div>
         </el-descriptions-item>
         <el-descriptions-item label="私钥: ">
@@ -257,7 +266,24 @@ function resetSignature() {
         </el-descriptions-item>
 
         <el-descriptions-item label="自定义Nonce: ">
-          <div class="inline-block w-[660px]">
+          <template #label>
+            <span class="align-middle">
+              <span>自定义Nonce</span>
+              <el-tooltip placement="top" effect="primary">
+                <template #content>
+                  <div>
+                    <p>不设置则使用HMAC DRBG(HMAC 确定性随机比特生成器)产生一个nonce</p>
+                    <p>ps: elliptic的内部逻辑</p>
+                  </div>
+                </template>
+                <question-filled
+                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer ml-1"
+                />
+              </el-tooltip>
+            </span>
+          </template>
+
+          <div class="inline-block w-[660px] align-middle">
             <el-checkbox v-model="isCustomNonce"></el-checkbox>
           </div>
         </el-descriptions-item>
