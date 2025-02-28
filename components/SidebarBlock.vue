@@ -16,7 +16,7 @@ const route = useRoute()
     </header>
     <div class="h-[100vh] pt-[160px] -mt-[160px]">
       <div
-        class="h-full pt-[40px] pl-[10px] -mt-[40px] overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-thumb-zinc-200 scrollbar-track-withe hover:scrollbar-thumb-secondary-foreground"
+        class="h-full pt-[40px] pl-[10px] -mt-[40px] overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-thumb-[#e4e4e7] dark:scrollbar-thumb-[#6b6b6b] scrollbar-track-withe hover:scrollbar-thumb-secondary-foreground"
         style="height: calc(100% + 40px)"
       >
         <el-menu router class="!mb-10" :default-active="route.name?.toString()">
