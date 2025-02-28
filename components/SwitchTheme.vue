@@ -59,8 +59,14 @@ async function onSwitchChange() {
 </script>
 
 <template>
-  <div class="theme-toggler-content">
-    <!-- <el-switch
+  <div
+    class="h-8 w-8 px-0 cursor-pointer hover:bg-[var(--color-primary4)] hover:text-[var(--color-primary)] dark:hover:text-[#fff] flex items-center justify-center rounded-md"
+    title="switch theme"
+    @click="onSwitchChange"
+    ref="switchRef"
+  >
+    <div class="theme-toggler-content">
+      <!-- <el-switch
       ref="switchRef"
       v-model="darkMode"
       :before-change="beforeChange"
@@ -68,9 +74,10 @@ async function onSwitchChange() {
       :active-action-icon="TablerSunFilled"
       @change="onSwitchChange"
     /> -->
-    <div @click="onSwitchChange" ref="switchRef">
-      <TablerSunFilled v-if="darkMode"></TablerSunFilled>
-      <TablerMoonFilled v-else></TablerMoonFilled>
+      <div>
+        <TablerSunFilled v-if="darkMode"></TablerSunFilled>
+        <TablerMoonFilled v-else></TablerMoonFilled>
+      </div>
     </div>
   </div>
 </template>

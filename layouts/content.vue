@@ -4,7 +4,9 @@
       <sidebar-block />
     </div>
     <div class="scroll-box overflow-y-auto flex-1 h-full min-h-[100vh] scroll-smooth">
-      <slot />
+      <div class="pt-10">
+        <slot />
+      </div>
       <menu-group />
       <el-backtop target=".scroll-box" />
     </div>

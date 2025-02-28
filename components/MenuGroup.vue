@@ -14,15 +14,13 @@ function goGithub() {
     <!-- 12312
     hover:bg-accent hover:text-accent-foreground' -->
     <div
-      class="h-8 w-8 px-0 cursor-pointer hover:bg-[var(--color-primary4)] hover:text-[var(--color-primary)] flex items-center justify-center rounded-md"
+      class="h-8 w-8 px-0 cursor-pointer hover:bg-[var(--color-primary4)] hover:text-[var(--color-primary)] dark:hover:text-[#fff] flex items-center justify-center rounded-md"
+      title="go github repo"
       @click="goGithub"
     >
       <mdi-github />
     </div>
-    <div
-      class="h-8 w-8 px-0 cursor-pointer hover:bg-[var(--color-primary4)] hover:text-[var(--color-primary)] flex items-center justify-center rounded-md"
-    >
-      <switch-theme />
-    </div>
+
+    <switch-theme />
   </div>
 </template>
