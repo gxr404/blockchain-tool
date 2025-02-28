@@ -153,7 +153,7 @@ function copy(data: string) {
           </div>
         </el-descriptions-item>
         <el-descriptions-item>
-          <div class="border-t my-2"></div>
+          <div class="border-t my-2 border-[var(--border-color)]"></div>
         </el-descriptions-item>
         <el-descriptions-item label="公钥坐标">
           <template #label>
@@ -165,7 +165,7 @@ function copy(data: string) {
                 <p class="indent-4">G为 Secp256k1的基点</p>
               </template>
               <question-filled
-                class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer ml-1"
+                class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer ml-1"
               />
             </el-tooltip>
           </template>
@@ -174,7 +174,7 @@ function copy(data: string) {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[20px] h-[26px] ml-6 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[20px] h-[26px] ml-6 inline-block relative -top-[2px]"
             ></div>
             X
           </template>
@@ -185,7 +185,7 @@ function copy(data: string) {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[20px] h-[26px] ml-6 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[20px] h-[26px] ml-6 inline-block relative -top-[2px]"
             ></div>
             Y
           </template>
@@ -216,12 +216,15 @@ function copy(data: string) {
                   placement="top"
                   effect="red"
                 >
-                  <span class="cursor-pointer hover:bg-[#F56C6C] hover:text-white text-[#F56C6C]">{{
-                    publicKeySegment.prefix
-                  }}</span>
+                  <span
+                    class="cursor-pointer hover:bg-[var(--color-danger)] hover:text-white text-[var(--color-danger)]"
+                    >{{ publicKeySegment.prefix }}</span
+                  >
                 </el-tooltip>
                 <el-tooltip content="x 坐标" placement="top" effect="primary">
-                  <span class="cursor-pointer hover:bg-[#409eff] hover:text-white break-all">
+                  <span
+                    class="cursor-pointer hover:bg-[var(--color-primary)] hover:text-white break-all"
+                  >
                     {{ publicKeySegment.x }}
                   </span>
                 </el-tooltip>
@@ -232,7 +235,7 @@ function copy(data: string) {
                   effect="green"
                 >
                   <span
-                    class="cursor-pointer hover:bg-[#67C23A] hover:text-white break-all text-[#67C23A]"
+                    class="cursor-pointer hover:bg-[var(--color-success)] hover:text-white break-all text-[var(--color-success)]"
                   >
                     {{ publicKeySegment.y }}
                   </span>
@@ -240,7 +243,9 @@ function copy(data: string) {
               </template>
               <template v-else>
                 <el-tooltip content="Taproot输出 使用仅限x的公钥" placement="top" effect="primary">
-                  <span class="cursor-pointer hover:bg-[#409eff] hover:text-white break-all">
+                  <span
+                    class="cursor-pointer hover:bg-[var(--color-primary)] hover:text-white break-all"
+                  >
                     {{ publicKeyInfo.x }}
                   </span>
                 </el-tooltip>

@@ -1,5 +1,6 @@
 {
   "name": "nuxt-app",
+  "version": "0.0.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,10 +11,16 @@
     "postinstall": "nuxt prepare",
     "test": "nuxt test"
   },
+  "homepage": "https://github.com/gxr404/blockchain_tool",
+  "bugs": {
+    "url": "https://github.com/gxr404/blockchain_tool/issues"
+  },
+  "author": "gxr404",
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
     "@noble/curves": "^1.8.1",
     "@noble/hashes": "^1.7.1",
+    "@nuxtjs/color-mode": "3.5.2",
     "@nuxtjs/proxy": "^2.1.0",
     "@solana/web3.js": "^1.98.0",
     "bech32": "^2.0.0",

@@ -100,7 +100,7 @@ function resetErr() {
           </div>
         </el-descriptions-item>
         <el-descriptions-item>
-          <div class="border-t my-2"></div>
+          <div class="border-t my-2 border-[var(--border-color)]"></div>
         </el-descriptions-item>
         <el-descriptions-item label="Inverse逆元: ">
           <div class="inline-block w-[660px]">

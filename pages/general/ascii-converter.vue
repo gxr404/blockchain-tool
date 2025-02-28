@@ -79,7 +79,7 @@ const bytesCharArr = computed(() => {
         <el-descriptions-item v-if="bytes">
           <template #label>
             <span
-              class="hover:text-[#409eff] underline cursor-pointer px-2"
+              class="hover:text-[var(--color-primary)] underline cursor-pointer px-2"
               @click="
                 () => {
                   isShowMore = !isShowMore
@@ -96,13 +96,13 @@ const bytesCharArr = computed(() => {
               :key="`${item.hex}-${index}`"
             >
               <span
-                class="inline-flex items-center justify-center border px-2 rounded min-w-[30px] min-h-[30px] text-[#409eff] bg-[#ecf5ff] border-[#a0cfff]"
+                class="inline-flex items-center justify-center border px-2 rounded min-w-[30px] min-h-[30px] text-[var(--color-primary)] bg-[var(--color-primary4)] border-[var(--color-primary5)]"
               >
                 0x{{ item.hex }}
               </span>
               <span class="px-2">——></span>
               <span
-                class="inline-flex items-center justify-center border px-2 rounded min-w-[30px] min-h-[30px] text-[#F56C6C] bg-[#fef0f0] border-[#fab6b6]"
+                class="inline-flex items-center justify-center border px-2 rounded min-w-[30px] min-h-[30px] text-[var(--color-danger)] bg-[var(--color-danger4)] border-[var(--color-danger5)]"
               >
                 {{ item.char }}
               </span>

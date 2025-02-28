@@ -102,7 +102,7 @@ function onPublicKeyInput() {
         <ul class="text-sm pl-4 my-2">
           <li class="list-disc">
             <a
-              class="underline text-[#409eff] hover:text-[#347ecc]"
+              class="underline text-[var(--color-primary)] hover:text-[var(--color-primary2)]"
               href="https://eips.ethereum.org/EIPS/eip-55"
             >
               ERC-55: 混合大小写校验和地址编码
@@ -132,7 +132,7 @@ function onPublicKeyInput() {
                   <p>以太坊采用secp256k1非压缩公钥</p>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                 />
               </el-tooltip>
             </template>
@@ -155,7 +155,7 @@ function onPublicKeyInput() {
                     <p>3. 取哈希结果的最后20字节</p>
                   </template>
                   <question-filled
-                    class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                    class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                   />
                 </el-tooltip>
               </span>
@@ -215,7 +215,7 @@ function onPublicKeyInput() {
                   <p class="indent-4">最终结果 0xA8dC2b2</p>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                 />
               </el-tooltip>
             </template>

@@ -180,7 +180,7 @@ function onPublicKeyInput() {
         <ul class="pl-4 my-2">
           <li class="list-disc">
             <a
-              class="underline text-[#409eff] hover:text-[#347ecc]"
+              class="underline text-[var(--color-primary)] hover:text-[var(--color-primary2)]"
               href="https://github.com/bitcoin/bips/blob/master/bip-0013.mediawiki"
             >
               BIP0013: Pay-to-Script-Hash(P2SH)
@@ -188,7 +188,7 @@ function onPublicKeyInput() {
           </li>
           <li class="list-disc">
             <a
-              class="underline text-[#409eff] hover:text-[#347ecc]"
+              class="underline text-[var(--color-primary)] hover:text-[var(--color-primary2)]"
               href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki"
             >
               BIP0032: Hierarchical Deterministic Wallets(HD钱包)
@@ -247,7 +247,7 @@ function onPublicKeyInput() {
             <template #label>
               <span class="align-middle pr-1 text-gray-400">赎回脚本示例</span>
               <span
-                class="text-gray-400 hover:text-[#409eff] underline cursor-pointer px-2"
+                class="text-gray-400 hover:text-[var(--color-primary)] underline cursor-pointer px-2"
                 @click="() => (showExampleRedeemScript = !showExampleRedeemScript)"
                 >[{{ showExampleRedeemScript ? 'hide' : 'show' }}]
               </span>
@@ -271,20 +271,22 @@ function onPublicKeyInput() {
                         placement="top"
                         effect="primary"
                       >
-                        <span class="cursor-pointer hover:bg-[#409eff] hover:text-white break-all">
+                        <span
+                          class="cursor-pointer hover:bg-[var(--color-primary)] hover:text-white break-all"
+                        >
                           00
                         </span>
                       </el-tooltip>
                       <el-tooltip content="表示接下来的数据是 20 字节" placement="top" effect="red">
                         <span
-                          class="cursor-pointer hover:bg-[#F56C6C] text-[#F56C6C] hover:text-white break-all"
+                          class="cursor-pointer hover:bg-[var(--color-danger)] text-[var(--color-danger)] hover:text-white break-all"
                         >
                           14
                         </span>
                       </el-tooltip>
                       <el-tooltip content="公钥哈希Hash160" placement="top" effect="green">
                         <span
-                          class="cursor-pointer hover:bg-[#67C23A] text-[#67C23A] hover:text-white break-all"
+                          class="cursor-pointer hover:bg-[var(--color-success)] text-[var(--color-success)] hover:text-white break-all"
                         >
                           {{ hash160Step || 'd2fcf30a3aee6b144715473a40c68e993418593c' }}
                         </span>
@@ -295,7 +297,7 @@ function onPublicKeyInput() {
                   <p class="mb-2 text-gray-400 text-sm">
                     P2WPKH
                     <a
-                      class="hover:text-[#409eff] underline cursor-pointer px-2"
+                      class="hover:text-[var(--color-primary)] underline cursor-pointer px-2"
                       href="https://bitcoin.heapup.tech/technical/script/p2wpkh"
                       target="_blank"
                     >
@@ -315,7 +317,7 @@ function onPublicKeyInput() {
                   <p>所以赎回脚本只会随公钥变化而变化，<b>此时与自己的公钥无关</b></p>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                 />
               </el-tooltip>
             </template>
@@ -329,7 +331,7 @@ function onPublicKeyInput() {
             <template #label>
               <span class="align-middle pr-1 text-gray-400">多签赎回脚本示例</span>
               <span
-                class="text-gray-400 hover:text-[#409eff] underline cursor-pointer px-2"
+                class="text-gray-400 hover:text-[var(--color-primary)] underline cursor-pointer px-2"
                 @click="
                   () => {
                     showMultiSignExampleRedeemScript = !showMultiSignExampleRedeemScript
@@ -341,7 +343,9 @@ function onPublicKeyInput() {
             <div class="inline-block w-[700px]">
               <template v-if="showMultiSignExampleRedeemScript">
                 <div class="rounded border-dashed p-2 border-2">
-                  <p class="mb-2 text-[#F56C6C]">Nested SegWit指的是P2SH-P2WPKH而不是普通P2SH</p>
+                  <p class="mb-2 text-[var(--color-danger)]">
+                    Nested SegWit指的是P2SH-P2WPKH而不是普通P2SH
+                  </p>
                   <p class="text-gray-400">先提供3个公钥</p>
                   <ul class="text-gray-400 pl-4">
                     <li class="list-disc">
@@ -438,7 +442,7 @@ function onPublicKeyInput() {
                   <p class="mb-2 text-gray-400 text-sm">
                     赎回脚本内容动态变化的(写<b>任意</b>有效的比特币脚本).
                     <a
-                      class="hover:text-[#409eff] underline cursor-pointer px-2"
+                      class="hover:text-[var(--color-primary)] underline cursor-pointer px-2"
                       href="https://liaoxuefeng.com/books/blockchain/bitcoin/pay/multi-sign/index.html"
                       target="_blank"
                     >
@@ -448,7 +452,7 @@ function onPublicKeyInput() {
                   <p class="mb-2 text-gray-400 text-sm">
                     P2SH ——
                     <a
-                      class="hover:text-[#409eff] underline cursor-pointer px-2"
+                      class="hover:text-[var(--color-primary)] underline cursor-pointer px-2"
                       href="https://bitcoin.heapup.tech/technical/script/p2sh"
                       target="_blank"
                     >
@@ -469,7 +473,7 @@ function onPublicKeyInput() {
                   <p>如多签，条件支付，时间锁...</p>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                 />
               </el-tooltip>
             </template>
@@ -489,7 +493,7 @@ function onPublicKeyInput() {
                     effect="primary"
                   >
                     <question-filled
-                      class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                      class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                     />
                   </el-tooltip>
                 </template>
@@ -515,19 +519,23 @@ function onPublicKeyInput() {
                   <p class="indent-3">测试网 P2SH: <span class="font-bold">0xc4</span></p>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                 />
               </el-tooltip>
             </template>
             <div class="inline-block w-[700px] align-middle">
               <div class="primary-box min-h-[41px]">
                 <el-tooltip content="版本前缀" placement="top" effect="red">
-                  <span class="cursor-pointer hover:bg-[#F56C6C] hover:text-white text-[#F56C6C]">
+                  <span
+                    class="cursor-pointer hover:bg-[var(--color-danger)] hover:text-white text-[var(--color-danger)]"
+                  >
                     {{ versionPrefixStep.versionPrefix }}
                   </span>
                 </el-tooltip>
                 <el-tooltip content="公钥哈希" placement="top" effect="primary">
-                  <span class="cursor-pointer hover:bg-[#409eff] hover:text-white break-all">
+                  <span
+                    class="cursor-pointer hover:bg-[var(--color-primary)] hover:text-white break-all"
+                  >
                     {{ versionPrefixStep.publickey }}
                   </span>
                 </el-tooltip>
@@ -545,25 +553,29 @@ function onPublicKeyInput() {
                   </p>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                 />
               </el-tooltip>
             </template>
             <div class="inline-block w-[700px] align-middle">
               <div class="primary-box min-h-[41px]">
                 <el-tooltip content="版本前缀" placement="top" effect="red">
-                  <span class="cursor-pointer hover:bg-[#F56C6C] hover:text-white text-[#F56C6C]">
+                  <span
+                    class="cursor-pointer hover:bg-[var(--color-danger)] hover:text-white text-[var(--color-danger)]"
+                  >
                     {{ versionPrefixStep.versionPrefix }}
                   </span>
                 </el-tooltip>
                 <el-tooltip content="公钥哈希" placement="top" effect="primary">
-                  <span class="cursor-pointer hover:bg-[#409eff] hover:text-white break-all">
+                  <span
+                    class="cursor-pointer hover:bg-[var(--color-primary)] hover:text-white break-all"
+                  >
                     {{ versionPrefixStep.publickey }}
                   </span>
                 </el-tooltip>
                 <el-tooltip content="校验和" placement="top" effect="green">
                   <span
-                    class="cursor-pointer hover:bg-[#67C23A] hover:text-white break-all text-[#67C23A]"
+                    class="cursor-pointer hover:bg-[var(--color-success)] hover:text-white break-all text-[var(--color-success)]"
                   >
                     {{ checksumStep.checksum }}
                   </span>
@@ -581,7 +593,7 @@ function onPublicKeyInput() {
                   effect="primary"
                 >
                   <question-filled
-                    class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                    class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                   />
                 </el-tooltip>
               </span>

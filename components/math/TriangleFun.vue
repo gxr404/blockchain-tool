@@ -52,7 +52,7 @@ const formatTooltip = (val: number) => {
 }
 </script>
 <template>
-  <div class="flex flex-col p-10 border rounded bg-white">
+  <content-card class="w-auto">
     <h1 class="text-center font-bold">
       三角函数
       <katex
@@ -83,7 +83,8 @@ const formatTooltip = (val: number) => {
         </div>
       </el-descriptions-item>
     </el-descriptions> -->
-  </div>
+  </content-card>
+  <!-- <div class="flex flex-col p-10 border rounded bg-white"></div> -->
 </template>
 
 <style>

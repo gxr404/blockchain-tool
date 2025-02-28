@@ -97,7 +97,7 @@ function copyHashResult() {
             </div>
           </el-descriptions-item>
           <el-descriptions-item>
-            <div class="border-t my-2"></div>
+            <div class="border-t my-2 border-[var(--border-color)]"></div>
           </el-descriptions-item>
           <el-descriptions-item label="Result: ">
             <div class="inline-block w-[660px] primary-box min-h-[40px] align-middle">

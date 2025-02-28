@@ -92,7 +92,7 @@ const isWarning = computed(() => {
           <p>
             扭曲的爱德华兹曲线
             <a
-              class="hover:text-[#409eff] underline cursor-pointer"
+              class="hover:text-[var(--color-primary)] underline cursor-pointer"
               href="https://en.wikipedia.org/wiki/Twisted_Edwards_curve"
               target="_blank"
               >wiki</a
@@ -116,13 +116,15 @@ const isWarning = computed(() => {
         </div>
 
         <div v-if="isValid">
-          <span class="text-[#F56C6C] font-bold pr-2">无效值</span>
-          <span class="text-[12px] text-[#F56C6C]">
+          <span class="text-[var(--color-danger)] font-bold pr-2">无效值</span>
+          <span class="text-[12px] text-[var(--color-danger)]">
             <katex formula="a\neq0, b\neq0" />
           </span>
         </div>
         <div v-if="isWarning">
-          <span class="text-[#E6A23C] font-bold pr-2">a=1时退化为普通的Edwards曲线</span>
+          <span class="text-[var(--color-warning)] font-bold pr-2"
+            >a=1时退化为普通的Edwards曲线</span
+          >
         </div>
       </div>
     </content-card>

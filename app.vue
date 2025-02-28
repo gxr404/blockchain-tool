@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import 'element-plus/theme-chalk/dark/css-vars.css'
+
 import { init } from './utils/localforage'
 
 import './assets/style.scss'
 
-const layout = 'content'
-// const route = useRoute()
+const route = useRoute()
 
 onMounted(() => {
   init()
@@ -18,12 +19,20 @@ onMounted(() => {
   // }
 })
 
+const layoutName = computed(() => {
+  return route.meta.layout || 'content'
+})
+
 // window.onload = function () {}
 </script>
 
 <template>
-  <NuxtLayout :name="layout">
-    <NuxtLoadingIndicator color="#409eff" :height="3" :throttle="0" />
-    <NuxtPage />
-  </NuxtLayout>
+  <div class="bg-[var(--bg)]">
+    <NuxtLayout :name="layoutName">
+      <NuxtLoadingIndicator color="#409eff" :height="3" :throttle="0" />
+      <!-- <el-config-provider> -->
+      <NuxtPage />
+      <!-- </el-config-provider> -->
+    </NuxtLayout>
+  </div>
 </template>

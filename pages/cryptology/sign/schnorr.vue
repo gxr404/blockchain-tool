@@ -80,7 +80,7 @@ function updateVerifyData(verifyData: VerifyInfo) {
               </span>
             </p>
             <p class="mt-2">
-              5. 计算 <span class="text-[#f56c6c]">"s"</span>,
+              5. 计算 <span class="text-[var(--color-danger)]">"s"</span>,
               <katex class="katex-sm" formula="s = k+e * k_A \bmod n" />
               <br />
               <span class="text-sm pl-4 text-gray-400">
@@ -94,8 +94,8 @@ function updateVerifyData(verifyData: VerifyInfo) {
             </p>
             <p class="mt-2">
               6. 发送将 A 的公钥 H<sub>A</sub>, 消息 m, 签名数据(R<sub>x</sub>, s)
-              <span class="text-[#f56c6c]">R<sub>x</sub></span> 和
-              <span class="text-[#f56c6c]">s</span> , 发送给 B
+              <span class="text-[var(--color-danger)]">R<sub>x</sub></span> 和
+              <span class="text-[var(--color-danger)]">s</span> , 发送给 B
             </p>
           </div>
           <div class="font-bold">B 验证签名:</div>

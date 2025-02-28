@@ -163,7 +163,7 @@ function onPublicKeyInput() {
                     </div>
                   </template>
                   <question-filled
-                    class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                    class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                   />
                 </el-tooltip>
               </span>
@@ -184,7 +184,7 @@ function onPublicKeyInput() {
             <template #label>
               <span class="align-middle inline-block h-[40px]">
                 <div
-                  class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+                  class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
                 ></div>
                 <span class="align-middle pr-1 pl-2 text-[12px]">Step 2.1: 计算 tweak 值 t</span>
                 <el-tooltip placement="top" effect="primary">
@@ -200,7 +200,7 @@ function onPublicKeyInput() {
                     </div>
                   </template>
                   <question-filled
-                    class="text-[#409eff] w-[12px] h-[12px] inline-block align-middle cursor-pointer"
+                    class="text-[var(--color-primary)] w-[12px] h-[12px] inline-block align-middle cursor-pointer"
                   />
                 </el-tooltip>
               </span>
@@ -213,7 +213,7 @@ function onPublicKeyInput() {
             <template #label>
               <span class="align-middle inline-block h-[40px]">
                 <div
-                  class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+                  class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
                 ></div>
                 <span class="pr-1 pl-2 text-[12px]">Step 2.2: 计算新的点</span>
                 <el-tooltip placement="top" effect="primary">
@@ -235,7 +235,7 @@ function onPublicKeyInput() {
                     </div>
                   </template>
                   <question-filled
-                    class="text-[#409eff] w-[12px] h-[12px] inline-block align-middle cursor-pointer"
+                    class="text-[var(--color-primary)] w-[12px] h-[12px] inline-block align-middle cursor-pointer"
                   />
                 </el-tooltip>
               </span>
@@ -258,8 +258,8 @@ function onPublicKeyInput() {
                     <p class="indent-4">二进制数据: 01110101 00011110 01110110 111010(30bit)</p>
                     <p class="indent-4">
                       原数据按8bit分割头部不足需补零:
-                      <span class="font-bold text-[#F56C6C]">00</span>011101 01000111 10011101
-                      10111010(30bit)
+                      <span class="font-bold text-[var(--color-danger)]">00</span>011101 01000111
+                      10011101 10111010(30bit)
                     </p>
 
                     <p class="indent-4">
@@ -267,12 +267,12 @@ function onPublicKeyInput() {
                     </p>
                     <p class="indent-4">
                       最后一组((从左往右)不足5位结尾补零: 00011 10101 00011 11001 11011 01110
-                      10<span class="font-bold text-[#F56C6C]">000</span>
+                      10<span class="font-bold text-[var(--color-danger)]">000</span>
                     </p>
                     <p>4. 按5位一组转16进制, 转成的16机制不满两位补零</p>
                   </template>
                   <question-filled
-                    class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                    class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                   />
                 </el-tooltip>
               </span>
@@ -292,7 +292,7 @@ function onPublicKeyInput() {
                     <p>见证版本 0x01</p>
                   </template>
                   <question-filled
-                    class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                    class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                   />
                 </el-tooltip>
               </span>
@@ -301,12 +301,16 @@ function onPublicKeyInput() {
               <p class="text-sm text-gray-400 my-[10px]"></p>
               <div class="primary-box min-h-[41px]">
                 <el-tooltip content="版本前缀" placement="top" effect="red">
-                  <span class="cursor-pointer hover:bg-[#F56C6C] hover:text-white text-[#F56C6C]">
+                  <span
+                    class="cursor-pointer hover:bg-[var(--color-danger)] hover:text-white text-[var(--color-danger)]"
+                  >
                     {{ versionPrefixStep.prefix }}
                   </span>
                 </el-tooltip>
                 <el-tooltip content="字节分组" placement="top" effect="primary">
-                  <span class="cursor-pointer hover:bg-[#409eff] hover:text-white break-all">
+                  <span
+                    class="cursor-pointer hover:bg-[var(--color-primary)] hover:text-white break-all"
+                  >
                     {{ regroupBitsStep }}
                   </span>
                 </el-tooltip>
@@ -325,7 +329,7 @@ function onPublicKeyInput() {
                     <p>回归测试网前缀 bcrt</p>
                   </template>
                   <question-filled
-                    class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                    class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                   />
                 </el-tooltip>
               </span>
@@ -348,7 +352,7 @@ function onPublicKeyInput() {
                     <p>Bech32m编码后的结果即为最终的地址</p>
                   </template>
                   <question-filled
-                    class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                    class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                   />
                 </el-tooltip>
               </span>
@@ -357,12 +361,16 @@ function onPublicKeyInput() {
               <p class="text-sm text-gray-400 my-[10px]"></p>
               <div class="primary-box min-h-[41px]">
                 <el-tooltip content="版本前缀" placement="top" effect="red">
-                  <span class="cursor-pointer hover:bg-[#F56C6C] hover:text-white text-[#F56C6C]">
+                  <span
+                    class="cursor-pointer hover:bg-[var(--color-danger)] hover:text-white text-[var(--color-danger)]"
+                  >
                     {{ bech32mStep.prefix }}
                   </span>
                 </el-tooltip>
                 <el-tooltip content="字节分组" placement="top" effect="primary">
-                  <span class="cursor-pointer hover:bg-[#409eff] hover:text-white break-all">
+                  <span
+                    class="cursor-pointer hover:bg-[var(--color-primary)] hover:text-white break-all"
+                  >
                     {{ bech32mStep.bech32mValue }}
                   </span>
                 </el-tooltip>

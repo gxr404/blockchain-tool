@@ -99,7 +99,7 @@ const collapseVal = ref([
                   同余数: 正整数a, b对p取模, 它们的<span class="font-bold">余数相同</span>, 记做
                   <span class="text-[12px]"><katex class="m-0" formula="a ≡ b\ \%\ p" /></span> 或者
                   <span class="text-[12px]"><katex class="m-0" formula="a ≡ b\ (\bmod\ p)" /></span>
-                  <span class="text-[#f56c6c]">
+                  <span class="text-[var(--color-danger)]">
                     (ps: 注意"≡", a ≡ b mod p ,对应的是 a mod p = b mod p )
                   </span>
                 </p>
@@ -191,7 +191,7 @@ const collapseVal = ref([
           <p>
             <span class="text-[12px] px-2"><katex formula="a * x ≡ 1 (\bmod p)" /></span>
             其中 x 称为 a在模p下的<b>逆元</b>
-            <span class="text-[#f56c6c]">(前提条件是a 和 p需互质(互素)！)</span>
+            <span class="text-[var(--color-danger)]">(前提条件是a 和 p需互质(互素)！)</span>
             即
             <span class="text-[12px] px-2">
               <katex formula="a^{-1} ≡ x (\bmod p) \iff a^{-1} \bmod p = x \bmod p"
@@ -241,7 +241,7 @@ const collapseVal = ref([
           <p class="indent-4">如 1在不管模哪个整数，都以自己为逆元;</p>
           <p class="indent-4">模5的情况下, 4 * 4等于1, 即 模5下 4的乘法逆元即为本身;</p>
           <p class="indent-4">模4的情况下 3 * 3等于1, 即 模4下 3的乘法逆元为本身</p>
-          <p class="text-[#f56c6c]">
+          <p class="text-[var(--color-danger)]">
             乘法逆元不一定存在，需 “gcd(a,p) =1” ,即a和 p最大公约数是1(互素), 模n下才会有
             a的乘法逆元
           </p>

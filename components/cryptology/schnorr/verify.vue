@@ -102,11 +102,11 @@ defineExpose({
         <el-button type="success" @click="verifySign">验证签名</el-button>
         <span class="text-sm inline-block align-middle" v-if="verifySignResult">
           <template v-if="verifySignResult === 'yes'">
-            <success-filled class="w-[28px] inline-block mr-1 text-[#67C23A]" />
+            <success-filled class="w-[28px] inline-block mr-1 text-[var(--color-success)]" />
             <span class="text-sm text-gray-400">该公钥成功验证了该签名信息</span>
           </template>
           <template v-else-if="verifySignResult === 'no'">
-            <circle-close-filled class="w-[28px] inline-block mr-1 text-[#F56C6C]" />
+            <circle-close-filled class="w-[28px] inline-block mr-1 text-[var(--color-danger)]" />
             <span class="text-sm text-gray-400">该公钥对签名信息验证失败了</span>
           </template>
         </span>
@@ -124,7 +124,7 @@ defineExpose({
             </div>
             <div
               v-if="hasError.publicKeyInput.error"
-              class="text-[#F56C6C] text-sm pl-[136px] my-2"
+              class="text-[var(--color-danger)] text-sm pl-[136px] my-2"
             >
               {{ hasError.publicKeyInput.errmsg }}
             </div>

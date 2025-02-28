@@ -16,7 +16,9 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="flex flex-col p-10 border rounded bg-white w-[980px]">
+  <div
+    class="flex flex-col p-10 border rounded bg-[var(--bg2)] border-[var(--border-color)] w-[980px]"
+  >
     <h1 class="text-lg font-bold mb-4" v-if="title">
       <span :class="['font-bold', titleLarge ? 'text-[26px]' : '']">{{ props.title }}</span>
       <span class="text-sm text-gray-400 ml-2">{{ props.subTitle }}</span>

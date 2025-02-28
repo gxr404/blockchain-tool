@@ -2,19 +2,20 @@
 import TokenSolana from '~icons/token/solana'
 import TokenEthereum from '~icons/token/ethereum'
 import TokenBitcoin from '~icons/token/bitcoin'
+import pkg from '~/package.json'
 const route = useRoute()
 </script>
 <template>
-  <div class="min-w-[280px] bg-white h-[100vh]">
+  <div class="min-w-[280px] h-[100vh] bg-[var(--bg)]">
     <header id="header" class="h-[160px] relative z-10">
       <!-- -mt-[94px] -->
       <div id="hd-bg" class="absolute w-full"></div>
-      <div class="h-[100px] flex items-center justify-center">
+      <nuxt-link to="/" class="h-[100px] flex items-center justify-center">
         <div class="w-[40px] h-[40px] relative z-10 mr-2">
           <img src="/logo.png" class="inline-block" />
         </div>
         <h1 class="font-bold text-[24px] text-white relative z-10">Blockchain Tool</h1>
-      </div>
+      </nuxt-link>
     </header>
     <div class="h-[100vh] pt-[160px] -mt-[160px]">
       <div
@@ -233,6 +234,11 @@ const route = useRoute()
         </el-menu>
       </div>
     </div>
+    <footer
+      class="sticky bottom-0 backdrop-blur-sm -mt-[40px] h-[40px] flex items-center justify-center border-t border-[var(--border-color)] text-gray-400 dark:bg-[var(--bg2)]"
+    >
+      v{{ pkg.version }}
+    </footer>
   </div>
 </template>
 

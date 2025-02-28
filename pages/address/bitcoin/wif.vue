@@ -144,19 +144,23 @@ function onPrivateKeyInput() {}
                   <p class="indent-3">测试网: <span class="font-bold">0xef</span></p>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                 />
               </el-tooltip>
             </template>
             <div class="inline-block w-[660px] align-middle">
               <div class="primary-box min-h-[41px]">
                 <el-tooltip content="版本前缀" placement="top" effect="red">
-                  <span class="cursor-pointer hover:bg-[#F56C6C] hover:text-white text-[#F56C6C]">
+                  <span
+                    class="cursor-pointer hover:bg-[var(--color-danger)] hover:text-white text-[var(--color-danger)]"
+                  >
                     {{ versionPrefixStep.versionPrefix }}
                   </span>
                 </el-tooltip>
                 <el-tooltip content="私钥" placement="top" effect="primary">
-                  <span class="cursor-pointer hover:bg-[#409eff] hover:text-white break-all">
+                  <span
+                    class="cursor-pointer hover:bg-[var(--color-primary)] hover:text-white break-all"
+                  >
                     {{ privateKeyInput }}
                   </span>
                 </el-tooltip>
@@ -172,7 +176,7 @@ function onPrivateKeyInput() {}
                   <p>所以可以从wif私钥看出 未来要生成的公钥是否是压缩的</p>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                 />
               </el-tooltip>
             </template>
@@ -209,7 +213,7 @@ function onPrivateKeyInput() {}
                   <p>对上一步结果执行双重 Sha256 后取前 4 个字节作为校验和, 并添加到字符串</p>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                 />
               </el-tooltip>
             </template>
@@ -248,7 +252,7 @@ function onPrivateKeyInput() {}
                   <p>Base58 编码后的结果即为 WIF 私钥</p>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                 />
               </el-tooltip>
             </template>

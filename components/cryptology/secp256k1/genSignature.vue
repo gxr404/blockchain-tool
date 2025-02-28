@@ -277,7 +277,7 @@ function resetSignature() {
                   </div>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer ml-1"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer ml-1"
                 />
               </el-tooltip>
             </span>
@@ -298,7 +298,7 @@ function resetSignature() {
           </div>
         </el-descriptions-item>
         <el-descriptions-item>
-          <div class="border-t my-2"></div>
+          <div class="border-t my-2 border-[var(--border-color)]"></div>
         </el-descriptions-item>
         <el-descriptions-item label="Signature">
           <div class="h-[22px] inline-block w-[660px]">&nbsp;</div>
@@ -306,7 +306,7 @@ function resetSignature() {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[26px] h-[26px] ml-4 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[26px] h-[26px] ml-4 inline-block relative -top-[2px]"
             ></div>
             &nbsp;&nbsp;&nbsp;R
           </template>
@@ -317,7 +317,7 @@ function resetSignature() {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[26px] h-[26px] ml-4 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[26px] h-[26px] ml-4 inline-block relative -top-[2px]"
             ></div>
             &nbsp;&nbsp;&nbsp;S
           </template>
@@ -328,7 +328,7 @@ function resetSignature() {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[26px] h-[26px] ml-4 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[26px] h-[26px] ml-4 inline-block relative -top-[2px]"
             ></div>
             Msg Hash
           </template>
@@ -341,12 +341,16 @@ function resetSignature() {
           <div class="inline-block w-[660px] align-middle">
             <div class="primary-box min-h-[41px]">
               <el-tooltip content="名结果前32字节: R" placement="top" effect="red">
-                <span class="cursor-pointer hover:bg-[#F56C6C] hover:text-white text-[#F56C6C]">
+                <span
+                  class="cursor-pointer hover:bg-[var(--color-danger)] hover:text-white text-[var(--color-danger)]"
+                >
                   {{ signatureR }}
                 </span>
               </el-tooltip>
               <el-tooltip content="签名结果后32字节: S" placement="top" effect="primary">
-                <span class="cursor-pointer hover:bg-[#409eff] hover:text-white break-all">
+                <span
+                  class="cursor-pointer hover:bg-[var(--color-primary)] hover:text-white break-all"
+                >
                   {{ signatureS }}
                 </span>
               </el-tooltip>

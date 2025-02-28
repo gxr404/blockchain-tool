@@ -60,7 +60,7 @@ function rowClassName({ row }: { row: IAsciiItem }) {
 </template>
 <style>
 .control {
-  background-color: #ecf5ff !important;
+  background-color: var(--c-ascii-table-bg) !important;
   color: #409eff !important;
   /* --el-table-border: 1px solid #409eff; */
 }

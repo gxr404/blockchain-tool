@@ -154,14 +154,14 @@ function resetErr() {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
             ></div>
             &nbsp;&nbsp;&nbsp;a
           </template>
           <div class="inline-flex items-center w-[660px]">
             <div><el-checkbox v-model="aNegative">是否负数</el-checkbox></div>
             <div class="ml-6 mr-2 min-w-[20px]">
-              <span :class="['text-[26px]', aNegative ? 'text-[#409eff]' : '']">
+              <span :class="['text-[26px]', aNegative ? 'text-[var(--color-primary)]' : '']">
                 {{ aNegative ? '-' : '+' }}
               </span>
             </div>
@@ -173,14 +173,14 @@ function resetErr() {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
             ></div>
             &nbsp;&nbsp;&nbsp;b
           </template>
           <div class="inline-flex items-center w-[660px]">
             <div><el-checkbox v-model="bNegative">是否负数</el-checkbox></div>
             <div class="ml-6 mr-2 min-w-[20px]">
-              <span :class="['text-[26px]', bNegative ? 'text-[#409eff]' : '']">
+              <span :class="['text-[26px]', bNegative ? 'text-[var(--color-primary)]' : '']">
                 {{ bNegative ? '-' : '+' }}
               </span>
             </div>
@@ -197,7 +197,7 @@ function resetErr() {
         <el-descriptions-item label="Point1">
           <div class="h-[22px] inline-block w-[660px]">
             &nbsp;
-            <div v-if="point1Err" class="text-[#F56C6C] text-sm my-2">
+            <div v-if="point1Err" class="text-[var(--color-danger)] text-sm my-2">
               {{ point1ErrMsg }}
             </div>
           </div>
@@ -205,7 +205,7 @@ function resetErr() {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
             ></div>
             &nbsp;&nbsp;&nbsp;x
           </template>
@@ -221,7 +221,7 @@ function resetErr() {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
             ></div>
             &nbsp;&nbsp;&nbsp;y
           </template>
@@ -240,7 +240,7 @@ function resetErr() {
           </div>
         </el-descriptions-item>
         <el-descriptions-item>
-          <div class="border-t my-2"></div>
+          <div class="border-t my-2 border-[var(--border-color)]"></div>
         </el-descriptions-item>
         <el-descriptions-item label="Point1 * Multiplier">
           <div class="h-[22px] inline-block w-[660px]">&nbsp;</div>
@@ -248,7 +248,7 @@ function resetErr() {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
             ></div>
             &nbsp;&nbsp;&nbsp;x
           </template>
@@ -263,7 +263,7 @@ function resetErr() {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
             ></div>
             &nbsp;&nbsp;&nbsp;y
           </template>
@@ -293,7 +293,10 @@ function resetErr() {
                 <li>2 * P = P + P = (80, 10)</li>
                 <li>3 * P = 2P + P = (80, 87)</li>
                 <li>4 * P = 3P + P = (3, 91)</li>
-                <li>5 * P = 4P + P = <span class="font-bold text-[#F56C6C]">0</span> (ps: 是零)</li>
+                <li>
+                  5 * P = 4P + P = <span class="font-bold text-[var(--color-danger)]">0</span> (ps:
+                  是零)
+                </li>
                 <li>6 * P = 5P + P = (3, 6)</li>
                 <li>7 * P = 6P + P = (80, 10)</li>
                 <li>...</li>

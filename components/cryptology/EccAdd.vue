@@ -185,14 +185,14 @@ function resetErr() {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
             ></div>
             &nbsp;&nbsp;&nbsp;a
           </template>
           <div class="inline-flex items-center w-[660px]">
             <div><el-checkbox v-model="aNegative">是否负数</el-checkbox></div>
             <div class="ml-6 mr-2 min-w-[20px]">
-              <span :class="['text-[26px]', aNegative ? 'text-[#409eff]' : '']">
+              <span :class="['text-[26px]', aNegative ? 'text-[var(--color-primary)]' : '']">
                 {{ aNegative ? '-' : '+' }}
               </span>
             </div>
@@ -204,14 +204,14 @@ function resetErr() {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
             ></div>
             &nbsp;&nbsp;&nbsp;b
           </template>
           <div class="inline-flex items-center w-[660px]">
             <div><el-checkbox v-model="bNegative">是否负数</el-checkbox></div>
             <div class="ml-6 mr-2 min-w-[20px]">
-              <span :class="['text-[26px]', bNegative ? 'text-[#409eff]' : '']">
+              <span :class="['text-[26px]', bNegative ? 'text-[var(--color-primary)]' : '']">
                 {{ bNegative ? '-' : '+' }}
               </span>
             </div>
@@ -224,7 +224,7 @@ function resetErr() {
           <template #label>
             <span>
               Mod:
-              <span class="text-[#E6A23C]">{{ modWarnShow ? '模数非素数' : '' }}</span>
+              <span class="text-[var(--color-warning)]">{{ modWarnShow ? '模数非素数' : '' }}</span>
             </span>
           </template>
           <div class="inline-block w-[660px]">
@@ -239,7 +239,7 @@ function resetErr() {
         <el-descriptions-item label="Point1">
           <div class="h-[22px] inline-block w-[660px]">
             &nbsp;
-            <div v-if="point1Err" class="text-[#F56C6C] text-sm my-2">
+            <div v-if="point1Err" class="text-[var(--color-danger)] text-sm my-2">
               {{ point1ErrMsg }}
             </div>
           </div>
@@ -247,7 +247,7 @@ function resetErr() {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
             ></div>
             &nbsp;&nbsp;&nbsp;x
           </template>
@@ -263,7 +263,7 @@ function resetErr() {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
             ></div>
             &nbsp;&nbsp;&nbsp;y
           </template>
@@ -279,7 +279,7 @@ function resetErr() {
         <el-descriptions-item label="Point2">
           <div class="h-[22px] inline-block w-[660px]">
             &nbsp;
-            <div v-if="point2Err" class="text-[#F56C6C] text-sm my-2">
+            <div v-if="point2Err" class="text-[var(--color-danger)] text-sm my-2">
               {{ point2ErrMsg }}
             </div>
           </div>
@@ -287,7 +287,7 @@ function resetErr() {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
             ></div>
             &nbsp;&nbsp;&nbsp;x
           </template>
@@ -303,7 +303,7 @@ function resetErr() {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
             ></div>
             &nbsp;&nbsp;&nbsp;y
           </template>
@@ -317,7 +317,7 @@ function resetErr() {
           </div>
         </el-descriptions-item>
         <el-descriptions-item>
-          <div class="border-t my-2"></div>
+          <div class="border-t my-2 border-[var(--border-color)]"></div>
         </el-descriptions-item>
         <el-descriptions-item label="Point1 + Point2">
           <div class="h-[22px] inline-block w-[660px]">&nbsp;</div>
@@ -325,7 +325,7 @@ function resetErr() {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
             ></div>
             &nbsp;&nbsp;&nbsp;x
           </template>
@@ -340,7 +340,7 @@ function resetErr() {
         <el-descriptions-item>
           <template #label>
             <div
-              class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+              class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
             ></div>
             &nbsp;&nbsp;&nbsp;y
           </template>

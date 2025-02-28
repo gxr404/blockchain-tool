@@ -75,7 +75,7 @@ function updateVerifyData(verifyData: VerifyInfo) {
               <p class="mt-2">
                 3. 计算第2步的随机私钥对应的公钥,
                 <katex class="katex-sm" formula="R=kG" />, 取公钥坐标点R的x坐标得到
-                <span class="text-[#f56c6c]">“r”</span>
+                <span class="text-[var(--color-danger)]">“r”</span>
                 <br />
                 <span class="text-sm pl-4 text-gray-400">
                   (R为结果的坐标点, k为第2步的随机数, G为基点)
@@ -87,7 +87,7 @@ function updateVerifyData(verifyData: VerifyInfo) {
                 </span>
               </p>
               <p class="mt-2">
-                4. 计算 <span class="text-[#f56c6c]">"s"</span>,
+                4. 计算 <span class="text-[var(--color-danger)]">"s"</span>,
                 <katex class="katex-sm" formula="s = k^{-1}(m + r K_A) \bmod n" />
                 <br />
                 <span class="text-sm pl-4 text-gray-400">
@@ -102,15 +102,15 @@ function updateVerifyData(verifyData: VerifyInfo) {
               </p>
               <p class="mt-2">
                 5. 发送将 A 的公钥 H<sub>A</sub>, 消息 m, 签名数据
-                <span class="text-[#f56c6c]">r</span> 和 <span class="text-[#f56c6c]">s</span> ,
-                发送给 B
+                <span class="text-[var(--color-danger)]">r</span> 和
+                <span class="text-[var(--color-danger)]">s</span> , 发送给 B
               </p>
               <div class="primary-tips my-4 text-sm">
                 <p class="mt-1">
                   k<sup>-1</sup> 表示在模 n 下的乘法逆元。
                   <a
                     href="/math/mod-operation-app"
-                    class="hover:text-[#409eff] underline cursor-pointer px-2"
+                    class="hover:text-[var(--color-primary)] underline cursor-pointer px-2"
                   >
                     乘法逆元
                   </a>

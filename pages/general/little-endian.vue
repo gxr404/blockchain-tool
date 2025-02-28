@@ -125,7 +125,7 @@ function cleanError() {
         <el-descriptions-item label=" " v-if="hexBigEndian && !isHexBigEndianError">
           <div class="inline-flex flex-wrap w-[680px] gap-2">
             <span
-              class="flex items-center justify-center border rounded min-w-[30px] min-h-[30px] text-[#409eff] bg-[#ecf5ff] border-[#a0cfff]"
+              class="flex items-center justify-center border rounded min-w-[30px] min-h-[30px] text-[var(--color-primary)] bg-[var(--color-primary4)] border-[var(--color-primary5)]"
               v-for="(item, index) in hexBigEndian.match(/../g)"
               :key="`${item}-${index}`"
             >
@@ -149,7 +149,7 @@ function cleanError() {
         <el-descriptions-item label=" " v-if="hexLittleEndian && !isHexLittleEndianError">
           <div class="inline-flex flex-wrap w-[680px] gap-2">
             <span
-              class="flex items-center justify-center border rounded min-w-[30px] min-h-[30px] text-[#409eff] bg-[#ecf5ff] border-[#a0cfff]"
+              class="flex items-center justify-center border rounded min-w-[30px] min-h-[30px] text-[var(--color-primary)] bg-[var(--color-primary4)] border-[var(--color-primary5)]"
               v-for="(item, index) in hexLittleEndian.match(/../g)"
               :key="`${item}-${index}`"
             >

@@ -71,7 +71,7 @@ const result = computed(() => {
           </div>
         </el-descriptions-item>
         <el-descriptions-item>
-          <div class="border-t my-2"></div>
+          <div class="border-t my-2 border-[var(--border-color)]"></div>
         </el-descriptions-item>
 
         <el-descriptions-item label="最大公约数: ">

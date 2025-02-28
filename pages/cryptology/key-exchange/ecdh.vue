@@ -52,42 +52,40 @@ function countPublicInput(type: string, value: string) {
   <!-- <div>ECDSA</div> -->
   <div class="flex flex-wrap gap-6 p-10">
     <content-card title="ECDH" sub-title="(Elliptic-curve Diffie–Hellman, 迪菲-赫尔曼密钥交换)">
-      <template #description>
-        <div class="text-sm">
-          <p>ECDH用于安全密钥交换, 基于 椭圆曲线 Diffie-Hellman(DH)协议</p>
-          <p class="mt-2">关键特点：</p>
-          <div class="pl-4">
-            <p>1. 不用于签名，只用于共享密钥</p>
-            <p>2. 双方通过各自的 私钥 和对方的 公钥 计算 <span class="font-bold">共享密钥</span></p>
-            <p>3. 主要用于 端到端加密通信</p>
-          </div>
-          <p class="mt-2">流程:</p>
-          <div class="pl-4">
-            <p>1. 双方生成密钥对</p>
-            <p>2. 交换公钥: 甲方发送给乙方, 乙方发送给甲方</p>
-            <p>3. 计算共享密钥:</p>
-            <p class="indent-4">
-              甲方计算, 拿自己的私钥和 乙方的公钥相乘 得到 新点的X坐标作为 共享密钥
-            </p>
-            <p class="indent-4">
-              乙方计算，拿自己的私钥和 甲方的公钥相乘 得到 新点的X坐标作为 共享密钥
-            </p>
-            <p>4. 双方得到的共享秘钥应该是一致的</p>
-          </div>
-
-          <p class="mt-2">
-            应用 TLS(HTTPS 服务器加密) 、端到端加密(WhatsApp、Signal、Telegram) 、VPN 加密通信
-          </p>
-          <p class="mt-2">
-            ECDH密钥交换, <span class="font-bold">可基于多种椭圆曲线</span>实现. 如:
-            Curve25519/Curve448/secp256k1...
-          </p>
+      <div class="text-sm">
+        <p>ECDH用于安全密钥交换, 基于 椭圆曲线 Diffie-Hellman(DH)协议</p>
+        <p class="mt-2">关键特点：</p>
+        <div class="pl-4">
+          <p>1. 不用于签名，只用于共享密钥</p>
+          <p>2. 双方通过各自的 私钥 和对方的 公钥 计算 <span class="font-bold">共享密钥</span></p>
+          <p>3. 主要用于 端到端加密通信</p>
         </div>
-      </template>
+        <p class="mt-2">流程:</p>
+        <div class="pl-4">
+          <p>1. 双方生成密钥对</p>
+          <p>2. 交换公钥: 甲方发送给乙方, 乙方发送给甲方</p>
+          <p>3. 计算共享密钥:</p>
+          <p class="indent-4">
+            甲方计算, 拿自己的私钥和 乙方的公钥相乘 得到 新点的X坐标作为 共享密钥
+          </p>
+          <p class="indent-4">
+            乙方计算，拿自己的私钥和 甲方的公钥相乘 得到 新点的X坐标作为 共享密钥
+          </p>
+          <p>4. 双方得到的共享秘钥应该是一致的</p>
+        </div>
+
+        <p class="mt-2">
+          应用 TLS(HTTPS 服务器加密) 、端到端加密(WhatsApp、Signal、Telegram) 、VPN 加密通信
+        </p>
+        <p class="mt-2">
+          ECDH密钥交换, <span class="font-bold">可基于多种椭圆曲线</span>实现. 如:
+          Curve25519/Curve448/secp256k1...
+        </p>
+      </div>
+    </content-card>
+    <content-card title="基于Curve25519的ECDH">
       <div class="mt-6">
-        <hr />
-        <p class="text-lg font-bold my-6">基于Curve25519的ECDH</p>
-        <p class="mb-6"><el-button @click="randomKey">随机私钥</el-button></p>
+        <p><el-button @click="randomKey">随机私钥</el-button></p>
         <el-descriptions label-width="120" :column="1">
           <el-descriptions-item label="A私钥: ">
             <div class="inline-block w-[660px]">

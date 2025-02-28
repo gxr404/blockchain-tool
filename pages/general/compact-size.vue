@@ -241,7 +241,7 @@ function onCompactSizePrefixChange() {
             不是更节省空间吗?
           </p>
           <div
-            class="text-[#409eff] bg-[#ecf5ff] border-[#a0cfff] leading-6 text-sm rounded-md p-4 my-4"
+            class="text-[var(--color-primary)] bg-[var(--color-primary4)] border-[var(--color-primary5)] leading-6 text-sm rounded-md p-4 my-4"
           >
             <p>
               猜想: 对于区块链解析区块结构时, 拿到手的源数据如何区分字段,

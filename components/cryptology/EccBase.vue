@@ -62,7 +62,7 @@ const computeFormula = computed(() => {
       <katex formula="y^2=x^3+ax+b,\space\space 4a^3+27b^2\neq0" />
     </p>
     <div id="ecc" class="flex justify-center"></div>
-    <p class="text-[#F56C6C] flex justify-center mb-6">
+    <p class="text-[var(--color-danger)] flex justify-center mb-6">
       <katex class="katex-sm" :formula="computeFormula" />
     </p>
     <div class="flex justify-center gap-6">
@@ -76,7 +76,7 @@ const computeFormula = computed(() => {
       </div>
 
       <div v-if="isValid">
-        <span class="text-[#F56C6C] font-bold pr-2">无效值</span>
+        <span class="text-[var(--color-danger)] font-bold pr-2">无效值</span>
         <span class="text-[12px]">
           <katex formula="a^3+27b^2\neq0" />
         </span>

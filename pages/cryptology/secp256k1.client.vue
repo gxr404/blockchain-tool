@@ -116,25 +116,27 @@ const formatTooltip = (val: number) => {
       <div class="py-2">
         <p class="text-sm">
           在 Secp256k1 椭圆曲线方程中
-          <span class="text-[12px] mr-1 text-[#F56C6C]"><katex formula="a = 0, b = 7" /></span>
+          <span class="text-[12px] mr-1 text-[var(--color-danger)]"
+            ><katex formula="a = 0, b = 7"
+          /></span>
         </p>
         <p class="text-sm">
           代入椭圆曲线方程后即为:
-          <span class="text-[12px] text-[#F56C6C]"
+          <span class="text-[12px] text-[var(--color-danger)]"
             ><katex formula="y^2 \equiv x^3+7 \bmod p"
           /></span>
         </p>
       </div>
       <div class="my-2">
         <p>
-          <span class="font-bold text-[#F56C6C]">实数域的曲线方程 </span>
+          <span class="font-bold text-[var(--color-danger)]">实数域的曲线方程 </span>
           <span class="text-[12px] mx-2"><katex formula="y^2=x^3+7" /></span>
           如下:
         </p>
         <div id="secp256k1"></div>
 
         <div class="mt-4">
-          <span class="font-bold text-[#F56C6C]">有限域的曲线方程 </span>
+          <span class="font-bold text-[var(--color-danger)]">有限域的曲线方程 </span>
           <span class="text-[12px] mx-2"><katex formula="y^2 \equiv x^3+7\bmod p" /></span>
           平面直角坐标系为一些分散的点组成，如下:
         </div>

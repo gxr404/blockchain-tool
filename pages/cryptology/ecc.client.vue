@@ -69,7 +69,7 @@ const curveTable = [
   <div>
     <div class="pt-6 px-6">
       <a
-        class="underline text-[#409eff] hover:text-[#347ecc]"
+        class="underline text-[var(--color-primary)] hover:text-[var(--color-primary2)]"
         target="_blank"
         href="https://bitcoin.heapup.tech/cryptology/ecc/ecc"
       >
@@ -174,7 +174,7 @@ const curveTable = [
             </li>
           </ul>
 
-          <hr class="my-4 border-[#409eff]" />
+          <hr class="my-4 border-[var(--color-primary)]" />
           <p class="mb-2">Weierstrass curve与Montgomery curve相互转换:</p>
           <div class="pl-4">
             <p class="mb-2">例如: Curve25519 ↔ Weierstrass</p>
@@ -185,7 +185,7 @@ const curveTable = [
               <katex class="katex-sm" formula="(u,v)↦(x,y)=(u/B−A/3, \ v/B^2)" />
             </p>
           </div>
-          <hr class="my-4 border-[#409eff]" />
+          <hr class="my-4 border-[var(--color-primary)]" />
           <p class="mb-2">坐标 (u, v) 与 Twisted Edwards 坐标 (x, y) 之间的转换</p>
           <div class="pl-4">
             <p class="mb-2">例如: Curve25519 ↔ Edwards25519</p>
@@ -198,7 +198,7 @@ const curveTable = [
               <katex class="katex-sm" formula="u = \frac{1+y}{1-y}, \quad v = \frac{u}{x}" />
             </p>
           </div>
-          <hr class="my-4 border-[#409eff]" />
+          <hr class="my-4 border-[var(--color-primary)]" />
 
           <p class="mb-2">Edwards25519 ↔ Weierstrass</p>
         </div>
@@ -220,7 +220,7 @@ const curveTable = [
         <ul class="pl-4">
           <li class="list-disc">
             <p>
-              <span class="font-bold text-[#409eff]">数字签名</span>: 用于确
+              <span class="font-bold text-[var(--color-primary)]">数字签名</span>: 用于确
               <span class="font-bold">保数据的完整性</span> 和
               <span class="font-bold">身份验证</span> ，防止篡改和伪造
             </p>
@@ -236,8 +236,8 @@ const curveTable = [
           </li>
           <li class="list-disc">
             <p>
-              <span class="font-bold text-[#409eff]">加密</span>: 用于保护数据的机密性，确保只有
-              <span class="font-bold">授权方</span>能够读取数据内容
+              <span class="font-bold text-[var(--color-primary)]">加密</span>:
+              用于保护数据的机密性，确保只有 <span class="font-bold">授权方</span>能够读取数据内容
             </p>
             <div class="pl-4">
               <p class="text-sm">
@@ -289,8 +289,8 @@ const curveTable = [
 
           <li class="list-disc">
             <p>
-              <span class="font-bold text-[#409eff]">密钥交换</span>: 用于在通信双方之间安全地建立
-              <span class="font-bold">共享密钥</span>，防止中间人攻击。
+              <span class="font-bold text-[var(--color-primary)]">密钥交换</span>:
+              用于在通信双方之间安全地建立 <span class="font-bold">共享密钥</span>，防止中间人攻击。
             </p>
             <div class="pl-4">
               <p>常见算法:</p>

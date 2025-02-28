@@ -29,8 +29,11 @@ function genTableGroup() {
         <el-table-column prop="isValid" label="有效性" width="80px" align="center">
           <template #default="scope">
             <div class="flex items-center justify-center">
-              <Select v-if="scope.row.isValid" class="w-[16px] h-[16px] text-[#67C23A]" />
-              <CloseBold v-else class="w-[16px] h-[16px] text-[#F56C6C]" />
+              <Select
+                v-if="scope.row.isValid"
+                class="w-[16px] h-[16px] text-[var(--color-success)]"
+              />
+              <CloseBold v-else class="w-[16px] h-[16px] text-[var(--color-danger)]" />
             </div>
           </template>
         </el-table-column>
@@ -53,8 +56,8 @@ function genTableGroup() {
           <el-table-column prop="isValid" label="有效性" width="80px" align="center">
             <template #default="scope">
               <div class="flex items-center justify-center">
-                <Select v-if="scope.row.isValid" class="w-[16px] h-[16px] text-[#67C23A]" />
-                <CloseBold v-else class="w-[16px] h-[16px] text-[#F56C6C]" />
+                <Select v-if="scope.row.isValid" class="w-[16px] h-[16px] text-[var(--color-success)]" />
+                <CloseBold v-else class="w-[16px] h-[16px] text-[var(--color-danger)]" />
               </div>
             </template>
           </el-table-column>

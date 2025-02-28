@@ -140,7 +140,7 @@ const address = computed(() => {
                   <p>最终计算出来的公钥应该和 私钥中的公钥一致，也起一定校验和的作用</p>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer ml-1"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer ml-1"
                 />
               </el-tooltip>
             </template>
@@ -150,7 +150,7 @@ const address = computed(() => {
           </el-descriptions-item>
 
           <el-descriptions-item>
-            <div class="border-t my-2"></div>
+            <div class="border-t my-2 border-[var(--border-color)]"></div>
           </el-descriptions-item>
 
           <el-descriptions-item label-class-name="align-middle">
@@ -161,7 +161,7 @@ const address = computed(() => {
                   <p>使用sha512算法, 其中Ed25519的私钥为 私钥前32字节</p>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                 />
               </el-tooltip>
             </template>
@@ -182,7 +182,7 @@ const address = computed(() => {
                   </p>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                 />
               </el-tooltip>
             </template>
@@ -206,7 +206,7 @@ const address = computed(() => {
                   <!-- n: BigInt('7237005577332262213973186563042994240857116359379907606001950938285454250989'), -->
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                 />
               </el-tooltip>
             </template>
@@ -223,7 +223,7 @@ const address = computed(() => {
                   <p>公钥P = a * G</p>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                 />
               </el-tooltip>
             </template>
@@ -236,7 +236,7 @@ const address = computed(() => {
             <template #label>
               <span class="align-middle inline-block h-[40px]">
                 <div
-                  class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+                  class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
                 ></div>
                 <span class="align-middle pr-1 pl-2 text-[12px]">公钥x坐标</span>
               </span>
@@ -249,7 +249,7 @@ const address = computed(() => {
             <template #label>
               <span class="align-middle inline-block h-[40px]">
                 <div
-                  class="border-l-[2px] border-b-[2px] border-[#409eff] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
+                  class="border-l-[2px] border-b-[2px] border-[var(--color-primary)] w-[28px] h-[26px] ml-4 inline-block relative -top-[2px]"
                 ></div>
                 <span class="align-middle pr-1 pl-2 text-[12px]">公钥y坐标</span>
               </span>
@@ -296,7 +296,7 @@ const address = computed(() => {
                   <p>按此算法 也可解压还原出来y坐标和x坐标是正还是负,从原先的64字节压缩为32字节</p>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer"
                 />
               </el-tooltip>
             </template>
@@ -306,7 +306,7 @@ const address = computed(() => {
           </el-descriptions-item>
 
           <el-descriptions-item>
-            <div class="border-t my-2"></div>
+            <div class="border-t my-2 border-[var(--border-color)]"></div>
           </el-descriptions-item>
 
           <el-descriptions-item>
@@ -318,7 +318,7 @@ const address = computed(() => {
                   <p>最终计算出来的公钥应该和 私钥中的公钥一致，也起一定校验和的作用</p>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer ml-1"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer ml-1"
                 />
               </el-tooltip> -->
             </template>

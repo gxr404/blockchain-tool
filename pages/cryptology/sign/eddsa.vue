@@ -32,7 +32,7 @@ function updateVerifyData(verifyData: VerifyInfo) {
           Ed448...
         </p>
         <p>EdDSA不像ECDSA需要随机数nonce, 签名流程中使用了 sha512</p>
-        <hr class="my-6" />
+        <hr class="my-6 border-[var(--border-color)]" />
         <p>
           Ed25519签名流程中公钥私钥生成是基于Curve25519 (Ed25519 并不直接使用 Curve25519 的
           Montgomery 形式，而是使用它的 Edwards 变体)
@@ -63,7 +63,7 @@ function updateVerifyData(verifyData: VerifyInfo) {
             </div>
             <div class="font-bold mt-2">
               A 签名 (<a
-                class="underline text-[#409eff] hover:text-[#347ecc]"
+                class="underline text-[var(--color-primary)] hover:text-[var(--color-primary2)]"
                 href="https://github.com/paulmillr/noble-curves/blob/dc3dd98c7aec4024f052eea583ea0fd7872417f8/src/abstract/edwards.ts#L488-L499"
                 >详细可看noble-curves代码</a
               >):
@@ -83,7 +83,7 @@ function updateVerifyData(verifyData: VerifyInfo) {
                 <span class="pl-4">经过计算得到A的公钥 H<sub>A</sub> </span>
               </p>
               <p class="mt-2">
-                2. 计算随机数<span class="text-[#f56c6c]">“r”</span>,
+                2. 计算随机数<span class="text-[var(--color-danger)]">“r”</span>,
                 <katex class="katex-sm" formula="r = littleEndian(Hash512(prefix || m)) \bmod n" />,
                 哈希后转小端字节序再模n
                 <br />
@@ -92,14 +92,14 @@ function updateVerifyData(verifyData: VerifyInfo) {
                 </span>
               </p>
               <p class="mt-2">
-                3. 计算<span class="text-[#f56c6c]">“R”</span>坐标,
+                3. 计算<span class="text-[var(--color-danger)]">“R”</span>坐标,
                 <katex class="katex-sm" formula="R = r * G" />,
                 <br />
                 <span class="text-sm pl-4 text-gray-400"> G为基点, r为第2步计算的结果 </span>
               </p>
 
               <p class="mt-2">
-                4. 计算<span class="text-[#f56c6c]">“k”</span>
+                4. 计算<span class="text-[var(--color-danger)]">“k”</span>
                 <katex
                   class="katex-sm"
                   formula="k = littleEndian(Hash512(R|| H_A || m)) \bmod n"
@@ -112,7 +112,7 @@ function updateVerifyData(verifyData: VerifyInfo) {
               </p>
               <!-- S = (r + k * s) mod L -->
               <p class="mt-2">
-                5. 计算 <span class="text-[#f56c6c]">"S"</span>,
+                5. 计算 <span class="text-[var(--color-danger)]">"S"</span>,
                 <katex class="katex-sm" formula="S = (r + k * s) \bmod n" />
                 <br />
                 <span class="text-sm pl-4 text-gray-400">
@@ -120,12 +120,14 @@ function updateVerifyData(verifyData: VerifyInfo) {
                 </span>
               </p>
               <p class="mt-2">
-                6. 生成最后的<span class="text-[#f56c6c]">signature = R + littleEndian(S)</span>
+                6. 生成最后的<span class="text-[var(--color-danger)]"
+                  >signature = R + littleEndian(S)</span
+                >
               </p>
             </div>
             <div class="font-bold">
               B 验证签名<a
-                class="underline text-[#409eff] hover:text-[#347ecc]"
+                class="underline text-[var(--color-primary)] hover:text-[var(--color-primary2)]"
                 href="https://github.com/paulmillr/noble-curves/blob/dc3dd98c7aec4024f052eea583ea0fd7872417f8/src/abstract/edwards.ts#L507-L535"
                 >详细可看noble-curves代码</a
               >):

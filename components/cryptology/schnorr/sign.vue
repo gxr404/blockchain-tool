@@ -161,7 +161,7 @@ function resetSignature() {
       <el-button @click="onGoVerify" :disabled="!signature"> —> 去验证签名 </el-button>
 
       <a
-        class="hover:text-[#409eff] underline cursor-pointer px-2 ml-10"
+        class="hover:text-[var(--color-primary)] underline cursor-pointer px-2 ml-10"
         target="_blank"
         href="https://learnmeabitcoin.com/tools/"
         >详细查看</a
@@ -189,7 +189,7 @@ function resetSignature() {
                   </div>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer ml-1"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer ml-1"
                 />
               </el-tooltip>
             </span>
@@ -233,7 +233,7 @@ function resetSignature() {
                   </div>
                 </template>
                 <question-filled
-                  class="text-[#409eff] w-[16px] h-[16px] inline-block align-middle cursor-pointer ml-1"
+                  class="text-[var(--color-primary)] w-[16px] h-[16px] inline-block align-middle cursor-pointer ml-1"
                 />
               </el-tooltip>
             </span>
@@ -256,7 +256,7 @@ function resetSignature() {
 
         <!-- 分割线 -->
         <el-descriptions-item>
-          <div class="border-t my-2"></div>
+          <div class="border-t my-2 border-[var(--border-color)]"></div>
         </el-descriptions-item>
 
         <el-descriptions-item label="Signature">

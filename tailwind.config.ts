@@ -5,6 +5,7 @@ import scrollbar from 'tailwind-scrollbar'
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
+  darkMode: 'class',
   content: {
     files: [
       // all directories and extensions will correspond to your Nuxt config

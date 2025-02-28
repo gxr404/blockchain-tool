@@ -198,7 +198,7 @@ function resetRandomInfo() {
                 target="_blank"
                 v-for="(item, key) in infoSite.block"
                 :key="key"
-                class="hover:text-[#409eff] underline cursor-pointer px-2"
+                class="hover:text-[var(--color-primary)] underline cursor-pointer px-2"
                 :href="item"
               >
                 <el-icon class="align-middle"><Link /></el-icon> {{ key }}
@@ -225,7 +225,7 @@ function resetRandomInfo() {
                 target="_blank"
                 v-for="(item, key) in infoSite.tx"
                 :key="key"
-                class="hover:text-[#409eff] underline cursor-pointer px-2"
+                class="hover:text-[var(--color-primary)] underline cursor-pointer px-2"
                 :href="item"
               >
                 <el-icon class="align-middle"><Link /></el-icon> {{ key }}
