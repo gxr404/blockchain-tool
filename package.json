@@ -11,9 +11,9 @@
     "postinstall": "nuxt prepare",
     "test": "nuxt test"
   },
-  "homepage": "https://github.com/gxr404/blockchain_tool",
+  "homepage": "https://github.com/gxr404/blockchain-tool",
   "bugs": {
-    "url": "https://github.com/gxr404/blockchain_tool/issues"
+    "url": "https://github.com/gxr404/blockchain-tool/issues"
   },
   "author": "gxr404",
   "dependencies": {
