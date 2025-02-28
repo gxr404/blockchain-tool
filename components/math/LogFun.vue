@@ -57,12 +57,12 @@ const formatTooltip = (val: number) => {
     <el-descriptions :column="1" size="small" label-width="140">
       <el-descriptions-item
         label="x = 1, y = 0"
-        label-class-name="font-bold relative pl-4 before:content-['•'] before:absolute before:left-0 before:top-0 before:text-black"
+        label-class-name="font-bold relative pl-4 before:content-['•'] before:absolute before:left-0 before:top-0 before:text-black dark:before:!text-[var(--color-primary)]"
       >
       </el-descriptions-item>
       <el-descriptions-item
         label="a > 1, y单调递增: "
-        label-class-name="font-bold relative pl-4 before:content-['•'] before:absolute before:left-0 before:top-0 before:text-black"
+        label-class-name="font-bold relative pl-4 before:content-['•'] before:absolute before:left-0 before:top-0 before:text-black dark:before:!text-[var(--color-primary)]"
       >
         <div class="inline-block pl-1">
           <el-slider
@@ -78,7 +78,7 @@ const formatTooltip = (val: number) => {
       </el-descriptions-item>
       <el-descriptions-item
         label="0 < a < 1, y单调递减: "
-        label-class-name="font-bold relative pl-4 before:content-['•'] before:absolute before:left-0 before:top-0 before:text-black"
+        label-class-name="font-bold relative pl-4 before:content-['•'] before:absolute before:left-0 before:top-0 before:text-black dark:before:!text-[var(--color-primary)]"
       >
         <div class="inline-block pl-1">
           <el-slider
