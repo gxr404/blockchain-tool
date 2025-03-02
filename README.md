@@ -36,3 +36,9 @@ pnpm run dev
 - 椭圆曲线 [elliptic](https://github.com/indutny/elliptic) 和 [noble-curves](https://github.com/paulmillr/noble-curves) 两个椭圆曲线库，noble-curves比较符合区块链环境，常用的曲线都有
 - 1字节2个16进制，有时候转化并不是简单的机制值转换，有时候需要按字节 不足1字节时可能需要补零
 - 哈希算法中 按utf-8输入和 按16进制输入区别
+
+
+## TODO
+
+- [ ] 区块字段解析
+- [ ] 助记词转化
