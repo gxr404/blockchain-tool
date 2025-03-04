@@ -34,6 +34,7 @@ pnpm run dev
 
 - [bn.js](https://github.com/indutny/bn.js) 和 [bignumber.js](https://github.com/MikeMcl/bignumber.js) 需要注意的是 bn不支持 浮点数，bignumber.js支持
 - 椭圆曲线 [elliptic](https://github.com/indutny/elliptic) 和 [noble-curves](https://github.com/paulmillr/noble-curves) 两个椭圆曲线库，noble-curves比较符合区块链环境，常用的曲线都有
+  - elliptic <= 6.6.0存在漏洞([6.6.1已修复](https://github.com/indutny/elliptic/commit/9b77436a59cc35eccf4ffb848259c8762a492ee7))，某些情况下不同的消息可能生成相同的 k，导致私钥泄露，[详细可查看](https://mp.weixin.qq.com/s/-JpS5Qg7NYYPgeic-7Y5VQ)
 - 1字节2个16进制，有时候转化并不是简单的机制值转换，有时候需要按字节 不足1字节时可能需要补零
 - 哈希算法中 按utf-8输入和 按16进制输入区别
 
@@ -42,3 +43,4 @@ pnpm run dev
 
 - [ ] 区块字段解析
 - [ ] 助记词转化
+- [ ] brc20结构解析
