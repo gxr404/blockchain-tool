@@ -162,6 +162,11 @@ export const routeList = [
         path: '/general/compact-size',
         title: 'Compact Size',
       },
+      {
+        id: 'general-evm-call-data-parser',
+        path: '/general/evm-call-data-parser',
+        title: 'eth_call的data解析',
+      },
     ],
   },
   {

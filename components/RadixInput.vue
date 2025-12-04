@@ -37,7 +37,8 @@ let stopWatch = false
 
 function onInput() {
   const regex = radixMap.get(radix.value) || decimalRegex
-  inputValue.value = inputValue.value?.replace(regex, '')
+
+  inputValue.value = inputValue.value?.replace(/^(0x|0b|0o|0d)/, '')?.replace(regex, '')
   nextTick(() => {
     emit('inputValue', inputValue.value)
   })
