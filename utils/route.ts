@@ -167,6 +167,11 @@ export const routeList = [
         path: '/general/evm-call-data-parser',
         title: 'eth_call的data解析',
       },
+      {
+        id: 'general-uint256-converter',
+        path: '/general/uint256-converter',
+        title: 'uint256转换',
+      },
     ],
   },
   {

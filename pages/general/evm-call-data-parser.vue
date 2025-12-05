@@ -87,7 +87,10 @@ function copy(data: string) {
 
 <template>
   <div class="flex flex-wrap gap-10 p-10">
-    <content-card title="EVM call data解析">
+    <content-card title="EVM eth_call data解析">
+      <template #description>
+        <p class="text-sm text-gray-400 mb-[40px]">EVM 合约调用 (eth_call) 的 data 字段解析</p>
+      </template>
       <el-descriptions label-width="120" :column="1">
         <el-descriptions-item label="Abi: ">
           <div class="inline-block w-[660px] min-h-[40px] align-middle">
