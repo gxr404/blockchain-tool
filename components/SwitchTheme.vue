@@ -39,6 +39,7 @@ function beforeChange() {
           duration: 300,
           // duration: 1000,
           easing: 'ease-in',
+          fill: 'forwards',
           pseudoElement:
             colorMode.value === 'dark'
               ? '::view-transition-old(root)'
